@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+require "csv"
+
+def run(cmd)
+  puts cmd
+  `#{cmd}`
+end
+
+csv_arg = ARGV[0]
+csv_file = File.open(csv_arg, 'r')
+
+data = CSV.new(csv_file.read, headers: true, header_converters: :symbol)
+entries = data.to_a.map { |row| row.to_hash }
+
+entries.each do |entry|
+  image_name = entry[:client_image_name]
+  item_id = entry[:item_id]
+  
+  if image_name && image_name.length > 0 && item_id && item_id.length > 0
+    run %[cp "#{image_name}.jpg" "#{item_id}.jpg"]
+  end
+end

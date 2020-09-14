@@ -1,0 +1,124 @@
+#user-items-section {
+  margin-bottom: -3rem;
+  border-top: solid .1rem #ddd;
+  max-width: 100%;
+  padding: 0 2rem;
+
+  @media (max-width: 43.5rem) {
+    margin-bottom: 0;
+    margin-top: 1rem;
+  }
+
+  .user-favorite, .user-lastorder {
+    &.disabled {
+      pointer-events: auto;
+    }
+    display: inline-block;
+    width: 18rem;
+    margin-bottom: 3rem;
+
+    h3 {
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    @media (max-width: 43.5rem) {
+      display: block;
+      margin: 1rem;
+    }
+
+    .favorite-price, .lastorder-price {
+      padding-top: 0.25rem;
+    }
+
+    .remove-favorite {
+      @include circle-close-x-icon;
+      text-decoration: none;
+      cursor: pointer;
+
+      &:before {
+        top: 0.1rem;
+        position: relative;
+        font-size: 1.2rem;
+        margin-left: 0.25rem;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .user-favorite.with-image, .user-lastorder.with-image {
+    display: inline-flex;
+    display: -webkit-inline-flex;
+    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    align-items: flex-start;
+    -webkit-align-items: flex-start;
+    align-content: flex-start;
+    -webkit-align-content: flex-start;
+    margin-right: 2rem;
+
+    @media (max-width: 43.5rem) {
+      flex-direction: row;
+      -webkit-flex-direction: row;
+      width: 100%;
+      margin: 0 0.75rem 0.75rem 0.75rem;
+    }
+
+    .img-large {
+      width: 100%;
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        height: 100%;
+      }
+      cursor: pointer;
+      @media (max-width: 43.5rem) {
+        display: none;
+      }
+    }
+
+    .img-small {
+      display: none;
+      width: 100px;
+      height: 100px;
+      flex-shrink: 0;
+      -webkit-flex-shrink: 0;
+      cursor: pointer;
+      @media (max-width: 43.5rem) {
+        display: inline-block;
+      }
+    }
+  }
+
+  .favorite-row {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    align-items: flex-start;
+    -webkit-align-items: flex-start;
+
+    .remove-favorite {
+      margin-left: 0.25rem;
+    }
+  }
+
+  .favorite-col, .lastorder-col {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    align-items: flex-start;
+    -webkit-align-items: flex-start;
+    padding-top: 1rem;
+
+    @media (max-width: 43.5rem) {
+      padding: 0.75rem;
+    }
+  }
+
+}

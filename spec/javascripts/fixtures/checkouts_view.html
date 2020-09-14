@@ -1,0 +1,212 @@
+<script>
+  window.valueio_account = "";
+  window.valueio_write_only_token = "";
+  window.valueio_form_selector = "#form_order_detail";
+  window.valueio_resource = "credit_cards";
+  window.valueio_secure_form_collect_credit_card = "true";
+  window.valueio_vault = "true";
+  window.valueio_secure_form_collect_name = "true";
+  window.valueio_secure_form_collect_zip = "true";
+  window.valueio_secure_form_require_zip = "true";
+  window.valueio_on_success = function() {
+    loadingPage.show();
+    $("form#form_order_detail").submit();
+  };
+</script>
+
+<main data-merchant-id="1083" data-merchant-name="Boulder, 2128 Pearl Street">
+
+  <section id="details">
+    <h1>Place order at Boulder, 2128 Pearl Street</h1>
+    <hr>
+    <form accept-charset="UTF-8" action="/checkouts" id="create_checkout_form" method="post">
+      <div style="display:none">
+        <input name="utf8" type="hidden" value="✓">
+        <input name="authenticity_token" type="hidden" value="tIyImRRI+K8S9BP5k1Pw1KIALiAk9MP1k3Z4sTxzaZI=">
+      </div>
+
+      <input id="order_cart_ucid" name="order[cart_ucid]" type="hidden">
+      <input id="order_merchant_id" name="order[merchant_id]" type="hidden" value="1083">
+      <input id="order_sub_total" name="order[sub_total]" type="hidden" value="7.75">
+      <input id="order_promo_code" name="order[promo_code]" type="hidden">
+      <input id="order_total_points" name="order[total_points]" type="hidden" value="0">
+      <input id="payment_types_map" name="payment_types_map" value="[{&quot;merchant_payment_type_map_id&quot;:&quot;7237&quot;,&quot;name&quot;:&quot;Cash&quot;,&quot;splickit_accepted_payment_type_id&quot;:&quot;1000&quot;,&quot;billing_entity_id&quot;:&quot;1000&quot;},{&quot;merchant_payment_type_map_id&quot;:&quot;7111&quot;,&quot;name&quot;:&quot;Credit Card&quot;,&quot;splickit_accepted_payment_type_id&quot;:&quot;2000&quot;,&quot;billing_entity_id&quot;:&quot;1266&quot;}]" type="hidden">
+
+      <div id="time-and-tip">
+        <div id="time">
+          <label for="time">Select a pickup time</label>
+          <select class="select" data-times="1412281340,1412281400,1412281460,1412281520,1412281580,1412281640,1412281700,1412281760,1412281820,1412281880,1412281940,1412282000,1412282060,1412282120,1412282180,1412282240,1412282540,1412282840,1412283140,1412283440,1412283740,1412284040,1412284340,1412284640,1412284940,1412285240,1412285540,1412285840,1412286140,1412286440,1412286740,1412287040,1412287940,1412288840,1412289740,1412290640,1412291540,1412292440,1412293340,1412294240,1412295140" id="time" name="time">
+            <option value="1444322687"> 9:44 AM</option>
+            <option value="1444322747"> 9:45 AM</option>
+            <option value="1444322807"> 9:46 AM</option>
+          </select>
+        </div>
+        <div id="tip">
+          <label for="tip">Select a tip</label>
+          <select class="select" id="tip" name="tip"><option value="0">No Tip</option>
+            <option value="0.78">10%</option>
+            <option value="1.16">15%</option>
+            <option value="1.55">20%</option>
+            <option value="1">$1.00</option>
+            <option value="2">$2.00</option>
+            <option value="3">$3.00</option>
+            <option value="4">$4.00</option>
+            <option value="5">$5.00</option>
+            <option value="6">$6.00</option>
+            <option value="7">$7.00</option>
+            <option value="8">$8.00</option>
+            <option value="9">$9.00</option>
+            <option value="10">$10.00</option>
+            <option value="11">$11.00</option>
+            <option value="12">$12.00</option>
+            <option value="13">$13.00</option>
+            <option value="14">$14.00</option>
+            <option value="15">$15.00</option>
+            <option value="16">$16.00</option>
+            <option value="17">$17.00</option>
+            <option value="18">$18.00</option>
+            <option value="19">$19.00</option>
+            <option value="20">$20.00</option>
+            <option value="21">$21.00</option>
+            <option value="22">$22.00</option>
+            <option value="23">$23.00</option>
+            <option value="24">$24.00</option>
+            <option value="25">$25.00</option></select>
+        </div>
+      </div>
+
+      <div id="notes">
+        <label for="note">Order notes</label>
+        <input id="note" name="note" type="text">
+      </div>
+    </form>
+
+    <form accept-charset="UTF-8" action="user_payments/new" id="form_order_detail" method="post">
+      <div style="display:none">
+        <input name="utf8" value="✓" type="hidden">
+      </div>
+      <input id="continue" name="continue" value="/checkouts/new?merchant_id=102237&amp;order_type=pickup" type="hidden">
+      <input id="time_selected" name="time_selected" value="" type="hidden">
+      <input id="tip_selected" name="tip_selected" value="" type="hidden">
+      <input id="note_value" name="note_value" value="" type="hidden">
+
+      <div id="payment">
+        <h2>Payment information</h2>
+
+        <div class="payment-type cash">
+            <span>
+              <input checked="checked" id="payment_type_1001" name="payment_type" type="radio" value="1001">
+            </span>
+          <span class="cash-icon payment-icon"></span>
+          <span class="cash-label">Cash on pickup</span>
+        </div>
+        <div class="payment-type credit-card">
+          <label class="selector-override">
+            <input checked="checked" id="payment_type_5443" name="payment_type" value="5443" type="radio">
+            <span></span>
+          </label>
+          <span class="credit-icon payment-icon"></span>
+          <span class="credit-label">•••• •••• •••• 1111</span>
+          <input name="replace_credit_card" value="Replace card" id="replace_credit_card" class="replace" type="submit">
+        </div>
+      </div>
+
+      <div id="buttons">
+        <a class="button primary" href="/merchants/105674?order_type=pickup" id="add">Add more items</a>
+        <button id="create_checkout_submit" name="button" type="submit">Place order ($7.48)</button>
+      </div>
+    </form>
+  </section>
+
+  <section id="summary">
+    <address>
+      <h2>Boulder, 2128 Pearl Street</h2>
+      <p>2128 Pearl Street</p>
+      <p>Boulder, CO 80302</p>
+      <p>303-444-7766</p>
+    </address>
+    <hr>
+    <table id="items">
+      <tbody><tr>
+        <td>
+          <h3>Roast Beef and Provolone</h3>
+          <p class="mods">
+            White
+            Provolone
+            Mayo
+            Mustard
+            Hot Peppers
+            Onions
+            Lettuce
+            Tomato
+            Pickles
+            Seasoning
+            Oil
+          </p>
+        </td>
+        <td class="price">$7.75</td>
+      </tr>
+      </tbody></table>
+    <hr>
+    <table id="amounts">
+
+      <tbody><tr id="subtotal">
+        <td>Subtotal</td>
+        <td>$7.75</td>
+      </tr>
+
+      <tr id="tax">
+        <td>Tax</td>
+        <td>$0.75</td>
+      </tr>
+
+      <tr id="tip">
+        <td>Tip</td>
+        <td>$0.00</td>
+      </tr>
+
+
+      <tr id="transaction-fee">
+        <td>Transaction fee</td>
+        <td>$0.25</td>
+      </tr>
+
+
+
+      <tr id="discount">
+        <td>Discount</td>
+        <td>
+            <span id="discount-text">
+              Add promotional code
+            </span>
+
+          <span id="discount-form">
+  <form accept-charset="UTF-8" action="/checkouts/new" method="get"><div style="display:none"><input name="utf8" type="hidden" value="✓"></div>
+
+    <input id="merchantId" name="merchantId" type="hidden" value="1083">
+
+
+    <input id="promo_code" name="promo_code" placeholder="Enter Promo Code" type="text">
+    <input class="loading" name="commit" type="submit" value="Apply">
+  </form></span>
+
+        </td>
+      </tr>
+      </tbody></table>
+    <hr>
+    <table id="total" data-total-before-tip="8.75">
+      <tbody><tr>
+        <td>Total</td>
+        <td class="price">$8.75</td>
+      </tr>
+      </tbody></table>
+  </section>
+ 
+</main>
+
+<div id="loading-page" style="display: none">
+  <div class="center-loading">
+    <img alt="Spinner2" src="/assets/spinner2.gif">
+    <span>Loading...</span>
+  </div>
+</div>

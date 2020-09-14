@@ -1,0 +1,1341 @@
+// background
+$primary-bg-color:<%= primary_bg_color %>
+;
+$footer-bg-color:<%= footer_bg_color %>
+;
+$menu-nav-bg-color:<%= menu_nav_bg_color %>
+;
+$card-bg-color:<%= card_bg_color %>
+;
+$small-nav-bg-color:<%= small_nav_bg_color %>
+;
+$modal-row-color:<%= modal_row_color %>
+;
+$dialog-bg-color:<%= dialog_bg_color %>
+;
+$loyalty-behind-card-bg:<%= loyalty_behind_card_bg %>
+;
+<% if !header_bg_row_color.blank?%>
+  $header-bg-row-color:<%= header_bg_row_color %>;
+<% end %>
+
+
+
+
+// loyalty behind card background color
+<% if loyalty_behind_card_bg == 'darken' %>
+$loyalty-behind-card-bg: darken($primary-bg-color, 12%);
+<% else %>
+$loyalty-behind-card-bg: lighten($primary-bg-color, 12%);
+<% end %>
+
+// highlight
+$separator-color:<%= separator_color %>
+;
+$small-nav-separator-color:<%= small_nav_separator_color %>
+;
+$small-primary-nav-separator-color:<%= small_primary_nav_separator_color %>
+;
+$small-secondary-nav-separator-color:<%= small_secondary_nav_separator_color %>
+;
+
+$modal-separator-color:<%= modal_separator_color %>
+;
+$footer-top-separator-color:<%= footer_top_separator_color %>
+;
+$card-separator-color:<%= card_separator_color %>
+;
+
+// borders
+$card-border-color:<%= card_border_color %>
+;
+$text-field-border-color:<%= text_field_border_color %>
+;
+$drop-down-border-color:<%= drop_down_border_color %>
+;
+$checkbox-border-color:<%= checkbox_border_color %>
+;
+$plus-minus-button-border-color:<%= plus_minus_button_border_color %>
+;
+
+// form
+$check-color:<%= check_color %>
+;
+$checkbox-checked-color:<%= checkbox_checked_color %>
+;
+$checkbox-unchecked-color:<%= checkbox_unchecked_color %>
+;
+$plus-minus-button-bg-active:<%= plus_minus_button_bg_active %>
+;
+$plus-minus-button-bg-inactive:<%= plus_minus_button_bg_inactive %>
+;
+
+// button
+$primary-button-color:<%= primary_button_color %>
+;
+$secondary-button-color:<%= secondary_button_color %>
+;
+
+// headers
+$modal-header-footer-color:<%= modal_header_footer_color %>
+;
+
+// text
+$light-text-color:<%= light_text_color %>
+;
+$medium-text-color:<%= medium_text_color %>
+;
+$dark-text-color:<%= dark_text_color %>
+;
+$primary-button-text-color:<%= primary_button_text_color %>
+;
+$secondary-button-text-color:<%= secondary_button_text_color %>
+;
+$footer-text-color:<%= footer_text_color %>
+;
+$menu-nav-item-text-color:<%= menu_nav_item_text_color %>
+;
+$menu-nav-item-selected-text-color:<%= menu_nav_item_selected_text_color %>
+;
+$menu-price-text-color:<%= menu_price_text_color %>
+;
+$info-window-dark-text-color:<%= info_window_dark_text_color %>
+;
+$info-window-light-text-color:<%= info_window_light_text_color %>
+;
+$small-nav-text-color:<%= small_nav_text_color %>
+;
+$modal-row-text-color:<%= modal_row_text_color %>
+;
+$menu_nav_primary_item_text_color:<%= menu_nav_primary_item_text_color %>
+;
+$address_block_text_color:<%= address_block_text_color %>
+;
+$address_block_bg_color:<%= address_block_bg_color || "rgba(68, 68, 68, 0.4)" %>
+;
+$menu-price-rewards-text-color:<%= menu_price_rewards_text_color || "null" %>
+;
+$payments-title-text-color:<%= payments_title_text_color || "null" %>
+;
+$payment-rewards-title-text-color:<%= payment_rewards_title_text_color || "null" %>
+;
+$loyalty-message-color-text:<%= loyalty_message_color_text || "null" %>
+;
+
+// link
+$link-color:<%= link_color %>
+;
+$link-hover-color:<%= link_hover_color %>
+;
+
+// hover
+$menu-nav-item-hover-color:<%= menu_nav_item_hover_color %>
+;
+$primary-button-hover-color:<%= primary_button_hover_color %>
+;
+$secondary-button-hover-color:<%= secondary_button_hover_color %>
+;
+$menu-item-hover-color:<%= menu_item_hover_color %>
+;
+
+// bag icon
+$bag-bg-color:<%= bag_bg_color %>
+;
+$bag-text-color:<%= bag_text_color %>
+;
+
+// loyalty
+$loyalty-nth-row-color:<%= loyalty_nth_row_color %>
+;
+$loyalty-border-color:<%= loyalty_border_color %>
+;
+
+//payment icon
+$loyalty-icon-color:<%= loyalty_icon_color || "null" %>
+;
+
+// images
+$primary-logo-url: '<%= primary_logo_url %>';
+$loyalty-logo-url: '<%= loyalty_logo_url %>';
+$hero-image-url: '<%= hero_image_url %>';
+$app-logo-url: '<%= app_logo_url %>';
+
+// shadows
+<% if address_shadow_color %>
+$address-shadow-color:<%= address_shadow_color %>
+;
+<% end %>
+
+// custom skin font for merchant show - menu
+<% if custom_font_url %>
+<% if name_custom_font_for_menu %>
+@font-face {
+  font-family: 'SkinCustomFontMenu';
+  src: url('<%= "#{ custom_font_url}#{ name_custom_font_for_menu }.eot" %>');
+  src: url('<%= "#{ custom_font_url}#{ name_custom_font_for_menu }.eot?#iefix" %>') format('embedded-opentype'),
+  url('<%= "#{ custom_font_url}#{ name_custom_font_for_menu }.woff" %>') format('woff'),
+  url('<%= "#{ custom_font_url}#{ name_custom_font_for_menu }.ttf" %>') format('truetype'),
+  url('<%= "#{ custom_font_url}#{ name_custom_font_for_menu }.svg#webfont" %>') format('svg');
+}
+
+<% end %>
+
+// custom skin font for merchant list
+<% if name_custom_font_for_merchantlist %>
+@font-face {
+  font-family: 'SkinCustomFontLocation';
+  src: url('<%= "#{ custom_font_url}#{ name_custom_font_for_merchantlist }.eot" %>');
+  src: url('<%= "#{ custom_font_url}#{ name_custom_font_for_merchantlist }.eot?#iefix" %>') format('embedded-opentype'),
+  url('<%= "#{ custom_font_url}#{ name_custom_font_for_merchantlist }.woff" %>') format('woff'),
+  url('<%= "#{ custom_font_url}#{ name_custom_font_for_merchantlist }.ttf" %>') format('truetype'),
+  url('<%= "#{ custom_font_url}#{ name_custom_font_for_merchantlist }.svg#webfont" %>') format('svg');
+}
+
+<% end %>
+<% end %>
+
+// defaults
+$checkbox-border-color: transparent !default;
+$check-color: $modal-row-color !default;
+$plus-minus-button-bg-active: $checkbox-checked-color !default;
+$plus-minus-button-bg-inactive: $checkbox-unchecked-color !default;
+$plus-minus-button-border-color: $checkbox-border-color !default;
+$modal-row-color: #ffffff !default;
+$modal-separator-color: $separator-color !default;
+$footer-top-separator-color: transparent !default;
+$card-separator-color: $separator-color !default;
+$loyalty-logo-url: $primary-logo-url !default;
+$app-logo-url: $primary-logo-url !default;
+$info-window-dark-text-color: $dark-text-color !default;
+$info-window-light-text-color: $light-text-color !default;
+$small-nav-text-color: $primary-bg-color !default;
+$small-primary-nav-separator-color: rgba(255, 255, 255, .27) !default;
+$small-secondary-nav-separator-color: rgba(255, 255, 255, .27) !default;
+$dialog-bg-color: $primary-bg-color !default;
+$modal-row-text-color: $medium-text-color !default;
+$menu-price-rewards-text-color: $menu-price-text-color !default;
+$payments-title-text-color: $menu-price-text-color !default;
+$payment-rewards-title-text-color: $menu-price-text-color !default;
+$loyalty-message-color-text: $menu-price-text-color !default;
+$loyalty-icon-color: $primary-button-color;
+$header-bg-row-color: $card-bg-color !default;
+
+<% if override_css %>
+@import '<%= name %>.css.scss';
+<% end %>
+
+<% if font_family_src %>
+@import url("<%= font_family_src %>");
+<% end %>
+
+body {
+  .logo {
+    &.logo-loyalty {
+      background-image: url($loyalty-logo-url);
+    }
+
+    /*&.logo-app {
+      background-image: url($app-logo-url);
+    }*/
+  }
+
+  .loyalty-card-bg {
+    background-color: $loyalty-behind-card-bg;
+    @media (min-width: 43.5rem) {
+      background-color: transparent;
+    }
+  }
+
+  .badge {
+    background-color: $primary-button-color;
+    color: $primary-button-text-color;
+  }
+
+  .loyalty-card {
+    background-color: $primary-bg-color;
+  }
+
+  .loyalty-group {
+    .link,
+    .manage {
+      border-right: 0.1rem solid transparent;
+      @media (min-width: 40rem) {
+        border-right: 0.1rem solid $separator-color;
+      }
+    }
+  }
+
+  background-color: $primary-bg-color;
+
+  input[type=submit], button, .button {
+    background-color: $primary-button-color;
+    color: $primary-button-text-color;
+
+    &:active,
+    &:hover {
+      background: $primary-button-hover-color;
+    }
+  }
+
+  .info-window {
+    h3 {
+      color: $info-window-dark-text-color;
+    }
+    p {
+      color: $info-window-light-text-color;
+    }
+  }
+
+  [data-dialog-element] .buttons button,
+  [data-dialog-element] .buttons a, #buttons a.button.new, input.loading.new {
+    background-color: $secondary-button-color;
+    color: $secondary-button-text-color;
+  }
+
+  #sign-in,
+  #sign-up {
+    background-color: $primary-bg-color;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $dark-text-color;
+  }
+
+  label {
+    color: $dark-text-color;
+  }
+
+  a {
+    color: $link-color;
+  }
+
+  header {
+    background-color: $small-nav-bg-color;
+    /*background-image: url($hero-image-url);*/
+
+    &.open nav.primary {
+      background-color: $small-nav-bg-color;
+
+      a {
+        border-top-color: $small-primary-nav-separator-color;
+      }
+
+    }
+    .header_img{
+      background-image: url($hero-image-url);
+    }
+
+    div.order::before {
+      color: $bag-bg-color;
+    }
+
+    div.order::after {
+      color: $bag-text-color;
+    }
+
+    div.order {
+      a {
+        span {
+          color: $menu_nav_primary_item_text_color;
+        }
+      }
+    }
+
+    nav.primary {
+      > a:not(.logo):not(.group-order-status) {
+        color: $menu_nav_primary_item_text_color;
+        position: relative;
+      }
+      .group-order-status{
+        color: $menu_nav_primary_item_text_color;;
+
+      }
+      background-color: $footer-bg-color;
+    }
+
+
+
+    .dropdown-content {
+      background-color: $primary_bg_color;
+    }
+    .dropdown-content a {
+      color: $dark-text-color;
+    }
+
+    nav.secondary,
+    nav.secondary.stacked {
+      background-color: $menu-nav-bg-color;
+
+      &::before {
+        color: $menu-nav-item-text-color;
+      }
+
+      a {
+        color: $menu-nav-item-text-color;
+        background-color: $menu-nav-bg-color;
+
+        &:hover {
+          background-color: $menu-nav-item-hover-color;
+        }
+      }
+
+      a:not(:first-child) {
+        border-top-color: $small-secondary-nav-separator-color;
+      }
+
+    }
+
+    nav.secondary {
+      a.current {
+        color: $menu-nav-item-selected-text-color;
+        background-color: $primary-bg-color;
+      }
+    }
+
+    nav.secondary.stacked {
+      a.current {
+        color: $menu-nav-item-text-color;
+        background-color: $menu-nav-bg-color;
+      }
+    }
+  }
+
+  input[type=text],
+  input[type=email],
+  input[type=tel],
+  input[type=password] {
+    border: solid 1px $text-field-border-color;
+  }
+
+  input[type=radio]::before {
+    background-color: $checkbox-unchecked-color;
+  }
+
+  input[type=checkbox]::before {
+    background-color: $checkbox-unchecked-color;
+  }
+
+  p {
+    color: $medium-text-color;
+  }
+
+  hr {
+    border-top: solid 1px $separator-color;
+  }
+
+  [data-dialog-element]#add-to-order [data-dialog-footer] > *:last-child,
+  [data-dialog-element]#my-order [data-dialog-footer] > *:last-child {
+    background-color: $secondary-button-color;
+    color: $secondary-button-text-color;
+    &:active,
+    &:enabled:hover {
+      background-color: $secondary-button-hover-color;
+    }
+  }
+
+  [data-dialog-element]#add-to-order [data-dialog-footer] .dialog-right {
+    background: $primary-bg-color;
+  }
+
+  [data-dialog-element] [data-dialog-footer] button.submit-order,
+  [data-dialog-element] [data-dialog-footer] button.add-to-group-order {
+    background-color: $primary-button-color !important;
+  }
+
+  [data-dialog-element] [data-dialog-close]:before {
+    color: $dark-text-color;
+  }
+
+  input[type=checkbox]:checked::before,
+  input[type=radio]:checked::before {
+    background-color: $checkbox-checked-color;
+    border: 1px solid $checkbox-border-color;
+  }
+
+  [data-dialog-element] .buttons button.secondary-btn {
+    background-color: $secondary-button-color;
+    color: $secondary-button-text-color;
+
+    &:hover,
+    &:active {
+      background-color: $secondary-button-hover-color;
+    }
+  }
+
+  [data-dialog-element] .buttons button,
+  [data-dialog-element] .buttons a {
+    background-color: $secondary-button-color;
+    color: $secondary-button-text-color;
+
+    &:hover,
+    &:active {
+      background-color: $secondary-button-hover-color;
+    }
+  }
+
+  [data-dialog-element] .buttons a.secondary-btn,
+  input[type=checkbox]:checked::before,
+  input[type=radio]:checked::before {
+    background-color: $checkbox-checked-color;
+    border: 1px solid $checkbox-border-color;
+
+    &:active,
+    &:hover {
+      background-color: $checkbox-checked-color;
+    }
+  }
+
+  footer {
+    color: $footer-text-color;
+    background-color: $footer-bg-color;
+    border-top: 1px solid $footer-top-separator-color;
+
+    .footer-top {
+      border-bottom: 1px solid $separator-color;
+
+      a.logo.logo-large {
+        background-color: $menu-nav-bg-color;
+      }
+
+      .side-text {
+        p,
+        a {
+          color: inherit;
+        }
+      }
+
+    }
+
+    p {
+      color: rgba($footer-text-color, .5);
+    }
+
+    a {
+      color: $footer-text-color;
+    }
+
+  }
+
+}
+
+[data-route='password_resets/request_email'] main .content form input[type='submit'],
+[data-route='password_resets/request_token'] main .content form input[type='submit'],
+[data-route='password_resets/request_reset'] main .content form input[type='submit'] {
+  background-color: $primary-button-color;
+  color: $primary-button-text-color;
+
+  &:hover {
+    background-color: $primary-button-hover-color;
+  }
+
+  &:active {
+    background-color: $primary-button-color;
+  }
+}
+
+[data-route='password_resets/request_email'] main .content,
+[data-route='password_resets/request_token'] main .content,
+[data-route='password_resets/request_reset'] main .content {
+  border-bottom: 1px solid $separator-color;
+  padding-bottom: 1.3rem;
+}
+
+[data-route='checkouts/new'],
+[data-route='checkouts/show'] {
+  section#loyalty {
+    h3 {
+      color: $loyalty-message-color-text;
+    }
+  }
+
+  table {
+    td.price {
+      color: $menu-price-text-color;
+    }
+  }
+
+  table#total {
+    td.price {
+      color: $menu-price-text-color;
+    }
+
+    td.price.rewards {
+      color: $menu-price-rewards-text-color;
+    }
+
+    td.title {
+      color: $payments-title-text-color;
+    }
+
+    td.title.rewards {
+      color: $payment-rewards-title-text-color;
+    }
+  }
+}
+
+[data-route='merchants/index'] [data-dialog-element]#select-address {
+  .enter-address {
+    color: $link-color;
+  }
+  .address {
+    color: $medium-text-color;
+  }
+  .addresses {
+    background-color: $modal-row-color;
+  }
+  .bordered {
+    border-bottom: 1px solid $separator-color;
+  }
+}
+
+[data-dialog-element] [data-dialog-content] {
+  color: $light-text-color;
+}
+
+[data-route='merchants/index'] #results > div {
+  border-top: solid 1px $separator-color;
+}
+
+[data-route='merchants/index'] #results aside figure > *:first-child {
+  &:active {
+    border-right: none;
+  }
+}
+
+[data-route='merchants/index'] {
+  section#results {
+    div {
+      aside {
+        .checkbox-container {
+          & > span {
+            color: $medium-text-color;
+          }
+        }
+      }
+    }
+  <% if name_custom_font_for_merchantlist %>
+    h2 {
+      font-family: SkinCustomFontLocation;
+    }
+  <% end %>
+  }
+
+  [data-dialog-element]#delivery-address {
+    background-color: $modal-row-color;
+    [data-dialog-content] {
+      color: $medium-text-color;
+    }
+  }
+}
+
+[data-route='merchants/show'] [data-dialog-element]#add-to-order .modifier_item .actions .inc-modifier,
+[data-route='merchants/show'] [data-dialog-element]#add-to-order .modifier_item .actions .dec-modifier,
+[data-route='merchants/show'] [data-dialog-element]#add-to-order .size .actions .inc-modifier,
+[data-route='merchants/show'] [data-dialog-element]#add-to-order .size .actions .dec-modifier {
+  border: 1px solid $medium-text-color;
+}
+
+#item-added-popup .item-added-link-group a#item-added::before {
+  color: $separator-color;
+}
+
+[data-route='merchants/show'] .item {
+  @media (max-width: 43.5rem) {
+    border-top: 1px solid $separator-color;
+  }
+  @media (min-width: 43.5rem) {
+    &:hover {
+      background-color: $menu-item-hover-color;
+      box-shadow: 0 0 0 1rem $menu-item-hover-color;
+    }
+  }
+}
+
+[data-dialog-element]#add-to-order .modifier_item,
+[data-dialog-element]#add-to-order .size {
+  border-bottom: solid 1px $separator-color;
+}
+
+[data-dialog-element]#add-to-order .size-header .name,
+[data-dialog-element]#add-to-order .modifier_group_header .name {
+  color: $dark-text-color;
+}
+
+[data-dialog-element]#add-to-order .modifier_group_header .quantity,
+[data-dialog-element]#add-to-order .size-header .quantity {
+  color: $light-text-color;
+}
+
+[data-dialog-element]#add-to-order .modifier_item .quantity {
+  color: $dark-text-color;
+}
+
+[data-dialog-element]#add-to-order {
+  dl {
+    background-color: $modal-row-color;
+    /*border-top: 1px solid $modal-separator-color;
+    border-bottom: 1px solid $modal-separator-color;*/
+  }
+  dt {
+    color: $modal-row-text-color;
+    span {
+      color: $menu-price-text-color;
+    }
+  }
+  dd {
+    a {
+      color: $modal-row-color;
+      background-color: $plus-minus-button-bg-inactive;
+      border: 1px solid $plus-minus-button-border-color;
+    }
+    span.modifier-quantity {
+      color: $checkbox-checked-color;
+    }
+    p.modifier-calories {
+      color: $modal-row-text-color !important;
+    }
+  }
+  div#dropdown {
+    .ui-accordion-header, & > h4 {
+      border-bottom: 1px solid $separator-color;
+    }
+  }
+}
+
+[data-dialog-element]#my-order h5 {
+  color: $modal-row-text-color;
+}
+
+body header div.user {
+  h3, p, a {
+    color: $small-nav-text-color;
+  }
+}
+
+body [data-dialog-element]#my-order .details .description {
+  color: lighten($modal-row-text-color, 25%);
+}
+
+.remove-item {
+  color: $primary-button-color;
+}
+
+.edit-item {
+  color: $primary-button-color;
+}
+
+[data-dialog-element]#my-order, #upsells-info[data-dialog-element] {
+  background-color: $modal-row-color;
+
+  .my-order {
+    div:not(:last-child) {
+      section {
+        border-bottom: 1px solid $separator-color;
+      }
+    }
+  }
+
+  article > *:first-child, .price {
+    color: $menu-price-text-color;
+  }
+
+  .details .description {
+    color: $light-text-color;
+  }
+
+  p.subtitle {
+    color: $dark-text-color;
+    a {
+      color: $link-color;
+    }
+  }
+}
+
+#upsells-info[data-dialog-element] {
+  #upsells-content #upsell-items-section article > *:first-child {
+    color: $menu-price-text-color;
+  }
+}
+
+[data-route='checkouts/new'] .checkout-info #summary address,
+[data-route='checkouts/show'] section#summary address,
+[data-route='checkouts/new'] table,
+[data-route='checkouts/show'] table {
+  p {
+    color: $light-text-color;
+  }
+}
+
+[data-route='checkouts/new'] {
+  .container section#details{
+    border: 1px solid $card-border-color;
+  }
+}
+
+[data-route='checkouts/new'] .container section#details form #payment .credit-label,
+[data-route='checkouts/new'] .container section#details form #payment .gift-label,
+[data-route='checkouts/new'] .container section#details form #payment .loyalty-label,
+[data-route='checkouts/new'] .container section#details form #payment .cash-label,
+[data-route='checkouts/new'] .container #char-limit {
+  color: $medium-text-color;
+}
+
+[data-route='checkouts/new'] .container section#details form #payment {
+  .payment-icon.credit-icon,
+  .payment-icon.cash-icon {
+    color: $medium-text-color;
+  }
+
+  .payment-icon.loyalty-icon {
+    color: $loyalty-icon-color;
+  }
+}
+
+label.selector-override {
+  span {
+    background-color: $checkbox-unchecked-color;
+  }
+
+  :checked + span {
+    background-color: $checkbox-checked-color;
+    border: 1px solid $checkbox-border-color;
+    color: $check-color;
+  }
+}
+
+[data-dialog-element]#add-to-order dd a.add.active,
+[data-dialog-element]#add-to-order dd a.subtract.active {
+  background-color: $plus-minus-button-bg-active;
+  color: $check-color;
+}
+
+[data-dialog-element]#add-to-order h4, #nutrition-info[data-dialog-element] .nutrition-info[data-dialog-content] h4,
+#nutrition-info[data-dialog-element] .nutrition-info[data-dialog-content] p.title {
+  color: $dark-text-color;
+}
+
+[data-route='merchants/index'] #search {
+<% if location_font %>
+  h1 {
+    font-family: SkinCustomFontLocation;
+  }
+<% end %>
+}
+
+[data-route='checkouts/show'] .container section#details .social-group,
+[data-route='checkouts/show'] .container section#details {
+  border-top: 1px solid $separator-color;
+}
+
+[data-route='checkouts/new'] .container div#summary_content,
+[data-route='checkouts/show'] .container section#summary,
+[data-route='checkouts/new'] .container section#details form #payment .payment-type {
+  background-color: $card-bg-color;
+  border: solid 1px $card-border-color;
+  hr {
+    border-top: 1px solid $card-separator-color;
+  }
+}
+
+[data-route='checkouts/show'] .container section#details {
+  div#save-favorite, div.social-group, div#loyalty {
+    border-top: 0.08rem solid $card-separator-color;
+  }
+}
+
+[data-route='checkouts/show'] section#details .primary-btn {
+  background-color: $primary-button-color;
+  color: $primary-button-text-color;
+
+  &:hover {
+    background-color: $primary-button-hover-color;
+  }
+}
+
+[data-route='checkouts/show'] section#summary {
+  border: 1px solid $card-border-color;
+  background-color: $card-bg-color;
+}
+
+[data-route='checkouts/new'] .container table #promo-discount #discount-text,
+[data-route='checkouts/show'] .container table #promo-discount #discount-text {
+  color: $link-color;
+}
+
+[data-route='checkouts/new'] table #discount-error, [data-route='checkouts/show'] table #discount-error {
+  border-top: 1px solid $card-bg-color;
+  border-bottom: 1px solid $card-bg-color;
+}
+
+[data-route='checkouts/new'] table td,
+[data-route='checkouts/show'] table td {
+  color: $medium-text-color;
+}
+
+[data-route='checkouts/new'] table#total td,
+[data-route='checkouts/show'] table#total td {
+  color: $dark-text-color;
+}
+
+header #item-added-popup {
+  box-shadow: 0px 0px 5px darken($primary-bg-color, 20%)
+}
+
+[data-route='merchants/show'] section:not(:first-child) {
+  border-top: solid 1px $separator-color;
+  margin-bottom: 1px;
+}
+
+[data-route='merchants/show'] h4 {
+  color: $menu_price_text_color;
+}
+
+[data-route='merchants/show'] main article:active,
+[data-route='merchants/show'] main article:hover {
+  @media (min-width: 43.5rem) {
+    background-color: $menu-item-hover-color;
+    box-shadow: 0 0 0 1rem $menu-item-hover-color;
+  }
+}
+
+[data-route='users/new'] main,
+[data-route='users/create'] main,
+.sign-up[data-dialog-content] {
+  #su-brand-enroll {
+    background: $card-bg-color;
+    border: 0.1rem solid $primary-bg-color;
+
+    input[type=checkbox] {
+      &::before {
+        color: $primary-bg-color;
+      }
+    }
+
+    span {
+      color: $medium-text-color;
+      &::before {
+        color: $card-bg-color;
+      }
+    }
+  }
+}
+
+[data-route='user_addresses/new'] #addresses,
+[data-route='user_addresses/index'] #addresses {
+  background-color: $card-bg-color;
+  border: solid 1px $card-border-color;
+}
+
+[data-route='user_addresses/index'] {
+  [data-dialog-element]#delivery-address {
+    background-color: $modal-row-color;
+    [data-dialog-content] {
+      color: $medium-text-color;
+    }
+  }
+}
+
+[data-dialog-element] [data-dialog-header], [data-dialog-element] [data-dialog-footer] {
+  background-color: $modal-header-footer-color;
+}
+
+[data-dialog-element] [data-dialog-header] {
+  border-bottom: 1px solid $separator-color;
+}
+
+[data-dialog-element] [data-dialog-footer] {
+  border-top: 1px solid $separator-color;
+}
+
+[data-dialog-element]#add-to-order [data-dialog-content], #nutrition-info[data-dialog-element], #upsells-info[data-dialog-element] {
+  background-color: $dialog-bg-color;
+}
+
+[data-dialog-element]#add-to-order section#details p,
+[data-dialog-element]#add-to-order section:not(#details) p {
+  color: $light-text-color;
+}
+
+#triangle-up {
+  border-bottom-color: $primary_bg_color;
+}
+
+#item-added-popup {
+  background-color: $primary_bg_color;
+}
+
+[data-dialog-element] .buttons button:hover,
+[data-dialog-element] .buttons button:active,
+[data-dialog-element] .buttons a:hover,
+[data-dialog-element] .buttons a:active,
+#buttons a.button.new:hover, input.loading.new:hover {
+  background-color: $secondary-button-hover-color;
+}
+
+[data-route='user_addresses/new'] article:not(:first-child),
+[data-route='user_addresses/index'] article:not(:first-child) {
+  border-top: solid 1px $card-border-color;
+}
+
+[data-route='user_addresses/new'] label:last-of-type,
+[data-route='user_addresses/index'] label:last-of-type {
+  color: $medium-text-color;
+}
+
+[data-route='users/account'] aside,
+[data-route='user_payments/new'] aside,
+[data-route='user_addresses/new'] aside,
+[data-route='user_addresses/index'] aside,
+[data-route='users/orders_history'] aside {
+  background-color: $card-bg-color;
+  border: solid 1px $card-border-color;
+}
+
+[data-tabs] {
+  border-bottom: solid 1px $separator-color;
+}
+
+[data-tabs] a {
+  color: $medium-text-color;
+}
+
+[data-tabs] > .active a {
+  color: $dark-text-color;
+}
+
+[data-route='user_payments/new'] #card {
+  background-color: $card-bg-color;
+  border: solid 1px $card-border-color;
+}
+
+[data-route='user_payments/new'] form {
+  background-color: $card-bg-color;
+  border: solid 1px $card-border-color;
+}
+
+[data-route='users/orders_history'] {
+  div#order-data {
+    table {
+      tr:first-child {
+        color: $dark-text-color;
+      }
+
+      tr {
+        color: $dark-text-color;
+      }
+
+      tr:not(#header):hover, tr:not(#header).select, tr:nth-child(2n):hover, tr:nth-child(2n).select {
+        background: darken($primary-bg-color, 8%);
+      }
+
+      td {
+        border-top: 1px solid $separator-color;
+      }
+
+      tr:last-of-type td {
+        border-bottom: 1px solid $separator-color;
+      }
+
+      @media(max-width: 760px) {
+        tr {
+          border: 1px solid $separator-color;
+        }
+      }
+    }
+  }
+
+  div#add-favorite, div.order-summary {
+    background-color: $modal-row-color;
+  }
+
+  div.order-summary {
+    section#summary {
+      background-color: $card-bg-color;
+      border: solid 1px $card-border-color;
+
+      hr {
+        border-top: 1px solid $card-separator-color;
+      }
+
+      table, table#total {
+        td.price {
+          color: $menu-price-text-color;
+        }
+      }
+
+      table {
+        td {
+          color: $medium-text-color;
+        }
+      }
+
+      table#total {
+        td {
+          color: $dark-text-color;
+        }
+      }
+
+      address, table {
+        p {
+          color: $light-text-color;
+        }
+      }
+
+      table #promo-discount #discount-text {
+        color: $link-color;
+      }
+
+      table #discount-error {
+        border-top: 1px solid $card-bg-color;
+        border-bottom: 1px solid $card-bg-color;
+      }
+    }
+  }
+}
+
+[data-route='users/account'] aside,
+[data-route='user_payments/new'] aside,
+[data-route='user_addresses/new'] aside,
+[data-route='user_addresses/index'] aside,
+[data-route='users/orders_history'] aside {
+  background-color: $card-bg-color;
+}
+
+[data-route='loyalties/history'] {
+  .loyalty {
+    .loyalty-content {
+      h3 {
+        color: $dark-text-color;
+        border-bottom: 1px solid $loyalty-border-color;
+      }
+
+      table {
+        tr:first-child {
+          color: $dark-text-color;
+        }
+        tr {
+          color: $dark-text-color;
+        }
+        tr:nth-child(2n) {
+          background-color: $loyalty-nth-row-color;
+        }
+
+        td {
+          border-top: 1px solid $loyalty-border-color;
+        }
+
+        tr:last-of-type td {
+          border-bottom: 1px solid $loyalty-border-color;
+        }
+      }
+    }
+  }
+}
+
+[data-route="loyalties/rules"] {
+  .header {
+    border-bottom: 1px solid $loyalty-border-color;
+  }
+}
+
+/*label.selector-override :checked + span {*/
+/*background-color: $checkbox-checked-color;*/
+/*border: 1px solid $checkbox-border-color;*/
+/*color: $check-color;*/
+/*}*/
+
+[data-route='checkouts/new'] .container.checkout-info section#details.delivery-address p:first-of-type, label.title-header {
+  color: $dark-text-color;
+}
+label.title-header{
+  background-color: $header-bg-row-color;
+}
+
+[data-route='checkouts/new'] .container.checkout-info section#details.delivery-address p:last-of-type {
+  color: $light-text-color;
+}
+
+[data-route='checkouts/new'] .container .checkout-info section#details .delivery-address,
+[data-route='checkouts/show'] .container .checkout-info .delivery-address,
+[data-route='group_orders/new'] section.left-container .go-location,
+[data-route='group_orders/new'] section.right-container,
+[data-route='group_orders/show'] {
+  section.left-container {
+    .merchant-info, .delivery-info {
+      background-color: $card-bg-color;
+      border: 1px solid $card-border-color;
+    }
+
+    .user-order {
+      td:not(.status) {
+        color: $dark-text-color;
+      }
+    }
+  }
+
+  section.right-container {
+    background-color: $card-bg-color;
+    border: 1px solid $card-border-color;
+  }
+  .bubble {
+    background-color: $primary-button-color;
+  }
+}
+
+#change-store {
+  background: $primary-bg-color;
+}
+
+[data-dialog-element]#error-message {
+  background-color: $primary-bg-color;
+
+  div.order-error {
+    color: $dark-text-color;
+  }
+}
+[data-dialog-element]#gift-replace {
+
+  [data-dialog-content] {
+    color: $dark-text-color;
+  }
+}
+
+
+[data-dialog-element]#group-order-error {
+  background-color: $primary-bg-color;
+
+  [data-dialog-content] {
+    color: $dark-text-color;
+  }
+}
+
+[data-dialog-element]#create-group-order, [data-dialog-element]#cancel-group-order {
+  background: $primary-bg-color;
+  [data-dialog-header], [data-dialog-footer] {
+    background: $primary-bg-color;
+  }
+}
+
+#change-store [data-dialog-content] .buttons a {
+  background: $primary-button-color;
+}
+
+body header a,
+body header nav.secondary a, body header nav.secondary.stacked a,
+#sign-in h1,
+[data-route='checkouts/new'] section#summary address,
+[data-route='checkouts/show'] section#summary address,
+[data-route='checkouts/new'] h1,
+[data-route='checkouts/show'] h1,
+[data-route='sessions/new'] main h1,
+[data-route='merchants/index'] #results article h3,
+[data-route='merchants/index'] #search h1,
+[data-route='merchants/index'] #results h2,
+[data-route='merchants/show'] header address,
+[data-route='merchants/show'] h3,
+[data-route='merchants/show'] section h2,
+[data-route='merchants/show'] .menu-type-image h1,
+[data-route='merchants/show'] .takeout-menu,
+[data-route='merchants/show'] .pickup-menu {
+<% if font_family_name %> font-family: "<%= font_family_name %>";
+<% end %><% if font_weight %> font-weight: <%= font_weight %>;
+<% end %>
+}
+
+/*address {
+  background: $address_block_bg_color;
+}*/
+
+[data-route='merchants/show'] header {
+  address {
+    * {
+      color: $address_block_text_color;
+    }
+    background: $address_block_bg_color;
+    .address-forward-arrow-icon {
+      color: $primary-button-color;
+    }
+
+    .address-back-arrow-icon {
+      color: $primary-button-color;
+    }
+
+  <% if address_shadow_color %> text-shadow: 3px 2px 3px $address-shadow-color, 3px 2px 3px $address-shadow-color, 3px 2px 3px $address-shadow-color, -3px -2px 3px $address-shadow-color, -3px -2px 3px $address-shadow-color, -3px -2px 3px $address-shadow-color, -3px 2px 3px $address-shadow-color, -3px 2px 3px $address-shadow-color, -3px 2px 3px $address-shadow-color, 3px -2px 3px $address-shadow-color, 3px -2px 3px $address-shadow-color, 3px -2px 3px $address-shadow-color;
+    filter: progid:DXImageTransform.Microsoft.glow(color=<%= address_shadow_color %>, strength=5);
+  <% end %>
+    @media (min-width: 43.5rem) {
+      background: none;
+    }
+
+
+  }
+  @media (max-width: 43.5rem) {
+    background-color: $footer-bg-color;
+  }
+}
+
+[data-route='merchants/show'] {
+<% if name_custom_font_for_menu %>
+  h2 {
+    font-family: 'SkinCustomFontMenu';
+  }
+  .menu-type-image h1{
+    font-family: 'SkinCustomFontMenu';
+  }
+<% end %>
+}
+
+[data-route='caterings/new'] {
+  .calendar-icon {
+    color: $dark-text-color;
+  }
+
+  section.delivery-data {
+    button {
+      border: 1px solid $light-text-color;
+
+      &.non-active {
+        background-color: $primary-button-text-color;
+        color: $secondary-button-color;
+
+        &:hover {
+          background-color: lighten($secondary-button-hover-color, 62%);
+        }
+      }
+    }
+  }
+}
+
+//Pagination
+.pagination > li > a, .pagination > li > span {
+  color: $menu-nav-item-text-color;
+}
+
+.pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover {
+  color: $menu-nav-item-text-color;
+  background-color: darken($primary-bg-color, 8%);
+}
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+  color: $menu-nav-item-text-color;
+  background-color: darken($primary-bg-color, 8%);
+}
+
+.pagination > .disabled > a, .pagination > .disabled > a:focus, .pagination > .disabled > a:hover, .pagination > .disabled > span, .pagination > .disabled > span:focus, .pagination > .disabled > span:hover {
+  color: $menu-nav-item-text-color;
+}
+
+// styles for icon to show the store hours
+.links-container {
+  .separator {
+    color: $link-color;
+  }
+}
+
+.sign-in {
+  .or-center {
+    hr {
+      border-top: solid 1px $dark-text-color;
+    }
+  }
+}

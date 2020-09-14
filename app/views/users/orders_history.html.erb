@@ -1,0 +1,78 @@
+<main>
+
+  <%= render "users/navigation" %>
+
+  <% if @orders.present? %>
+    <section>
+
+      <aside>
+        <h2>History</h2>
+        <p>A history view showing all orders.</p>
+      </aside>
+
+      <div id="order-data">
+        <table>
+          <thead>
+            <tr id="header">
+              <th>id</th>
+              <th>merchant</th>
+              <th>date</th>
+              <th>status</th>
+              <th>total</th>
+              <th class="add-favorite-button"></th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @orders.each do |order| %>
+            <% merchant = order["merchant"] %>
+            <tr>
+              <td data-label="id">
+                <a href="#">
+                  <%= order["order_id"].to_s %>
+                </a>
+              </td>
+              <td data-label="merchant">
+                <%= merchant.display_name %>
+                <br/>
+                <%= merchant.street_address %>
+                <br/>
+                <%= merchant.city_state_zip %>
+              </td>
+              <td data-label="date"><%= order["order_date2"] %></td>
+              <td data-label="status"><%= Order::ORDER_STATUS[order["status"]] %></td>
+              <td data-label="total"><%= generate_total(build_order_receipt(order["order_summary"]["receipt_items"])) %></td></td>
+              <td class="add-favorite-button">
+                <button class="add-favorite button" data-order-id="<%= order["order_id"].to_s %>">Add to favorites</button>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div id="pagination">
+      <%= paginate @orders_pag %>
+    </div>
+
+  <% else %>
+    <section class="no-orders">
+      <aside>
+        <h2>No <% if is_wtjmmj? %>reservations<% else %> orders<% end %> available</h2>
+      </aside>
+    </section>
+  <% end %>
+</main>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        (function($) {
+          window.orders = {};
+          <% @orders.each do |order| %>
+          <% get_receipt_data(order, @skin) %>
+          window.orders["<%= order["order_id"] %>"] = new Order(<%= to_js(order) %>);
+          <% end %>
+
+        new UsersOrdersHistoryController();
+      })(jQuery);
+    });
+</script>

@@ -1,0 +1,20 @@
+<div id="upsells-content" class='upsells-content' data-dialog-content>
+    <section id="upsell-items-section">
+      {{# each upsell_items }}
+        <article>
+          <div class="details">
+            {{#if small_image }}
+              <img src="{{ small_image }}" />
+            {{/ if }}
+            <h3>
+              Add {{ item_name }}
+            </h3>
+          </div>
+          <div>
+            <button class="add-item" data-upsell-item-id={{ item_id }}>Add</button>
+            <div class="price">${{ size.price }}</div>
+          </div>
+        </article>
+      {{/ each }}
+    </section>
+</div>

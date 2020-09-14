@@ -1,0 +1,7 @@
+<nav id="menu_header">
+  <div>
+    <% @merchant.menu.menu_types.each_with_index do |menu_type, index| %>
+      <%= link_to menu_type.menu_type_name, "##{ menu_type.menu_type_name.parameterize }", data: { scroll: '' }, class: ('active current' if index == 0) %>
+    <% end %>
+  </div>
+</nav>

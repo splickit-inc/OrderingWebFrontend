@@ -1,0 +1,15 @@
+<h4>Group Order Activity</h4>
+<table class="data user-orders">
+  <% if @group_order["order_summary"].present? && @group_order["order_summary"]["user_items"].present? %>
+    <% @group_order["order_summary"]["user_items"].each_with_index do |user, index| %>
+      <tr class="data-row user-order">
+        <td><%= "#{ index + 1 }. #{ user["full_name"] } (#{ user["item_count"] })" %></td>
+        <td class="status"><%= user["status"] %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td>No users have submitted their order to the group order yet.</td>
+    </tr>
+  <% end %>
+</table>

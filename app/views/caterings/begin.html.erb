@@ -1,0 +1,161 @@
+<div id='flash_notifications'></div>
+<main data-active-merchant-id="<%= active_merchant_id %>"
+      data-active-merchant-name="<%= active_merchant_name %>"
+      data-active-catering-order="<%= cart_catering_order? %>"
+      data-item-count="<%= item_count %>">
+  <section class="left-container">
+    <%= content_tag :h1 do
+      @catering_data["title"]
+    end if @catering_data["title"].present? %>
+
+    <p>
+    <div class="catering-text">
+      <%= @catering_data["catering_message_to_user_on_create_order"].html_safe %>
+    </div>
+    </p>
+
+    <% if @has_order_type.present? %>
+      <div class="m-t-3rem">
+        <%= form_for Catering.new, url: caterings_path do |f| %>
+          <%= hidden_field_tag :merchant_id, @merchant.merchant_id %>
+          <%= hidden_field_tag :order_type, params[:order_type] || params[:merchant_menu_type] %>
+          <%= hidden_field_tag :user_addr_id, @user_addr_id if @user_addr_id %>
+
+          <div class="form-group">
+            <%= f.label :number_of_people, "Number of People", class: "textbox" %>
+            <div class="spinner-section">
+              <%= f.text_field :number_of_people %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= label_tag :catering_date, "Date of Event", class: "textbox" %>
+            <div class="date-group">
+              <%= text_field_tag :catering_date %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :timestamp_of_event, "Time of Event", class: "textbox" %>
+            <%= f.select :timestamp_of_event, times_select_list, {},
+                         {class: (times_select_list.empty? ? "hidden" : "")} %>
+            <%= f.label :timestamp_of_event, "No time available for this date", class: "no_time_label " + (times_select_list.empty? ? "" : "hidden") %>
+          </div>
+
+          <% if delivery? %>
+            <div class="form-group">
+              <%= f.label :address, "Delivery Address", class: "textbox" %>
+              <div class="date-group">
+                <%= link_to "Change delivery address", "", id: "change_delivery_address", class: "change-delivery",
+                            data: {merchant_id: @merchant.merchant_id, merchant_name: @merchant.name} %>
+              </div>
+            </div>
+
+            <hr class="line_responsive"/>
+
+            <div class="form-group">
+              <%= f.label :date, "Delivery to", class: "textbox custom-label" %>
+              <div class="date-group">
+                <p id="delivery_address_info">
+                  <address class="custom-address">
+                <p><%= @delivery_address['business_name'] %></p>
+                <p><%= @delivery_address['address1'] %>, <%= @delivery_address['city'] %>
+                  , <%= @delivery_address['state'] %> <%= @delivery_address['zip'] %></p>
+                <p><%= number_to_phone @delivery_address['phone_no'] %></p>
+                </address>
+                </p>
+              </div>
+            </div>
+
+            <hr class="line_responsive"/>
+          <% end %>
+
+          <div class="form-group">
+            <%= f.label :contact_name, "Contact Info", class: "textbox" %>
+            <% if signed_in? %>
+              <%= f.text_field :contact_name, placeholder: "Jill Smith", :value => @user.full_name %>
+            <% else %>
+              <%= f.text_field :contact_name, placeholder: "Jill Smith" %>
+            <% end %>
+          </div>
+
+          <div class="form-group">
+            <div>
+            </div>
+            <% if signed_in? %>
+              <%= f.text_field :contact_phone, placeholder: "555-555-5555", :value => @user.contact_no.gsub(/\s+/, '') %>
+            <% else %>
+              <%= f.text_field :contact_phone, placeholder: "555-555-5555" %>
+            <% end %>
+          </div>
+
+          <%= f.label :notes, "Notes", class: "textbox" %>
+          <%= f.text_area :notes, placeholder: "Add order or delivery notes here", maxlength: "255" %>
+        <% end %>
+      </div>
+      <div class="left-container submit">
+        <input id="new_catering_submit" name="commit" type="submit" value="Continue to Menu">
+      </div>
+    <% else %>
+      <div class="order-type-buttons">
+        <%= link_to "Order for Pickup", merchant_path(@merchant, order_type: "pickup"), class: "pickup button",
+                    data: {merchant_id: @merchant.merchant_id, merchant_name: @merchant.name, user_is_guest: is_guest_user?} %>
+
+        <% if @merchant.catering_info['delivery_active'].present? && (@merchant.catering_info['delivery_active'].to_s == 'Y' || @merchant.catering_info['delivery_active'].to_s == 'true') %>
+          <%= link_to "Order for Delivery", merchant_path(@merchant, order_type: "delivery"), class: "delivery button secondary last-btn m-l-10",
+                      data: {merchant_id: @merchant.merchant_id, merchant_name: @merchant.name, user_is_guest: is_guest_user?} %>
+        <% end %>
+      </div>
+    <% end %>
+  </section>
+
+  <section class="right-container delivery-data" style="padding-top: 20px;">
+    <div class="minimum-amount">
+      <span>Delivery Minimum <%= number_to_currency(@merchant.catering_info["minimum_delivery_amount"] || 0) %></span>
+      <span>Pickup Minimum <%= number_to_currency(@merchant.catering_info["minimum_pickup_amount"] || 0) %></span>
+    </div>
+
+    <div class="location">
+      <address>
+        <h3>Selected Location:</h3>
+        <p><%= @merchant.display_name %></p>
+        <p><%= @merchant.address1 %>, <%= @merchant.city_state_zip %></p>
+        <p><%= number_to_phone @merchant.phone_no %></p>
+      </address>
+
+      <table class="map" height="auto" cellpadding="0" cellspacing="0" margin="0">
+        <tr>
+          <td>
+            <img src="<%= static_mapbox_url(lat: @merchant.lat, lng: @merchant.lng) %>">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= link_to "Change Location", root_path %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <script>
+      window.addEventListener('DOMContentLoaded', function() {
+          (function($) {
+        new CateringNewController({
+            merchantID: "<%= @merchant.merchant_id %>",
+            maxDate: <%= @catering_data["available_catering_times"]['max_days_out'] %>
+        });
+
+
+        new BeginCateringController().init({
+            merchantID: "<%= @merchant.merchant_id %>"
+        });
+
+        <% if signed_in? %>
+        window.addresses = <%= to_js(@user.delivery_locations) %>;
+        window.signed_in = true;
+        <% end %>
+        })(jQuery);
+      });
+  </script>
+</main>

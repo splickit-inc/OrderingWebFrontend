@@ -1,0 +1,77 @@
+<div class='sign-in'>
+  <%= form_for :user, url: sessions_path do |form| %>
+      <%= hidden_field_tag :admin_login, "1" if admin_login? %>
+
+      <div class="links-container">
+        <%= link_to "SIGN IN", sign_in_path, class: 'sign-in-link inactive-link' %>
+        <span class="separator">|</span>
+        <%= link_to "JOIN NOW", sign_up_path %>
+      </div>
+
+      <a class="button facebook-btn" onclick="facebookLogin()">
+        <div>
+          <span class="fb-icon">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 216 216" color="#ffffff">
+            <path fill="#ffffff" d="M204.1 0H11.9C5.3 0 0 5.3 0 11.9v192.2c0 6.6 5.3 11.9 11.9
+            11.9h103.5v-83.6H87.2V99.8h28.1v-24c0-27.9 17-43.1 41.9-43.1
+            11.9 0 22.2.9 25.2 1.3v29.2h-17.3c-13.5 0-16.2 6.4-16.2
+            15.9v20.8h32.3l-4.2 32.6h-28V216h55c6.6 0 11.9-5.3
+            11.9-11.9V11.9C216 5.3 210.7 0 204.1 0z"></path>
+            </svg>
+          </span>
+          <span class="fb-text">Sign in with Facebook</span>
+        </div>
+      </a>
+
+      <div class="or-center">
+        <hr/>
+        <label>OR</label>
+        <hr/>
+      </div>
+
+      <%= form.email_field :email, placeholder: "Email Address" %>
+      <%= form.password_field :password, placeholder: "Password", class: 'last-input' %>
+
+      <% if @error %>
+          <div class='errors sign-in-errors'>
+            <p><%= @error.message %></p>
+          </div>
+      <% end %>
+
+      <div class="custom_textbox">
+        <div class="custom_align_left checkbox-container checkbox-group-common go">
+          <label class="selector-override">
+            <input class="checkbox-group-order" type="checkbox" name="user[remember]" id="user_remember">
+            <span></span>
+          </label>
+
+          <span>Remember Me</span>
+        </div>
+
+        <div class="custom_align_right">
+          <%= link_to "Forgot Password?", request_email_path, class:"custom_span"%>
+        </div>
+      </div>
+
+
+      <%= form.submit "Sign In" %>
+  <% end %>
+  <% unless admin_login? %>
+      <div class="or-center">
+        <hr/>
+        <label>OR</label>
+        <hr/>
+      </div>
+      <p>
+        <%= link_to "Continue as Guest", sign_up_guests_path, class: "button secondary last-btn" %>
+      </p>
+  <% end %>
+</div>
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+          (function($) {
+    window.signInEvents();
+    })(jQuery);
+  });
+</script>

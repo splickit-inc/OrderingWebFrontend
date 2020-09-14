@@ -1,0 +1,46 @@
+<main>
+
+  <%= render "users/navigation" %>
+
+  <section>
+    <aside>
+      <h2>Account</h2>
+
+      <p>Your information is private and will only be used to ensure that your orders are delivered properly.</p>
+    </aside>
+
+    <div class="update-user">
+      <%= form_tag update_account_user_path, method: :put do |form| %>
+
+        <h2>Contact information</h2>
+
+        <fieldset>
+          <%= text_field :user, :first_name, placeholder: "First name" %>
+          <%= text_field :user, :last_name, placeholder: "Last name" %>
+        </fieldset>
+
+        <fieldset>
+          <%= text_field :user, :email, placeholder: "Email address" %>
+          <%= text_field :user, :contact_no, placeholder: "Phone number" %>
+        </fieldset>
+
+        <h2>Password</h2>
+
+        <fieldset>
+          <%= password_field :user, :password, placeholder: "New password" %>
+          <%= password_field :user, :password_confirmation, placeholder: "Confirm new password" %>
+        </fieldset>
+
+        <%= submit_tag "Save information" %>
+      <% end %>
+    </div>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', function() {
+        (function($) {
+          window.sensitiveDataEvents("div.update-user");
+      })(jQuery);
+      });
+    </script>
+  </section>
+</main>

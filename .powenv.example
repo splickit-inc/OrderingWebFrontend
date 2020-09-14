@@ -1,0 +1,4 @@
+export SECRET_KEY_BASE=ENTER_KEY_HERE
+API_PROTOCOL=http
+API_DOMAIN=test.splickit.com
+API_BASE_PATH=/app2

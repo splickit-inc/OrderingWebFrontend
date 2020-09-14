@@ -1,0 +1,248 @@
+main{
+  margin: 3rem auto;
+  padding: 0;
+}
+
+#alert,
+#notice,
+#error {
+  margin-top:0
+}
+
+body[data-route] {
+  padding-top: 11rem;
+}
+
+body[data-route='merchants/show'] {
+  padding-top: 19rem;
+}
+
+body header {
+  min-height: 11rem;
+  height: 11rem;
+
+  .logo {
+    height: 100%;
+    width: auto;
+    background-position: .6rem center;
+  }
+
+  div.order {
+    &::before {
+      top: -0.5rem
+    }
+    &::after {
+      top: -0.6rem;
+    }
+  }
+
+  div.user {
+    &::before {
+      line-height: 2.7rem;
+    }
+  }
+
+  nav.primary {
+    min-height: 6.25rem;
+    height: 6.25rem;
+    line-height: 6.25rem;
+    @media (max-width: 43.5rem) {
+      min-height: 6rem;
+      line-height: 6rem;
+      height: 6rem;
+    }
+  }
+  .header_img{
+    margin-top: 6rem;
+  }
+
+  &.open {
+
+    nav.primary {
+      margin-top: 51px;
+
+      .logo {
+        margin-top: -41px;
+      }
+
+      div.order::before,
+      div.order::after,
+      div.user::before {
+        margin-top: -51px;
+      }
+    }
+
+    div.user {
+      margin-top: .6rem;
+    }
+  }
+}
+
+nav.primary {
+  .logo {
+    height: 100%;
+    width: 80%;
+    margin-left: -1.5rem !important;
+    margin-top: 0rem !important;
+    text-align: initial;
+  }
+}
+
+body header .logo img{
+  border:none!important;
+  outline:none!important;
+  /*height: 93px!important;
+  width: 296px!important;*/
+  height: auto;
+  width: auto;
+  vertical-align: middle;
+}
+
+.loyalty-card {
+  @media (max-width: 43.4375rem){
+    margin-top: 2rem !important;
+  }
+
+  &.info{
+    @media (max-width: 43.43rem){
+      margin-top: 4rem !important;
+    }
+  }
+}
+
+.join {
+  &.loyalty-card {
+    position: relative!important;
+    top: -5rem!important;
+    bottom: 22rem!important;
+    margin: 0 calc((100% - 351px) / 2);
+
+    @media (max-width: 43.4375rem){
+      top: -2rem!important;
+    }
+  }
+}
+
+@media (min-width: 43.5rem) {
+
+  body {
+    &[data-route] {
+      padding-top: 12rem;
+    }
+
+    &[data-route='merchants/index'], &[data-route='loyalties/history'], &[data-route='loyalties/rules'] {
+      padding-top: 23rem;
+    }
+  }
+
+  body[data-route='merchants/show'] {
+    padding-top: 10rem;
+
+    div.order {
+
+
+      &::before {
+        top: -2.2rem;
+      }
+      &::after {
+        top: -2.5rem;
+      }
+    }
+
+    .dropdown-toggle, .dropdown-user{
+
+      &:after{
+        top: 50%;
+      }
+
+
+    }
+
+
+
+  }
+
+  body[data-route] header .logo {
+    height: 100% !important;
+    width: 70% !important;
+    margin-top: 0rem !important;
+    margin-left: 0rem !important;
+  }
+
+  body header {
+    nav.primary {
+      height: 6.25rem;
+      width: 100%;
+      min-height: 6.25rem;
+      line-height: 6.25rem;
+      font-size: 14px;
+
+      > a:not(.logo):not(.group-order-status) {
+        position: relative;
+        /*top: -.7rem;*/
+      }
+      .group-order-status{
+        top: 4.8rem;
+        font-size: 0.9em;
+        color: inherit;
+        position: absolute;
+        font-weight: bold;
+        right: 3rem;
+        text-transform: capitalize;
+      }
+    }
+
+    div.order {
+
+
+      &::before {
+        top: -1.9rem;
+      }
+      &::after {
+        top: -2.2rem;
+      }
+    }
+    .header_img{
+      margin-top: 6.25rem;
+
+    }
+    .dropdown-toggle, .dropdown-user{
+      &:before{
+        top: -1.1rem;
+      }
+      &:after{
+        top: 55%;
+      }
+
+
+    }
+
+  }
+}
+
+.loyalty {
+  .loyalty-content {
+    @media (max-width: 43.4375rem) {
+      margin-top: 15rem!important;
+    }
+  }
+}
+
+[data-route='users/new'] main,
+[data-route='users/create'] main,
+.sign-up[data-dialog-content] {
+  form {
+    #su-brand-enroll {
+      background: #D4D3D1;
+
+      input[type=checkbox] {
+        top: 1rem;
+        vertical-align: super;
+      }
+
+      span {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}

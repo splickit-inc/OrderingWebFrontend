@@ -1,0 +1,33 @@
+<main>
+  <%= form_for @feedback, url: feedback_path do |form| %>
+
+    <%= text_field_tag :honeypot, nil, class: "honeypot" %>
+    <% if @name || @email %>
+      <%= form.hidden_field :name, value: @name %>
+      <%= form.hidden_field :email, value: @email %>
+    <% else %>
+      <%= form.label :name, "Name" %>
+      <%= form.text_field :name, placeholder: "Name" %>
+      <%= form.label :email, "Email" %>
+      <%= form.text_field :email, placeholder: "Email" %>
+    <% end %>
+
+    <%= form.label :topic, "Subject" %>
+    <%= form.select :topic, options_for_select([ "My order", "Billing", "Mobile app", "Others" ]) %>
+
+    <%= form.label :body, "Message" %>
+    <%= form.text_area :body, placeholder: "Please provide your feedback in detail." %>
+
+    <%= submit_tag "Submit" %>
+
+  <% end %>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+        (function($) {
+      $('form input[type=submit]')
+        .before('<div id="human"><label>I am human</label> <input type="checkbox" name="human" /></div>');
+    })(jQuery);
+    });
+  </script>
+</main>

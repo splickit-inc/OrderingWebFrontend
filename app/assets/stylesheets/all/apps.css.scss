@@ -1,0 +1,102 @@
+[data-route='apps/show'] {
+
+  header {
+    display: none;
+  }
+
+  .footer-top {
+    display: none;
+  }
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src:url('/fonts/icomoon.eot?o00pdw');
+  src:url('/fonts/icomoon.eot?#iefixo00pdw') format('embedded-opentype'),
+  url('/fonts/icomoon.woff?o00pdw') format('woff'),
+  url('/fonts/icomoon.ttf?o00pdw') format('truetype'),
+  url('/fonts/icomoon.svg?o00pdw#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  -webkit-text-size-adjust: none; /* Prevent font scaling in landscape while allowing user zoom */
+}
+
+body {
+  font-family: 'helvetica neue', 'arial', sans-serif;
+}
+
+div.app-body {
+  color: #D4D4D4;
+  text-align: center;
+  font-family: 'gotham htf', 'helvetica neue', sans-serif;
+  margin-top: 4.1rem;
+
+  @media (max-width: 40rem) {
+    margin: 0.75rem;
+  }
+}
+
+div.app-body > img {
+  margin: auto;
+}
+
+div.app-body > h1 {
+  margin-top: 6.5rem;
+  margin-bottom: 4.5rem;
+  font-size: 10.25rem;
+  line-height: 1.5rem;
+
+  @media (max-width: 40rem) {
+    font-size: 6rem;
+    line-height: 0;
+    margin-top: 3rem;
+  }
+}
+
+div.app-body > h2 {
+  font-size: 2.8125rem;
+  line-height: 3.5625rem;
+  max-width: 41rem;
+  margin: auto;
+  font-weight: 300;
+
+  @media (max-width: 40rem) {
+    font-size: 1.5rem;
+    line-height: 2.25rem;
+  }
+}
+
+div.app-body > p {
+  margin-top: 2.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+
+  @media (max-width: 40rem) {
+    margin-top: 1rem;
+  }
+}
+
+.app-body a.button {
+  margin-top: 3.9rem;
+  padding: .88rem 1.44rem;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-block;
+  border-radius: 0.2rem;
+
+  @media (max-width: 40rem) {
+    margin-top: 2rem;
+  }
+}

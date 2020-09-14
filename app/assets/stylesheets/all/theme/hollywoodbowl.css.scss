@@ -1,0 +1,39 @@
+body, h1, h2 {
+  font-family: futura,'helvetica neue', 'arial', sans-serif;
+}
+body
+{
+  padding-top: 5rem !important;
+}
+
+input[type=submit].secondary, button.secondary, .button.secondary{
+  background-color: #35A6B8;
+}
+header{
+  height: 5rem !important;
+  min-height: 5rem !important;
+  max-height: 5rem;
+
+  .header_img{
+    display: none;
+  }
+}
+
+#item-added-popup {
+  .item-added-link-group {
+    a#item-added:before {
+      margin: 0 0.25rem 0 .15rem;
+    }
+  }
+}
+
+[data-route='merchants/show'] header {
+  address {
+    h1 {
+      font-size: 15px;
+    }
+  }
+}
+
+
+

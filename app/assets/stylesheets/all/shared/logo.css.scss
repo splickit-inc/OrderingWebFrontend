@@ -1,0 +1,66 @@
+.logo {
+
+  background-repeat: no-repeat;
+  background-position: center;
+
+  @media (min-width: 43.5rem) and (max-width: 59.375rem) {
+      width:10rem!important
+  }
+
+  &.logo-small {
+    width: 7rem;
+    height: 3.5rem;
+    background-size: 6.5rem;
+    position: relative;
+    top: 0.55rem;
+    left: 1rem;
+  }
+
+  &.logo-large {
+    width: 13rem;
+    height: 7rem;
+    background-position-y: 0px;
+    background-size: 12rem;
+    position: relative;
+    top: 0.4rem;
+    left: 0.4rem;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+  }
+
+  &.fixed-small {
+    height: 2.2rem;
+    background-size: auto 100%;
+  }
+
+  &.logo-loyalty {
+    width: 9.5rem;
+    height: 4rem;
+    background-size: contain;
+    display: inline-block;
+    margin: 0.25rem;
+  }
+
+  &.logo-error {
+    display: inline-block;
+    height: 4.5rem;
+    width: 16.5rem;
+    background-size: 12rem;
+  }
+
+  /*&.logo-app {
+    border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    display: inline-block;
+    width: 5rem;
+    height: 5rem;
+    background-size: 5rem;
+    position: relative;
+    top: 0.4rem;
+    left: 0.4rem;
+  }*/
+}

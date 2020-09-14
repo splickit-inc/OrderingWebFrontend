@@ -1,0 +1,24 @@
+<footer <%= "class=event-merchant" if @skin.event_merchant %> <%= "class=cusstom-message-footer" if is_pitapit? %>>
+  <% unless @skin.event_merchant %>
+    <div class="footer-top">
+      <!--<span class="logo logo-app" href="/"></span>-->
+      <span class="side-text">
+<!--        <p>Order from your mobile device.</p>-->
+<!--        <p>Download the app!</p>-->
+      </span>
+      <% if is_pitapit? %>
+        <div class="custom-message">
+          <p>Offers valid for participating store locations only. Cash value is 1/100th of one cent. If offer code was given, the code must be entered at checkout to receive discount.
+            Not valid with any other offer or discount. Offers available only for a limited time. Valid only at time of original purchase.</p>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div id='legal'>
+    <p class="links">
+      <%= mail_to "support@order140.com", "Support" %> |
+      <%= link_to "Terms and conditions", 'https://d38o1hjtj2mzwt.cloudfront.net/Policies/Order140_TermsAndConditions.html', target: "_blank" %> |
+      <%= link_to "Privacy policy", 'https://d38o1hjtj2mzwt.cloudfront.net/Policies/Order140_ PrivacyPolicy.htm', target: "_blank" %></p>
+  </div>
+</footer>

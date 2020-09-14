@@ -1,0 +1,44 @@
+div#loading-page {
+  background-color: #333333;
+  bottom: 0px;
+  left: 0px;
+  opacity: 1;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  z-index: 999999;
+
+  div.center-loading {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+    width: 150px;
+    height: 120px;
+    z-index: 1000;
+    background: white none repeat scroll 0% 0%;
+    border-radius: 4px;
+    display: block;
+  }
+
+  img {
+    width: 80px;
+  }
+
+  span {
+    font-weight: bold;
+    display: block;
+  }
+}
+
+div.loading-overlay {
+  background-color: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  z-index: 9999;
+  text-align: center;
+}

@@ -1,0 +1,8 @@
+<p>This will delete any group orders you have in progress.</p>
+
+<div data-dialog-footer>
+  {{#if deliveryURL}}
+    <a href="{{deliveryURL}}" id="group-order-delivery" class="button primary">Delivery</a>
+  {{/if}}
+  <a href="{{pickupURL}}" id="group-order-pickup" class="button primary">Pickup</a>
+</div>

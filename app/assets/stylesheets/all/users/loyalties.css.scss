@@ -1,0 +1,454 @@
+#card {
+  a {
+    pointer-events: all;
+  }
+}
+
+#card-mount {
+  position: absolute;
+  top: 5rem;
+  margin: 0 calc((100% - 382px) / 2);
+  z-index: 10;
+
+  @media(max-width: 43.4375rem){
+    top:0.5rem!important;
+    margin: 0 calc((100% - 369px) / 2)!important;
+  }
+  @media(max-width: 23.125rem){
+    top:0.5rem!important;
+    margin: 0 calc((100% - 320px) / 2)!important;
+  }
+}
+
+.back {
+  .stripe {
+    border-top: 2.5rem solid #555;
+    display: block;
+    margin: 0.5rem -0.5rem 1rem -0.5rem;
+    font-size: 1.75rem;
+    @media (max-width: 43.4375rem) {
+      border-top: 2.3rem solid #555;
+      margin: auto;
+    }
+  }
+
+  .card-number {
+    margin: 0.5rem;
+  }
+
+  .pin {
+    border-radius: 0.2rem;
+    font-size: 1.25rem;
+    width: 7rem;
+    margin-left: auto;
+    margin-right: auto;
+    color: #fff;
+    background: #555;
+    padding: 0.3rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.loyalty {
+  max-width: 100%;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+
+  dl {
+    @include clear;
+  }
+
+  dt {
+    float: left;
+    clear: left;
+  }
+
+  dd {
+    float: right;
+  }
+}
+
+input[type='text'].loyalty-phone-number {
+  margin-top: 3.5rem;
+}
+
+.loyalty-group {
+  min-height: 18rem;
+  max-width: 62.5rem;
+  margin: auto;
+  padding: 0 1rem;
+  @media (min-width: 40rem) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .loyalty-item {
+    margin: 2rem 0;
+
+    @media (min-width: 40rem) {
+      float: left;
+      width: 50%;
+      &:first-of-type {
+        padding-right: 2rem;
+      }
+      &:last-of-type {
+        padding-left: 2rem;
+      }
+      &.centered {
+        margin-left: auto;
+        margin-right: auto;
+        float: none;
+      }
+    }
+
+    @media (min-width: 60rem) {
+      &:first-of-type {
+        padding-right: 4rem;
+      }
+      &:last-of-type {
+        padding-left: 4rem;
+      }
+    }
+
+    input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+
+    .loyalty-phone {
+      text-align: center;
+    }
+  }
+
+  .link,
+  .manage {
+    border-right: 0.1rem solid transparent;
+    @media (min-width: 40rem) {
+      border-right: 0.1rem solid $dusty-gray;
+    }
+
+    &.centered {
+      @media (min-width: 40rem) {
+        border-right: none;
+      }
+    }
+    form {
+      margin-top: 1.5rem;
+    }
+
+    a.button {
+      width: 100%;
+      margin-top: .5rem;
+    }
+  }
+}
+
+.loyalty-content {
+  max-width: 100%;
+  padding: 1.5rem 1rem;
+  text-align: center;
+
+  h3 {
+    margin-top: 3rem;
+  }
+
+  @media (min-width: 48rem) {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 2.5rem;
+  }
+
+  a.button{
+    margin-top: 1.9rem;
+  }
+
+  .loyalty-item {
+    margin: 2rem 0;
+
+    article {
+      margin-top: 3rem;
+    }
+  }
+
+  .link,
+  .manage {
+    form {
+      margin-top: 1.5rem;
+    }
+  }
+
+  .header {
+    border-bottom: 1px solid $dark_text_color;
+    padding-bottom: 1rem;
+  }
+
+  .reward {
+    li {
+      margin-left: 2rem;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.loyalty-card {
+  background: #fff;
+  @include border-radius(1rem);
+  box-sizing: border-box;
+  text-align: center;
+  height:14.0625rem;
+  width: 22.0625rem;
+
+  @media (max-width: 40rem) {
+    padding-bottom: 1.8rem;
+  }
+
+  @media (min-width: 43.5rem) {
+    z-index: 10;
+    padding: 0.5rem;
+  }
+
+  @media (max-width: 43.4375rem) {
+    width:21.0625rem!important;
+    padding-top:1.2rem
+  }
+
+  @media (max-width: 23.125rem) {
+    width:18rem!important;
+    height:13rem!important
+  }
+
+  img {
+    padding-top: 0.9rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: $dusty-gray;
+    text-align: center;
+  }
+
+  &.join {
+    &.loyalty-card {
+      position: absolute;
+      top: 5rem;
+      bottom: 22rem;
+      margin: 0 calc((100% - 351px) / 2);
+
+      @media (max-width: 43.5rem) {
+        position: relative;
+        top: -1rem;
+        bottom: 22rem;
+        margin: 0 calc((100% - 351px) / 2);
+        z-index: 10;
+      }
+
+      @media(max-width: 43.4375rem) {
+        margin: 0 calc((100% - 339px) / 2);
+      }
+      @media(max-width: 23.125rem) {
+        margin: 0 calc((100% - 289px) / 2);
+      }
+    }
+
+    h3 {
+      margin-bottom: 0;
+    }
+
+    p {
+      margin: 1rem 3rem;
+    }
+  }
+
+  &.info {
+    .value-group {
+      margin-left: auto;
+      margin-right: auto;
+      span {
+        width: 8.5rem;
+        display: inline-block;
+
+        h5 {
+          font-size: 0.9rem;
+          margin: 0;
+
+          @media (max-width: 23.125rem) {
+            font-size: 0.8rem;
+          }
+        }
+
+        h2 {
+          font-size: 2rem;
+          font-weight: 400;
+          margin: 0;
+
+          @media (max-width: 23.125rem) {
+            font-size: 1rem;
+          }
+        }
+      }
+
+      span:not(:last-of-type) {
+        border-right: 0.1rem solid #333;
+
+        @media (max-width: 23rem) {
+          border-right: 0.1rem solid transparent;
+          border-bottom: 0.1rem solid #333;
+          padding-bottom: 1rem;
+        }
+
+        @media (min-width: 20.3125rem) and (max-width: 23rem) {
+          border-right: 0.1rem solid #333;
+          border-bottom: 0.1rem solid transparent;
+          padding-bottom: 1rem;
+        }
+
+        @media (max-width: 23.125rem) {
+          border-right: 0.1rem solid #333;
+          border-bottom: 0;
+          width: 40%;
+          height: 2.2rem;
+        }
+      }
+
+      span:last-of-type {
+        @media (max-width: 40rem) {
+          padding-top: 1rem;
+        }
+
+        @media (max-width: 23.125rem) {
+          width: 40%;
+        }
+      }
+
+      a {
+        display: block;
+      }
+
+      p {
+        margin: 0.5rem 0;
+
+        @media (max-width: 23.125rem) {
+          font-size: 0.8rem;
+        }
+
+        &.loyalty-phone {
+          font-size: 0.6rem;
+
+          a {
+            display: inline;
+            margin: 0.5rem 0;
+          }
+        }
+      }
+    }
+  }
+  h1{
+    @media (max-width: 23.125rem) {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.loyalty-card-bg {
+  background-color: transparent!important;
+  padding: 2rem 1rem;
+  margin-left:auto;
+
+  @media (max-width: 43.4375rem) {
+    margin-top: 1rem;
+  }
+
+  &.front,
+  &.back {
+    pointer-events: none;
+  }
+}
+
+[data-route='loyalties/rules'] {
+  iframe {
+    width: 100%;
+    height: 23.5rem;
+    border: 0;
+    padding: 3rem 0;
+    overflow: hidden;
+  }
+
+  @media (max-width: 48rem) {
+    #header {
+      min-height: 20.25rem;
+    }
+  }
+}
+
+.rules-content{
+  @media (max-width: 43.4375rem) {
+    margin-top: 16rem;
+  }
+}
+
+[data-route='loyalties/history'] {
+  @media (max-width: 48rem) {
+    #header {
+      min-height: 20.25rem;
+    }
+  }
+
+  .loyalty {
+    .loyalty-content {
+      max-width: 70rem;
+      color: #000;
+
+      h3 {
+        font-size: 1.25rem;
+        border-bottom: 1px solid #000;
+        padding-bottom: 1rem;
+      }
+
+      table {
+        width: 100%;
+        margin: 0 0 3rem 0;
+        border-collapse: collapse;
+
+        th, td {
+          padding: 0.75rem;
+        }
+
+        th {
+          text-align: center;
+          text-transform: uppercase;
+        }
+
+        tr:nth-child(2n) {
+          background: #ddd;
+        }
+
+        tr:last-of-type td {
+          border-bottom: 1px solid #000;
+        }
+
+        td {
+          border-top: 1px solid #000;
+        }
+
+        @include responsive-table(500px);
+      }
+
+      @media (max-width: 43.4375rem) {
+        margin-top:16rem;
+      }
+
+      @media (max-width: 31.25rem) {
+        font-size: 0.9rem;
+      }
+
+      .loyalty-empty {
+        text-align: center;
+        max-width: 21rem;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 3rem;
+      }
+    }
+  }
+}

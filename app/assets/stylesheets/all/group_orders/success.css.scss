@@ -1,0 +1,32 @@
+[data-route='group_orders/success'] {
+  main {
+    margin: 3rem auto;
+
+    .success_container {
+      max-width: 20rem;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .inline {
+      display: -webkit-flex;
+      display: flex;
+      flex-direction: row;
+      -ms-flex-wrap: wrap;
+      -webkit-flex-wrap: wrap;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      @media (max-width: 48rem) {
+        -ms-flex-wrap: nowrap;
+        -webkit-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        display: flex;
+      }
+    }
+    .sc-button {
+      @media (max-width: 48rem) {
+        margin: 2px
+      }
+    }
+  }
+}

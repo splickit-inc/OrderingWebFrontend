@@ -1,0 +1,121 @@
+form {
+  position: relative;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 2.3rem 0 1.1rem 0;
+  }
+
+}
+
+select {
+  width: 100%;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 5px 10px;
+  border: 1px solid $alto;
+  @include border-radius(2px);
+  height: 2.25rem;
+}
+
+label {
+  text-transform: uppercase;
+  font-size: .8rem;
+  font-weight: bold;
+  color: $heading-text-color;
+
+  & + input[type='text'],
+  & + input[type='email'],
+  & + input[type='tel'],
+  & + input[type='password'],
+  & + textarea,
+  & + select {
+    margin-top: .2rem;
+  }
+
+}
+
+input[type='text'],
+input[type='email'],
+input[type='tel'],
+input[type='password'],
+input[type='date'],
+textarea,
+select {
+  display: block;
+  width: 100%;
+  margin: 0 0 .75rem 0;
+  padding: .6rem;
+  font-family: 'helvetica neue', 'arial', sans-serif;
+  font-size: $body-text-size;
+  background: #fff;
+  border: solid 1px #ddd;
+  @include border-radius(2px);
+  box-shadow: inset 0 .15rem .15rem 0 rgba(100, 100, 100, .1);
+}
+
+input[type='date'] {
+  height: 34.78125px;
+}
+
+fieldset {
+  position: relative;
+  border: none;
+
+  & + fieldset {
+    margin-top: 0;
+  }
+
+  & + h1,
+  & + h2,
+  & + h3,
+  & + h4,
+  & + h5,
+  & + h6 {
+    margin-top: 1.55rem;
+  }
+
+  label {
+    position: absolute;
+
+    & + input[type='text'],
+    & + input[type='email'],
+    & + input[type='tel'],
+    & + input[type='password'],
+    & + textarea {
+      margin-top: 1.2rem;
+    }
+
+  }
+
+  input[type='text'],
+  input[type='email'],
+  input[type='tel'],
+  input[type='password'],
+  textarea,
+  select {
+    width: calc(50% - .375rem);
+    float: left;
+    &:only-of-type {
+      width: 100%;
+    }
+    &:not(:last-of-type) {
+      margin-right: .7rem;
+    }
+  }
+
+}
+
+input[type='submit'] {
+  width: auto;
+  margin-top: 1.8rem;
+
+  @media (max-width: 40rem) {
+    width: 100%;
+  }
+
+}

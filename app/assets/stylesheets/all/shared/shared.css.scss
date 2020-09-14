@@ -1,0 +1,25 @@
+@import 'header';
+@import 'logo';
+@import 'footer';
+@import 'pagination';
+@import 'loading_page';
+
+.social {
+
+  display: inline-block;
+  font-size: 4rem;
+  height: 4rem;
+  overflow: hidden;
+  width: 4rem;
+  text-decoration: none;
+
+  &.social-tw {
+    color: #4090ff;
+    @include twitter-icon;
+  }
+
+  &.social-fb {
+    color: #3b5998;
+    @include facebook-icon;
+  }
+}

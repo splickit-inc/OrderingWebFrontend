@@ -1,0 +1,38 @@
+<% if alert.present? %>
+  <p id='alert' class='message'>
+    <span class="message-body"><%= alert %></span>
+    <span class="close">x</span>
+  </p>
+<% end %>
+
+<% if notice.present? %>
+  <p id='notice' class='message'>
+    <span class="message-body"><%= notice %></span>
+    <span class="close">x</span>
+  </p>
+<% end %>
+
+<% if error.present? %>
+  <p id='error' class='message'>
+    <span class="message-body"><%= raw(error) %></span>
+    <span class="close">x</span>
+  </p>
+<% end %>
+
+<% if flash[:error_message].present? %>
+  <p id='error' class='message'>
+    <span class="message-body"><%= flash[:error_message] %></span>
+    <span class="close">x</span>
+  </p>
+<% end %>
+
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        (function($) {
+        new FlashNotification($("#alert"));
+        new FlashNotification($("#notice"));
+        new FlashNotification($("#error"));
+        })(jQuery);
+    });
+</script>
+

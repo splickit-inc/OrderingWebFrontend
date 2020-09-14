@@ -1,0 +1,24 @@
+<div class='my-order' data-dialog-content>
+  <div id="my_order_upsell_items">
+    {{> my_order_upsell_items }}
+  </div>
+  <div id="my_order_items">
+    {{> my_order_items }}
+  </div>
+</div>
+
+<div data-dialog-footer>
+  {{# if order.group_order }}
+    <button class='submit-order group-order' {{# if (blank? order.items) }} disabled {{/ if }}>
+      Submit to Group Order
+    </button>
+  {{ else }}
+    <a class='add-more button' href="{{{ order.activeMerchantURL }}}" {{# if (Not order.activeMerchantURL) }} disabled {{/ if }}>
+      Add more items
+    </a>
+
+    <button class='checkout secondary' {{# if (blank? order.items) }} disabled {{/ if }}>
+      {{#order.iswtjmmj}}Reserve{{/order.iswtjmmj}}{{^order.iswtjmmj}}Checkout{{/order.iswtjmmj}}{{ order.subtotal_string }}
+    </button>
+  {{/ if }}
+</div>

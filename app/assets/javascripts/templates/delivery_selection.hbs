@@ -1,0 +1,43 @@
+<div class="addresses" data-dialog-content="">
+  {{# if addresses}}
+    {{# each addresses}}
+      <div class="bordered">
+        <div class="address-check">
+          <span class="actions">
+            {{# if ../preferredAddressId }}
+              <label class="selector-override">
+                <input type="radio" name="addresses"
+                       value='{{ user_addr_id }}'
+                       {{# isPreferred user_addr_id }}checked='checked'{{/ isPreferred }}/>
+                <span></span>
+              </label>
+            {{ else }}
+              <label class="selector-override">
+                <input type="radio" name="addresses"
+                       value='{{ user_addr_id }}'
+                       {{# equal @index 0 }}checked='checked'{{/ equal }}/>
+                <span></span>
+              </label>
+            {{/ if }}
+          </span>
+        </div>
+        <div class="address">
+          <div class="line_0">{{ business_name }}</div>
+          <div class="line_1">{{ address1 }} {{ address2 }}</div>
+          <div class="line_2">{{ city }}, {{ state }} {{ zip }}</div>
+        </div>
+        <div class="delete">
+          <button data-user-addr-id="{{ user_addr_id }}">Delete</button>
+        </div>
+      </div>
+    {{/ each}}
+  {{ else }}
+    <div class="no-address">
+      We do not have a delivery address for you. Please enter a new address.
+    </div>
+  {{/ if}}
+</div>
+<div class='buttons-dialog' data-dialog-footer>
+  <button class="new-address-btn primary" data-merchant-path={{ path }}>Enter a new address</button>
+  <button class="set-btn secondary" data-merchant-path={{ path }}>Set</button>
+</div>

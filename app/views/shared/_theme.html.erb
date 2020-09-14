@@ -1,0 +1,11 @@
+<% if Rails.env.development? || Rails.env.test? %>
+  <% if Skin.current_name.present? %>
+    <link href="/theme/brands/<%= Skin.current_name %>/css/<%= Skin.current_name %>.css" media="screen" rel="stylesheet" />
+    <script src="/theme/brands/<%= Skin.current_name %>/js/<%= Skin.current_name %>.js" defer></script>
+  <% end %>
+<% else %>
+  <% if Skin.current_name != "order" %>
+    <link href="https://s3.amazonaws.com/com.splickit.products/com.splickit.<%= Skin.current_name %>/web/css/<%= Rails.application.config.s3_style_base_location %>.<%= Skin.current_name %>.css" media="screen" rel="stylesheet" />
+    <script src="https://s3.amazonaws.com/com.splickit.products/com.splickit.<%= Skin.current_name %>/web/js/<%= Rails.application.config.s3_style_base_location %>.<%= Skin.current_name %>.js" defer></script>
+  <% end %>
+<% end %>

@@ -1,0 +1,9 @@
+<form action="/favorites" class="new_user_favorite" id="new_user_favorite" method="post">
+  <div id="save-favorite" data-dialog-content="">
+    <input id="user_favorite_order_id" name="user_favorite[order_id]" value="{{{ order_id }}}" type="hidden">
+    <input id="user_favorite_favorite_name" name="user_favorite[favorite_name]" placeholder="Name your favorite" type="text">
+  </div>
+  <div class='buttons' data-dialog-footer="">
+    <button class="set-btn primary-btn" type="submit">Add to favorites</button>
+  </div>
+</form>

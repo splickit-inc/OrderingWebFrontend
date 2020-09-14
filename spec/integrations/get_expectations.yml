@@ -1,0 +1,145 @@
+# someday...https://github.com/vcr/vcr
+---
+  usersession:
+    http_code: 200
+    data:
+      user_id: 5497-47th7-4kcub-p9oph
+      uuid: 5497-47th7-4kcub-p9oph
+      last_four: '0000'
+      flags: '1C21000001'
+      first_name: Get
+      last_name: Test
+      email: get@test.com
+      contact_no: '1234560000'
+      device_id:
+      balance: '0.00'
+      flags: '1000000001'
+      referrer:
+      orders: '1'
+      points_lifetime: '64'
+      points_current: '64'
+      custom_message:
+      delivery_locations:
+      - user_addr_id: '203378'
+        user_id: '1466924'
+        name: ''
+        address1: 3840 Blackhawk Rd
+        address2: "#100"
+        city: Danville
+        state: CA
+        zip: '94506'
+        lat: '37.800062'
+        lng: "-121.923166"
+        phone_no: '5556667777'
+        instructions: Try harder.
+      user_groups: []
+      charity_active: Y
+      skin_charity_info:
+        charity_active: Y
+        charity_nav_text: Donations
+        charity_alert_title: Community Food Share
+        charity_alert_body: |-
+          Want to make a difference? You can donate a small amount with each order to Community Food Share by rounding up your orders to the nearest dollar.
+          Tap below to be redirected to a Safari page where you can manage your donation preferences.
+        charity_alert_cancel: Cancel
+        charity_alert_okay: Okay
+        charity_web_host_base: order
+
+    message:
+
+  users:
+    http_code: 200
+    data:
+      user_id: 5497-47th7-4kcub-p9oph
+      uuid: 5497-47th7-4kcub-p9oph
+      last_four: '0000'
+      flags: '1C21000001'
+      first_name: Get
+      last_name: Test
+      email: get@test.com
+      contact_no: '1234560000'
+      device_id:
+      balance: '0.00'
+      flags: '1000000001'
+      referrer:
+      orders: '1'
+      points_lifetime: '64'
+      points_current: '64'
+      custom_message:
+      delivery_locations:
+      - user_addr_id: '203378'
+        user_id: '1466924'
+        name: ''
+        address1: 3840 Blackhawk Rd
+        address2: "#100"
+        city: Danville
+        state: CA
+        zip: '94506'
+        lat: '37.800062'
+        lng: "-121.923166"
+        phone_no: '5556667777'
+        instructions: Try harder.
+      user_groups: []
+      charity_active: Y
+      skin_charity_info:
+        charity_active: Y
+        charity_nav_text: Donations
+        charity_alert_title: Community Food Share
+        charity_alert_body: |-
+          Want to make a difference? You can donate a small amount with each order to Community Food Share by rounding up your orders to the nearest dollar.
+          Tap below to be redirected to a Safari page where you can manage your donation preferences.
+        charity_alert_cancel: Cancel
+        charity_alert_okay: Okay
+        charity_web_host_base: order
+    message:
+
+  loyalty_history:
+    http_code: 200
+    data: []
+    message:
+
+  isindeliveryarea:
+    http_code: 200
+    data:
+      is_in_delivery_range: false
+
+  skin:
+    http_code: 200
+    data:
+      skin_id: '13'
+      skin_name: PitaPit
+      skin_description: Pita Pit
+      brand_id: '282'
+      mobile_app_type: B
+      external_identifier: com.splickit.pitapit
+      custom_skin_message: ''
+      welcome_letter_file:
+      in_production: Y
+      rewardr_active: N
+      web_ordering_active: N
+      donation_active: N
+      donation_organization: Share Our Strength
+      facebook_thumbnail_link: http://itunes.apple.com/us/app/pita-pit/id461735388?mt=8
+      facebook_thumbnail_url: https://s3.amazonaws.com/splickit-mobile-assets/com.splickit.pitapit/icon_store.png
+      android_marketplace_link: https://play.google.com/store/apps/details?id=com.splickit.pitapit&hl=en
+      twitter_handle: PitaPitUSA
+      iphone_certificate_file_name: com.splickit.pitapit.pem
+      current_iphone_version: 3.0.0
+      current_android_version: '3.1'
+      facebook_app_id: ''
+      facebook_app_secret: ''
+      rules_info: |-
+        <article style="text-align: center;"><h3>Reward points redemption</h3>       <p>See our local redemption schedule below. But beware...your local Pita         Pit may offer even more great deals!</p>        <dl>         <dt>Standard Pita / Fork Style</dt>         <dd>90 Points</dd>         <dt>6" Pita / Kids Pita</dt>         <dd>70 Points</dd>         <dt>32 oz Fountain Drink</dt>         <dd>30 Points</dd>         <dt>Bag of Chips</dt>         <dd>15 Points</dd>         <dt>Fresh Baked Cookie</dt>         <dd>10 Points</dd>       </dl>        <p>Learn more on the Pit Card and <a href="https://www.mypitapitcard.com/faq">FAQ's</a> page.</p></article>
+      supports_history: '1'
+      supports_join: '0'
+      supports_link_card: '1'
+      feedback_url: ''
+      lat: '47.6737'
+      lng: "-116.781"
+      zip: '83814'
+      loyalty_features:
+        supports_history: true
+        supports_join: false
+        supports_link_card: true
+      http_code: 200
+    message:

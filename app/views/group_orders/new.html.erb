@@ -1,0 +1,91 @@
+<main>
+  <div class="title">
+    <h2>START YOUR GROUP ORDER</h2>
+  </div>
+  <section class="right-container">
+    <div class="bubble-container">
+      <div class="bubble bubble-aligned-left">4</div><p class="displayed_table_cell">Please anticipate an average of 45 minutes from the time your order is placed, to your actual pickup
+    or delivery time. You&#39;ll see your estimated pickup/delivery time once you place the order.</p>
+    </div>
+
+    <div class="bubble-container">
+      <div class="bubble bubble-aligned-left">5</div><p class="displayed_table_cell">Monitor your group&#39;s progress on the Group Order Status page.</p>
+    </div>
+  </section>
+
+  <section class="left-container">
+    <div class="bubble-container ">
+      <div class="bubble bubble-aligned-left">1</div><p class="displayed_table_cell">You&#39;re ordering from this location</p>
+    </div>
+    <div class="go-location">
+      <h2><%= @merchant.display_name %></h2>
+      <p><%= @merchant.address1 %>, <%= @merchant.city_state_zip %></p>
+      <p><%= number_to_phone @merchant.phone_no %></p>
+      <%= link_to "Place a group order from a different location", root_path %>
+    </div>
+
+    <%= form_for @group_order, class: "go-form" do |f| %>
+      <%= f.hidden_field :merchant_id,  value: @merchant.merchant_id %>
+      <%= f.hidden_field :merchant_menu_type,  value: params[:order_type] || params[:merchant_menu_type] %>
+      <%= f.hidden_field :user_addr_id,  value: params[:user_addr_id] if params[:user_addr_id] %>
+      <div class="bubble-container">
+        <div class="bubble bubble-aligned-left">2</div><p class="displayed_table_cell">Invite Others</p>
+      </div>
+      <p>Type as many email addresses as you'd like (the more the merrier),
+        using commas between emails.</p>
+      <%= f.text_area :participant_emails, placeholder: "name@food.com, name@food.com" %>
+
+      <%= f.label :notes, "Include a note", class: "go-label textbox" %>
+      <%= f.text_area :notes, placeholder: "Hi, we're getting food for the office. Please put in your order within the next 15 min." %>
+      <div class="bubble-container">
+        <div class="bubble bubble-aligned-left">3</div><p class="displayed_table_cell">Select who&#39;s paying and click send</p>
+      </div>
+      <div id="group-order-invitees-pay-note">
+        <p>Please select a time you would like your order to be submitted.</p>
+      </div>
+      <div id="group-order-type">
+        <div class="group-order-type-selector">
+          <div class="group-order-type you-pay">
+            <label class="selector-override" for="you-pay">
+              <%= f.radio_button :group_order_type, GroupOrder::ORGANIZER_PAY, id: "you-pay" %>
+              <span></span>
+            </label>
+            <span class="group-order-type-label">You Pay</span>
+          </div>
+          <div class="group-order-type invite-pay">
+            <label class="selector-override" for="invitees-pay">
+              <%= f.radio_button :group_order_type, GroupOrder::INVITE_PAY, id: "invitees-pay" %>
+              <span></span>
+            </label>
+            <span class="group-order-type-label">Invitees Pay</span>
+          </div>
+        </div>
+        <div id="order_submit_time">
+          <%= f.label :submit_at_ts, "Select order submit time" %>
+          <%= f.select :submit_at_ts, options_for_select(time_options_for_select(@merchant.group_order_available_lead_times, @merchant.time_zone_offset.to_i)), class: "select" %>
+        </div>
+      </div>
+			<section class="right-container-responsive">
+				<div class="bubble-container">
+					<div class="bubble bubble-aligned-left">4</div>
+					<p class="displayed_table_cell">Please anticipate an average of 45 minutes from the time your order is
+						placed, to your actual pickup
+						or delivery time. You&#39;ll see your estimated pickup/delivery time once you place the order.</p>
+				</div>
+				<div class="bubble-container">
+					<div class="bubble bubble-aligned-left">5</div>
+					<p class="displayed_table_cell">Monitor your group&#39;s progress on the Group Order Status page.</p>
+				</div>
+			</section>
+      <%= f.submit "Send" %>
+  <% end %>
+  </section>
+</main>
+
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+      (function($) {
+    var groupOrderNew = new GroupOrdersCreateController('<%= @merchant.merchant_id %>', '<%= params[:order_type] || params[:merchant_menu_type] %>','<%= @group_order.group_order_type %>');
+  })(jQuery);
+  });
+</script>

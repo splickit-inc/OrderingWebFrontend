@@ -1,0 +1,18 @@
+@import "../flex";
+
+#guest_to_logged_user_modal
+{
+  .text
+  {
+    text-align: center;
+  }
+  .buttons-to-logged
+  {
+    @include flex-init;
+    .button
+    {
+      width: 50%; margin-right: 5px
+    }
+  }
+
+}

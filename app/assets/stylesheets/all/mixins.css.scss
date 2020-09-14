@@ -1,0 +1,334 @@
+@mixin transition($transition-property, $transition-time, $method) {
+  -webkit-transition: $transition-property $transition-time $method;
+  -moz-transition: $transition-property $transition-time $method;
+  -ms-transition: $transition-property $transition-time $method;
+  -o-transition: $transition-property $transition-time $method;
+  transition: $transition-property $transition-time $method;
+}
+
+@mixin short-header {
+  min-height: $header-height;
+
+  @media (min-width: 48rem) {
+    min-height: 4rem;
+  }
+}
+
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}
+}
+
+@mixin no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin clear {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin split {
+  @include clear;
+  > *:last-child {
+    float: left;
+  }
+  > *:first-child {
+    float: right;
+  }
+}
+
+@mixin appearance($type) {
+  -webkit-appearance: $type;
+  -moz-appearance:    $type;
+  appearance:         $type;
+}
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
+@mixin button ($button-background-color: $button-primary-background-color) {
+  @include border-radius(3px);
+  cursor: pointer;
+  display: inline-block;
+  padding: calc(.6rem + 1px) 1rem;
+  line-height: 1.1rem;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'helvetica neue', 'arial', sans-serif;
+  font-weight: 400;
+  font-size: $body-text-size;
+  color: $button-text-color;
+  background-color: $button-background-color;
+  border: none;
+  font-weight: 600;
+  &[disabled],
+  &.disabled {
+    cursor: default;
+    opacity: .5;
+  }
+}
+
+@mixin button-group ($button-background-color: $button-primary-background-color) {
+  @include clear;
+  > * {
+    float: left;
+  }
+}
+
+@mixin icon($char)
+{
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  &:before {
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    content: $char;
+  }
+
+}
+
+@mixin sign-in-sign-up
+{
+  max-width: 25rem;
+  padding: 2rem;
+
+  > div {
+    padding: 0;
+  }
+
+  h1 {
+    margin-bottom: 1.4rem;
+  }
+}
+
+@mixin circle-close-x-icon {
+  @include icon("\79");
+}
+
+@mixin alert-icon {
+  @include icon("\61");
+}
+
+@mixin back-arrow-icon {
+  @include icon("\3c");
+}
+
+@mixin cart-icon {
+  @include icon("\63");
+}
+
+@mixin check-mark-icon {
+  @include icon("\6d");
+}
+
+@mixin close-x-icon {
+  @include icon("\78");
+}
+
+@mixin delete-icon {
+  @include icon("\2d");
+}
+
+@mixin edit-icon {
+  @include icon("\65");
+}
+
+@mixin facebook-icon {
+  @include icon("\62");
+}
+
+@mixin favorites-icon {
+  @include icon("\66");
+}
+
+@mixin forward-arrow-icon {
+  @include icon("\3e");
+}
+
+@mixin hamburger-icon {
+  @include icon("\68");
+}
+
+@mixin locations-icon {
+  @include icon("\6c");
+}
+
+@mixin map-pin-icon {
+  @include icon("\21");
+}
+
+@mixin notes-icon {
+  @include icon("\6e");
+}
+
+@mixin phone-call-icon {
+  @include icon("\70");
+}
+
+@mixin promo-icon {
+  @include icon("\31");
+}
+
+@mixin restaurant-icon {
+  @include icon("\72");
+}
+
+@mixin search-icon {
+  @include icon("\73");
+}
+
+@mixin settings-icon {
+  @include icon("\67");
+}
+
+@mixin take-out-icon {
+  @include icon("\6f");
+}
+
+@mixin twitter-icon {
+  @include icon("\74");
+}
+
+@mixin delivery-icon {
+  @include icon("\64");
+}
+
+@mixin credit-icon {
+  @include icon("\2a")
+}
+
+@mixin star-icon {
+  @include icon("\e94e")
+}
+
+@mixin cash-icon {
+  @include icon("\44")
+}
+
+@mixin calendar-icon {
+  @include icon("\e954")
+}
+
+// additional dialog styles are in dialog.css.scss
+@mixin dialog ($width: 25rem, $threshold: $width) {
+  @media (min-width: $threshold) {
+    max-width: $width;
+    max-height: calc(100% - 10rem);
+    height: auto;
+    top: 5rem;
+    left: 50%;
+    margin-left: -($width / 2);
+  }
+}
+
+@mixin responsive-table($max-width) {
+  @media(max-width: $max-width) {
+    /* Force table to not be like tables anymore */
+    thead, tbody, th, td, tr {
+      display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead {
+      tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+    }
+
+    tr {
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+    }
+
+    td {
+      /* Behave  like a "row" */
+      border: none !important;
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding: 0.5rem 0.5rem 0.5rem calc(60% - 1rem);
+      text-align: left;
+
+      &:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        left: 6px;
+        width: calc(50% - 1rem);
+        text-align: left;
+        padding: 0 0.5rem;
+        white-space: nowrap;
+        text-transform: uppercase;
+        font-weight: bold;
+        /* Label the data */
+        content: attr(data-label);
+        text-transform: uppercase;
+
+        @media(max-width: 43.4375rem){
+          font-size: 12px;
+        }
+        @media(max-width: 23.125rem){
+          font-size: 10.8px;
+          padding: 0rem !important;
+        }
+      }
+    }
+  }
+}
+
+@mixin pretty-checkbox($dim: 2.1rem) {
+  $padding-top: 0.45 - 2.1 + $dim;
+
+  label.selector-override {
+    width: $dim;
+    height: $dim;
+
+    span {
+      width: $dim;
+      height: $dim;
+      padding-top: $padding-top > 0 and $padding-top or 0;
+    }
+
+    & :checked + span {
+      &:before {
+        display: block;
+        margin-top: 4px;
+        font-size: $dim * 1.1 / 2.1;
+      }
+    }
+  }
+}
+/*rha new implementation*/
+$enable-transitions:        true !default;
+$modal-transition:            transform .3s ease-out !default;
+
+@mixin transition($transition...) {
+  @if $enable-transitions {
+    @if length($transition) == 0 {
+      transition: $transition-base;
+    } @else {
+      transition: $transition;
+    }
+  }
+}

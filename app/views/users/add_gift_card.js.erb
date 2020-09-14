@@ -1,0 +1,40 @@
+$("div#flash_notifications").html("<%= j render "shared/flash_notifications" %>");
+$('.payment-type.gift-card input[type=radio]').prop('checked', true);
+var balance = "";
+var new_card = null;
+<% if local_assigns.has_key? :currency %>
+  balance = '<%= currency %>';
+<% end %>
+<% if local_assigns.has_key? :balance %>
+  balance+= '<%= balance %>';
+<% end %>
+<% if local_assigns.has_key? :new_card %>
+  new_card = '<%= new_card %>';
+<% end %>
+<% if local_assigns.has_key? :last_four %>
+  last_four = '<%= last_four %>';
+<% end %>
+<% if flash[:error].present? %>
+  $("input#gift-number").val("");
+  ErrorModalController.initialize("<%= flash[:error] %>");
+<% elsif gift_card_replace_valid? && new_card.present? && new_card == "0" %>
+  if ($("div#replace-gift-content").is(":visible")) {
+      $("#gift-balance").html("Current Balance: "+balance);
+      $("div.gift-card .gift-title").html("Gift Card ending in "+last_four)
+  }
+  Dialog.close_all()
+<% else%>
+  $("#add-gift-content").hide();
+  $("#replace-gift-content").css("display","inline-block");
+  $("#gift-balance").html("Current Balance: "+balance);
+  $("div.gift-card .gift-title").html("Gift Card ending in "+last_four)
+  $("#gift-add-button").hide();
+  $("div.payment-type.gift-card #gift-number").hide();
+
+<% end %>
+
+
+
+
+
+

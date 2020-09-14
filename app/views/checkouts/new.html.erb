@@ -1,0 +1,157 @@
+<% content_for :head do %>
+  <script src='<%= Rails.application.config.value_io_url %>' type="text/javascript" defer></script>
+  <%= stylesheet_link_tag "https://api.value.io/assets/value.css" %>
+  <script>
+    window.valueio_account = "<%= @account %>";
+    window.valueio_write_only_token = "<%= @token %>";
+    window.valueio_form_selector = "#form_order_detail";
+    window.valueio_resource = "credit_cards";
+    window.valueio_secure_form_collect_credit_card = "true";
+    window.valueio_vault = "true";
+    window.valueio_secure_form_collect_name = "true";
+    window.valueio_secure_form_collect_zip = "true";
+    window.valueio_secure_form_require_zip = "true";
+    window.valueio_on_success = function() {
+      loadingPage.show({ callback: $("form#form_order_detail").submit.bind($("form#form_order_detail")) });
+    };
+  </script>
+<% end %>
+
+<main data-merchant-id='<%= @merchant.merchant_id %>' data-merchant-name='<%= @merchant.name %>'>
+  <div class="container">
+    <h1><%= checkout_title %></h1>
+
+    <div class="checkout-info">
+      <section id='details'>
+        <label class="title-header">order settings</label>
+        <% if delivery? && @delivery_address.present? %>
+          <div class="delivery-address">
+            <p>Delivering to:</p>
+            <p>
+              <% if @delivery_address["business_name"].present? %>
+                <%= @delivery_address["business_name"] %>
+                <br>
+              <% end %>
+              <%= "#{ @delivery_address["address1"] }, #{ @delivery_address["city"] }, #{ @delivery_address["state"] } #{ @delivery_address["zip"] }" %>
+            </p>
+          </div>
+        <% end %>
+
+        <%= form_for :order, url: { action: :create }, html: { id: "create_checkout_form" } do |f| %>
+          <%= f.hidden_field :merchant_id, value: @merchant.merchant_id %>
+          <%= f.hidden_field :cart_id,     value: @cart["ucid"] %>
+          <%= f.hidden_field :order_type,  value: order_type %>
+          <%= f.hidden_field :group_order_token, value: group_order_token %>
+
+          <%= hidden_field_tag :show_dine_option, @show_dine_option %>
+          <%= hidden_field_tag :show_curbside_option, @show_curbside_option %>
+          <%= hidden_field_tag :payment_types_map, Oj.dump(@checkout["accepted_payment_types"]) %>
+
+          <!-- TODO: include these form elements under nested 'order' param (consistent) -->
+          <%= render partial: "time_and_tip" %>
+
+            <div id="dine">
+              <% if @show_dine_option %>
+              <label class="selector-override">
+                <%= check_box_tag 'dine_in', 'dine_in', @dine_in_checked %>
+                <span></span>
+              </label>
+              <span class="desc">I'm going to Dine In</span>
+              <% end %>
+
+              <% if @show_curbside_option %>
+              <label class="selector-override">
+                <%= check_box_tag 'curbside', 'curbside', @curbside_checked %>
+                <span></span>
+              </label>
+              <span class="desc">Curbside Pickup</span>
+                <%= select_tag "make", options_for_select(@carMake, @make), prompt: "Car Make", class: "curbside_select"%>
+                <%= select_tag "color", options_for_select(@carColor, @color), prompt: "Car Color", class: "curbside_select"%>
+              <% end %>
+            </div>
+
+
+          <% if @skin.show_notes_fields %>
+            <div id='notes'>
+              <label for="note"><% if is_wtjmmj? %>Reservation<% else %>Order<% end %> Notes<span id="char-limit" style="display: none">250</span></label>
+              <%= text_area_tag 'note', @note, size: '40x3', maxlength: '250',  class: 'comment_input' %>
+            </div>
+          <% end %>
+        <% end %>
+        <% if (!is_a_group_order? || (is_a_group_order? && invite_pay?) || (has_group_order? && is_checkout_grouporder?)) && !promo_applied? %>
+          <label class="title-header">promotions</label>
+          <%= render partial: "promo_form" %>
+        <% end %>
+
+        <%= form_tag user_payment_index_path, id: "form_order_detail", method: :post do %>
+          <%= hidden_field_tag "continue", new_checkout_path(params.permit!) %>
+
+          <% if @checkout["accepted_payment_types"].present? && !is_wtjmmj? %>
+            <div id="payment">
+              <%= render partial: "payment_information" %>
+            </div>
+          <% end %>
+        <% end %>
+      </section>
+      <section id='summary'>
+        <div id="summary_content">
+        <address>
+          <h2><%= @merchant.display_name %></h2>
+          <p><%= @merchant.address1 %>, <%= @merchant.city_state_zip %></p>
+          <p><%= number_to_phone @merchant.phone_no %></p>
+        </address>
+
+        <hr>
+
+        <table id='items'>
+          <% @items.each do |item| %>
+            <tr>
+              <td>
+                <h3><%= raw(item_name(item)) %></h3>
+                <% if item["uuid"].present? %>
+                  <div class="controls">
+                    <div class='edit-item' data-item-id=<%= item["uuid"] %>></div>
+                    <div class='remove-item' data-item-id=<%= item["uuid"] %>></div>
+                  </div>
+                <% end %>
+
+                <p class="mods"><%= raw(item_description(item)) %></p>
+
+                <% if item_note(item).present? && @skin.show_notes_fields %>
+                  <span class="note"><span>Note: </span><%= item_note(item) %></span>
+                <% end %>
+              </td>
+              <td class="price"><%= raw(item_price(item)) %></td>
+            </tr>
+          <% end %>
+        </table>
+
+        <hr>
+
+        <div id="receipt-items">
+          <%= render partial: "receipt_items" %>
+        </div>
+        </div>
+        <div id="buttons">
+          <%= link_to "Add more items", merchant_redirect_path_optional, class: "button new", id: "add" %>
+          <%= button_tag place_order_label, id: "create_checkout_submit", type: "button" %>
+        </div>
+      </section>
+
+
+    </div>
+  </div>
+
+  <script>
+      window.addEventListener('DOMContentLoaded', function() {
+          (function($) {
+        new CheckoutsNew({
+          errorMessage: "<%= flash[:error] %>",
+          showPromoForm: false,
+          cartDialog: <%= reset_cart_dialog? %>,
+          refreshDialog: <%= !cart_catering_order? %>
+        });
+          })(jQuery);
+      });
+  </script>
+</main>

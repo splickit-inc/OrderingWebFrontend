@@ -1,0 +1,239 @@
+<% content_for :meta do %>
+  <meta name="description" content="Order ahead, bypass the line.">
+  <meta property="og:image" content="https://d38o1hjtj2mzwt.cloudfront.net/com.splickit.<%= Skin.current_name %>/merchant-location-images/large/default-merchant-hero.png"/>
+<% end %>
+
+<% content_for :header do %>
+  <!-- TODO:refactor the merchant info UI -->
+  <% unless @skin.is_hollywoodbowl? %>
+    <address>
+    <h3><%= @merchant.address1 %></h3>
+
+    <table class="table table-hover text-center">
+      <tbody>
+      <tr>
+        <td>
+        <p class="float_left"><%= @merchant.city_state_zip %></p>
+        <% if store_hours_pickup.present? %>
+          <div id="icon_to_show_store_hours" data-show="true" class="address-forward-arrow-icon store_hours_icon primary_button_color float_right icon-space"></div>
+        <% end %>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+      
+
+    <% if store_hours_pickup.present? %>
+      <div id="store_hours_container" hidden="hidden">
+        <table class="table table-hover text-center">
+          <tbody>
+            <tr>
+              <td>
+                <table class="margin15 container-full">
+                  <thead>
+                    <th></th>
+                    <th>Pickup</th>
+                  </thead>
+                  <tbody>
+                  <% store_hours_pickup.each do |hash_pickup_day_time| %>
+                    <tr>
+                      <% hash_pickup_day_time.each do |day_name, hours| %>
+                        <td class="text-left"> <%= day_name %></td>
+                        <td class="text-right"> <%= hours %> </td>
+                      <% end %>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </td>
+
+              <% if delivery? %>
+                <td>
+                  <table>
+                    <thead>
+                      <th>Delivery</th>
+                    </thead>
+                    <tbody>
+                    <% store_hours_delivery.each do |hash_delivery_day_time| %>
+                      <tr>
+                        <% hash_delivery_day_time.each do |day_name, hours| %>
+                          <td><%= hours %></td>
+                        <% end %>
+                      </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </address>
+  <% end %>
+
+  <nav class='secondary'>
+    <% if @merchant.menu %>
+      <% @merchant.menu.menu_types.each_with_index do |menu_type, index| %>
+        <% unless menu_type.visible == false %>
+          <%= link_to menu_type.menu_type_name, "##{ menu_type.menu_type_name.parameterize }",
+                      class: ("current" if index == 0) %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </nav>
+<% end %>
+
+<main data-skin-name="<%= @skin.skin_name %>"
+      data-merchant-id="<%= @merchant.merchant_id %>"
+      data-merchant-name="<%= @merchant.name %>"
+      data-merchant-order-type="<%= @order_type %>"
+      data-merchant-group-order-token="<%= @group_order_token %>">
+
+  <% if delivery? %>
+    <h2 class="delivery-menu">DELIVERY MENU</h2>
+  <% else %>
+    <h2 class="takeout-menu">PICKUP MENU</h2>
+  <% end %>
+
+  <% if @merchant.user_favorites && @merchant.user_favorites.first.present? %>
+    <%= render partial: 'favorites/show' %>
+  <% elsif @merchant.user_last_orders && @merchant.user_last_orders.first.present? %>
+    <div id="user-items-section">
+      <h2>Latest Order</h2>
+      <%= render partial: 'favorites/last_orders' %>
+    </div>
+  <% end %>
+
+  <script type="text/javascript">
+    window.menuItems = {};
+  </script>
+
+  <% if @merchant.menu %>
+    <% @merchant.menu.menu_types.each do |menu_type| %>
+      <section class='menu-type <% if menu_type.visible == false %>hidden<% end %>' id='<%= menu_type.menu_type_name.parameterize %>' >
+        <% if menu_type.image_url.present? %>
+        <div class='menu-type-image' style="background-image: url(<%= menu_type.image_url %>)"><h1 class="title"> <%= menu_type.menu_type_name %></h1></div>
+        <% else %>
+        <h2><%= menu_type.menu_type_name %></h2>
+        <% end %>
+        <div class='items'>
+          <% if menu_type.menu_items %>
+            <% menu_type.menu_items.each do |menu_item| %>
+              <article class="item" data-menu-item-id=<%= menu_item.item_id %> data-dialog='add-item-<%= menu_item.item_id %>'
+                       data-dialog-trigger>
+
+                <%= image_tag menu_item.large_image, class: "img-large" if menu_item.large_image %>
+                <%= image_tag menu_item.small_image, class: "img-small" if menu_item.small_image %>
+
+                <div class="item-description">
+                  <h3><%= menu_item.item_name %></h3>
+                  <% if menu_item.price_range.first == "0.00" %>
+                    <br/>
+                  <% else %>
+                    <h4 class="price">
+                      <%= item_price_string(menu_item.price_range.first, menu_item.point_range.first) %>
+                    </h4>
+                  <% end %>
+
+                  <% if menu_item.calories.present? %>
+                    <h3 class="calories"><%= menu_item.calories %></h3>
+                  <% end %>
+                  <p><%= menu_item.description.truncate 100 %></p>
+                </div>
+              </article>
+            <% end %>
+          <% end %>
+        </div>
+      </section>
+    <% end %>
+  <% end %>
+
+  <% if @merchant.nutrition_flag == "1" %>
+    <div class="nutrition-message-section">
+      <hr />
+      <p class="nutrition-message-title">Additional nutrition information available upon request.</p>
+      <p class="nutrition-message"><%= @merchant.nutrition_message['all'] %><br />
+      <%= @merchant.nutrition_message['kids'] %></p>
+    </div>
+  <% end %>
+
+  <script type="text/javascript">
+      window.addEventListener('DOMContentLoaded', function() {
+          (function($) {
+
+      <% if @merchant.menu %>
+        <% @merchant.menu.menu_types.each do |menu_type| %>
+            <% if menu_type.menu_items %>
+              <% menu_type.menu_items.each do |menu_item| %>
+              window.menuItems["<%= menu_item.item_id %>"] = new MenuItem(<%= to_js(menu_item) %>);
+              <% end %>
+            <% end %>
+        <% end %>
+      <% end %>
+
+        window.merchant_json = {
+          name: '<%= @merchant.name %>',
+          display_name: '<%= @merchant.display_name %>',
+          phone_no: '<%= @merchant.phone_no %>',
+          brand: '<%= @merchant.brand %>',
+          lat: '<%= @merchant.lat %>',
+          lng: '<%= @merchant.lng %>',
+          address1: '<%= @merchant.address1 %>',
+          city: '<%= @merchant.city %>',
+          state: '<%= @merchant.state %>',
+          zip: '<%= @merchant.zip %>',
+          charge_modifiers_loyalty_purchase: <%= @merchant.menu.charge_modifiers_loyalty_purchase %>
+        };
+
+        <% if @merchant.menu && @merchant.menu.upsell_items.present? %>
+          window.upsellItems = {};
+          <% @merchant.menu.upsell_items.each do |upsell_item| %>
+            window.upsellItems["<%= upsell_item.item_id %>"] = new MenuItem(<%= to_js(upsell_item) %>);
+          <% end %>
+        <% end %>
+        <% if @merchant.menu && @merchant.menu.menu_type_upsells.present? %>
+          window.menuTypeUpsellItems = {};
+          <% @merchant.menu.menu_type_upsells.each do |upsell_item| %>
+            <% if upsell_item[:upsells] %>
+              <% upsell_item[:upsells].each do |item|%>
+                window.menuTypeUpsellItems["<%=  item.item_id %><%=  upsell_item[:menu_type_id] %>"] = new MenuItem(<%= to_js(item) %>);
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+          })(jQuery);
+      });
+  </script>
+</main>
+
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        (function($) {
+
+      <% if signed_in? %>
+      window.signed_in = true;
+      <% else %>
+      window.signed_in = false;
+      <% end %>
+
+      window.order_type = '<%= @order_type %>';
+
+      <% if @is_catering %>
+      window.isCatering = true;
+      <% else %>
+      window.isCatering = false;
+      <% end %>
+
+      <% if @catering_needs_config.present? %>
+      window.cateringNeedsConfig = '<%= @catering_needs_config %>';
+      <% end %>
+
+      new MerchantsShowController().show({
+        modal: <%= @modal %>,
+        merchantID: "<%= @merchant.merchant_id %>"
+      });
+        })(jQuery);
+    });
+</script>

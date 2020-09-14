@@ -1,0 +1,44 @@
+<section id="items-section">
+  {{# unless order.items }}
+    No items yet.
+  {{/ unless }}
+
+  {{# each order.items }}
+    <article>
+      <span class='price'>{{ price_string }}</span>
+      <div class='details'>
+        <h5>
+          {{{ item_name }}}
+          <div class='edit-item' data-item-id={{ uuid }}></div>
+          <div class='remove-item' data-item-id={{ uuid }}></div>
+        </h5>
+
+        <div class='description'>
+          {{# if sizeName }}
+            <span class='size-name descriptor'>{{ sizeName }}</span>
+          {{/ if }}
+
+          {{# if mods }}
+            <span class='mods'>
+              {{# each mods }}
+                {{# if name }}
+                  <span class='modifier descriptor'>
+                      {{ name ~}}
+                    {{# greaterThan mod_quantity 1 }}
+                      ({{~ mod_quantity ~}}x)
+                    {{~/ greaterThan ~}}
+                    </span>
+                {{/ if ~}}
+              {{/ each}}
+            </span>
+          {{/ if }}
+
+          {{#if note}}
+            <span class="item-note"><span>Note:</span> {{{ note }}}</span>
+          {{/if}}
+
+        </div>
+      </div>
+    </article>
+  {{/ each }}
+</section>

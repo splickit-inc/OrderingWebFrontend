@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+convert `ls -1 | head -1`  -format 'roundrectangle 1,1 %[fx:w],%[fx:h]  %[fx:w*0.15],%[fx:w*0.15]'  info: > /tmp/roundcorner.mvg
+convert `ls -1 | head -1`  -border 3 -alpha transparent   -background none -fill white -stroke none -strokewidth 0   -draw "@/tmp/roundcorner.mvg"  /tmp/mask.png
+
+for x in `ls -1 *.jpg | sed -e 's/.jpg//g'`
+do 
+	convert $x.jpg $x.png
+	convert $x.png  -alpha set -bordercolor none -border 0  /tmp/mask.png -compose DstIn -composite $x.png
+	convert $x.png -background "#FFFFFF" -flatten  $x.jpg
+done

@@ -1,0 +1,52 @@
+[data-route='feedbacks/new'],
+[data-route='feedbacks/create'] {
+
+  header {
+    display: none;
+  }
+
+  main {
+    padding-top: 1rem;
+    max-width: 25rem;
+    margin: auto;
+    #thank-you {
+      background: #ffffff;
+    }
+  }
+
+  main img {
+    display: block;
+    margin: auto;
+  }
+
+  main h1 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: rgba(0,0,0,.50);
+  }
+
+  main h3 {
+    text-align: center;
+    color: rgba(0,0,0,.40);
+  }
+
+  footer {
+    display: none;
+  }
+
+  input#honeypot {
+    display: none;
+  }
+
+  div#human {
+    padding-top: 1rem;
+    height: 60px;
+  }
+
+  input[type=checkbox] {
+    float: right;
+    margin-right: 0;
+  }
+}

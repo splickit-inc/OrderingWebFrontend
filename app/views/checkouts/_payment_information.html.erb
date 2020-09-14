@@ -1,0 +1,82 @@
+<label class="title-header">payment</label>
+
+<!-- Waiting data -->
+<!--Splick.it Credit<%# if @user.balance.to_i > 0 %>-->
+<!--<div class="payment-type store-credit">-->
+<!--<p>You have $<%#= @user.balance %> store credit</p>-->
+<!--</div>-->
+<!--<%# else %>-->
+
+<% @gift_payments.each do |payment| %>
+<div class="payment-type gift-card">
+  <label class="selector-override">
+    <%= radio_button_tag "payment_type", payment["merchant_payment_type_map_id"], default_payment?(payment) %>
+    <span></span>
+  </label>
+  <% if @gift_card_balance.blank? %>
+  <span class="gift-label" class="gift-title">Gift Card</span>
+  <% else %>
+  <span class="gift-label" class="gift-title">Gift Card ending in <%= @last_four %></span>
+  <% end %>
+  <div id="add-gift-content">
+  <% if @gift_card_balance.blank? %>
+    <%= text_field_tag "gift-number", nil, placeholder: "Enter a Gift Card number", class:"gift_add" %>
+    <%= link_to "Add", "#", class: "button gift_add", id: "gift-add-button" %>
+  <% end %>
+  </div>
+  <div id="replace-gift-content">
+    <span class="gift-label" id="gift-balance">Balance $<%= @gift_card_balance %></span>
+    <%= link_to "Replace", "#", class: "button gift_add", id: "gift-replace-button" %>
+  </div>
+</div>
+<% end %>
+
+<% @loyalty_payments.each do |payment| %>
+  <div class="payment-type loyalty <%= "Cash" if payment["splickit_accepted_payment_type_id"] == "9000" %>">
+    <label class="selector-override">
+      <%= radio_button_tag "payment_type", payment["merchant_payment_type_map_id"], default_payment?(payment)  %>
+      <span></span>
+    </label>
+    <span class="loyalty-label"><%= payment["name"] %></span>
+  </div>
+<% end %>
+
+<% @other_payments.each do |payment| %>
+  <div class="payment-type">
+    <label class="selector-override">
+      <%= radio_button_tag "payment_type", payment["merchant_payment_type_map_id"], default_payment?(payment) %>
+      <span></span>
+    </label>
+    <span class="cash-label"><%= payment["name"] %></span>
+  </div>
+<% end %>
+
+<% @credit_payments.each do |payment| %>
+  <div class="payment-type credit-card">
+    <% if @user.has_cc? %>
+      <label class="selector-override">
+        <%= radio_button_tag "payment_type", payment["merchant_payment_type_map_id"], default_payment?(payment) %>
+        <span></span>
+      </label>
+      <span class="credit-label">Credit Card ending in <%= cc_payment_name(payment) %></span>
+      <div class="replace-button">
+        <input name="replace_credit_card" value="Replace Credit Card" type="submit" id="replace_credit_card" class="replace">
+      </div>
+    <% else %>
+      <div>
+        <input name="add_credit_card" value="Add a Card" type="submit" id="add_credit_card" class="add secondary">
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<% @cash_payments.each do |payment| %>
+  <div class="payment-type cash">
+    <label class="selector-override">
+      <%= radio_button_tag "payment_type", payment["merchant_payment_type_map_id"], default_payment?(payment) %>
+      <span></span>
+    </label>
+    <span class="cash-label"><%= "Pay in Store" if payment["name"] == "Cash" %></span>
+  </div>
+<% end %>
+<!--<%# end %>-->

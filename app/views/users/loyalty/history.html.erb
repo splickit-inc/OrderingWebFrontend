@@ -1,0 +1,40 @@
+<%= content_for :header do %>
+  <%= render 'users/loyalty/navigation' %>
+<% end %>
+  
+<main class="loyalty">
+  
+  <%= render "users/loyalty/card" %>
+
+  <div class="loyalty-content">
+    <% if @user_transactions["rows"].present? %>
+      <h3>Transaction history</h3>
+      <table>
+        <thead>
+        <tr>
+          <% @user_transactions["headings"].try(:each) do |key, header| %>
+            <th><%= header %></th>
+          <% end %>
+        </tr>
+        </thead>
+        <tbody>
+        <% @user_transactions["rows"].try(:each) do |transaction| %>
+          <tr>
+            <% @user_transactions["headings"].try(:each) do |key, header| %>
+              <td data-label="<%= @user_transactions["headings"][key] %>"><%= transaction[key] %></td>
+            <% end %>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <div class="loyalty-empty">
+        <p>Your loyalty transaction history will appear here.</p>
+
+        <p>Visit the rules tab above to learn more about earning and using
+          your loyalty card.</p>
+      </div>
+    <% end %>
+  </div>
+  
+</main>

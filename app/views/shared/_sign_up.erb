@@ -1,0 +1,74 @@
+<div class='sign-up'>
+  <%= form_for :user, url: user_path do |form| %>
+    <div class="links-container" style="margin-bottom: 16px">
+      <a class="sign-in-link" href="/sign_in" >SIGN IN</a>
+      <span class="separator">|</span>
+      <a href="#" class="inactive-link" >JOIN NOW</a>
+    </div>
+    <% if @error %>
+      <div class='errors'>
+        <p><%= @error.message %></p>
+      </div>
+    <% end %>
+
+    <%= form.label :first_name, "First name" %>
+    <%= form.text_field :first_name, placeholder: "John" %>
+    <%= form.label :last_name, "Last name" %>
+    <%= form.text_field :last_name, placeholder: "Smith" %>
+    <%= form.label :email, "Email address"%>
+    <%= form.email_field :email, placeholder: "johnsmith@example.com" %>
+    <%= form.label :contact_no, "Phone number" %>
+    <%= form.telephone_field :contact_no, placeholder: "555-555-5555" %>
+    <%= form.label :birthday, "Birthday (optional)", id: "user_birthday_label" %>
+    <% if @skin.is_moes? %>
+      <%= form.text_field :birthday, placeholder: "12/21", id: "user_birthday_user" %>
+    <% else %>
+      <%= form.text_field :birthday, placeholder: "12/21/2001", id: "user_birthday_user" %>
+    <% end %>
+    <%= form.label :password, "Create a password" %>
+    <%= form.password_field :password, placeholder: "••••••••••" %>
+
+    <% if (@skin.brand_custom_fields && @skin.email_marketing_field).present? %>
+      <% if @skin.email_marketing_field.present? %>
+        <div id="su-brand-enroll" class="table">
+          <% if @skin.is_moes? %>
+            <%= form.label(:marketing_email_opt_in, "Enroll in Moe's E-world and get a free gift on your birthday.") %>
+          <% end %>
+          <div class="su-brand-opt-in-field">
+            <div class="cell">
+              <label class="selector-override">
+                <%= form.check_box(:marketing_email_opt_in) %>
+                <span></span>
+              </label>
+            </div>
+            <div class="cell">
+              <span><%= @skin.email_marketing_field["field_label"] %></span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <div id="su-brand-fields" style="display: none">
+        <% @skin.brand_custom_fields.each do |field| %>
+          <%= form.label field["field_name"], field["field_label"] %>
+          <%= form.text_field field["field_name"], placeholder: field["field_placeholder"] %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <p>By continuing, you agree to <%= link_to "our terms" %>.</p>
+
+    <%= form.submit "Sign Up" %>
+  <% end %>
+</div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        (function($) {
+      window.signUpEvents({
+      marketingEnable: <%= (@skin.brand_custom_fields && @skin.email_marketing_field).present? %>
+      });
+    })(jQuery);
+    });
+</script>
+

@@ -1,0 +1,16 @@
+<ul data-tabs>
+  <li class='<%= 'active' if route == 'users/account' %>'>
+    <%= link_to "Account", account_user_path %>
+  </li>
+  <li class='<%= 'active' if route == 'user_payments/new' %>'>
+    <%= link_to "Payment method", new_user_payment_path %>
+  </li>
+  <% if @skin && @skin.merchants_with_delivery %>
+    <li class='<%= 'active' if route == 'user_addresses/index' %>'>
+      <%= link_to "Delivery address", user_address_index_path %>
+    </li>
+  <% end %>
+  <li class='<%= 'active' if route == 'users/orders_history' %>'>
+    <%= link_to "History", orders_history_user_path %>
+  </li>
+</ul>

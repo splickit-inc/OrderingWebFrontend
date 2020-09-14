@@ -1,0 +1,192 @@
+<main>
+  <section class="title">
+    <section class="left-block">
+      <h1>Group order - <%= @group_order["merchant_menu_type"] %></h1>
+    </section>
+
+    <section id="submit-time" class="right-block">
+      <% if invite_pay? %>
+          <h2>Group Order will be submitted at
+            <span id="expire-at"><%= @group_order["send_on_local_time_string"] %></span>
+          </h2>
+      <% end %>
+    </section>
+  </section>
+
+  <section id="modifiers">
+    <section class="left-block">
+      <span id="submitted-orders" class="badge primary">
+        <%= @group_order["total_submitted_orders"] || 0 %>
+      </span>
+      <% if invite_pay? %>
+          <span id="status" class="badge primary"><%= @group_order["status"] %></span>
+      <% end %>
+    </section>
+
+    <section class="right-block">
+      <div class="bubble-container bubble-margin-left">
+        <% if invite_pay? %>
+            <button class="bubble bubble-aligned-left">2</button>
+            <p class="displayed_table_cell">Add more time if you need it</p>
+        <% end %>
+        <%= button_tag "Add 10 minutes", id: "increment-button", class: "button loading-btn", disabled: submitted? if invite_pay? %>
+      </div>
+    </section>
+  </section>
+
+  <section class="right-container">
+    <div class="bubble-container">
+      <% unless submitted? %>
+          <div class="bubble-container">
+            <button class="bubble bubble-aligned-left">
+              <% if invite_pay? %>
+                  3
+              <% else %>
+                  2
+              <% end %>
+            </button>
+            <div class="displayed_table_cell">
+              <p>Invite more people by sending them this link</p>
+            </div>
+            <div class="link-container"><p>Share link: <strong><%= share_link %></strong></p></div>
+          </div>
+      <% end %>
+      <div class="bubble-container">
+        <button class="bubble bubble-aligned-left">
+          <% if invite_pay? && !submitted? %>
+              4
+          <% else %>
+              3
+          <% end %>
+        </button>
+        <div class="displayed_table_cell">
+          <p>If you're paying, wait until all orders are in, then click "checkout" to submit your order.</p>
+        </div>
+      </div>
+      <div class="bubble-container">
+        <button class="bubble bubble-aligned-left">
+          <% if invite_pay? && !submitted? %>
+              5
+          <% else %>
+              4
+          <% end %>
+        </button>
+        <div class="displayed_table_cell">
+          <p>If individuals pay, wait until all orders are in and click on "Place Order Now". Or, do nothing and your
+            order will be automatically submitted at the time above.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="left-container">
+    <div class="info <%= @group_order["merchant_menu_type"] %>">
+      <div class="merchant-info">
+        <p>Ordering from:</p>
+        <h2><%= @merchant.display_name %></h2>
+        <p><%= @merchant.address1 %>, <%= @merchant.city_state_zip %></p>
+        <p><%= number_to_phone @merchant.phone_no %></p>
+      </div>
+
+      <% if @group_order["merchant_menu_type"] == "delivery" %>
+          <div class="delivery-info">
+            <p>Delivering to:</p>
+            <% if delivery_business_name.present? %>
+                <p><%= delivery_business_name %></p>
+            <% end %>
+            <p><%= delivery_street_address %></p>
+            <p><%= delivery_city_state_zip %></p>
+          </div>
+      <% end %>
+    </div>
+    <div class="bubble-container">
+      <button class="bubble bubble-aligned-left">1</button>
+      <p class="displayed_table_cell">Who Ordered</p>
+    </div>
+    <hr/>
+    <div id="order-summary" data-group-order-token="<%= @group_order["group_order_token"] %>">
+      <% if invite_pay? %>
+          <%= render partial: "group_orders/invite_pay_status" %>
+      <% else %>
+          <%= render partial: "group_orders/you_pay_status" %>
+      <% end %>
+    </div>
+
+    <hr/>
+    <% if invite_pay? %>
+        <section id="submit-time" class="right-block-responsive">
+          <h2>Group Order will be submitted at
+            <span id="expire-at"><%= @group_order["send_on_local_time_string"] %></span>
+          </h2>
+        </section>
+        <div class="bubble-container right-block-responsive">
+          <button class="bubble bubble-aligned-left">2</button>
+          <p class="displayed_table_cell">Add more time if you need it</p>
+          <%= button_tag "Add 10 minutes", id: "increment-button", class: "button loading-btn custom-button", disabled: submitted? if invite_pay? %>
+        </div>
+    <% end %>
+    <section class="right-container-responsive">
+      <div class="bubble-container">
+        <% unless submitted? %>
+            <div class="bubble-container">
+              <button class="bubble bubble-aligned-left">
+                <% if invite_pay? %>
+                    3
+                <% else %>
+                    2
+                <% end %>
+              </button>
+              <div class="displayed_table_cell">
+                <p>Invite more people by sending them this link</p>
+              </div>
+              <div class="link-container"><p>Share link: <strong><%= share_link %></strong></p></div>
+            </div>
+        <% end %>
+        <div class="bubble-container">
+          <button class="bubble bubble-aligned-left">
+            <% if invite_pay? && !submitted?%>
+                4
+            <% else %>
+                3
+            <% end %>
+          </button>
+          <div class="displayed_table_cell">
+            <p>If you're paying, wait until all orders are in, then click "checkout" to submit your order.</p>
+          </div>
+        </div>
+        <div class="bubble-container">
+          <button class="bubble bubble-aligned-left">
+            <% if invite_pay? && !submitted?%>
+                5
+            <% else %>
+                4
+            <% end %>
+          </button>
+          <div class="displayed_table_cell">
+            <p>If individuals pay, wait until all orders are in and click on "Place Order Now". Or, do nothing and your
+              order will be automatically submitted at the time above.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <figure class="buttons">
+      <%= link_to "Add items", merchant_path(@group_order["merchant_id"],
+                                             order_type: @group_order["merchant_menu_type"],
+                                             group_order_token: @group_order["group_order_token"]), class: ["button", "primary"], id: "add", disabled: submitted? %>
+      <div class="group-actions">
+        <%= place_order_link %>
+        <%= button_to "Cancel", {action: "destroy"}, method: :delete, params: {id:
+                                                                                   @group_order["group_order_token"]}, form: {id: "cancel"}, class: %w[secondary button], disabled: submitted?, id: 'btn_cancel' %>
+      </div>
+    </figure>
+  </section>
+</main>
+
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+      (function($) {
+    var groupOrderShow = new GroupOrdersShowController();
+    })(jQuery);
+  });
+</script>

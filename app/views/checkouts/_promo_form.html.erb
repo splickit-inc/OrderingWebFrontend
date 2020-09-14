@@ -1,0 +1,11 @@
+<span id="discount-form">
+  <%= form_tag apply_promo_path, method: :post, remote: true do %>
+    <%= hidden_field_tag "group_order_token", params["group_order_token"] %>
+    <%= hidden_field_tag "merchant_id", @merchant.merchant_id %>
+    <%= hidden_field_tag "order_type", order_type %>
+    <%= hidden_field_tag "cart_id", params["cart_id"] if params["cart_id"] %>
+
+    <%= text_field_tag(:promo_code, @promo_code, placeholder: "Enter Promo Code") %>
+    <%= submit_tag "Apply", class: "loading new" %>
+  <% end %>
+</span>

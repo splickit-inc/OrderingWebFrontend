@@ -1,0 +1,21 @@
+{{# if (And (present? items) (present? upsell_items)) }}
+  <section id="upsell-items-section">
+    <h4> Would you like to: </h4>
+    {{# each upsell_items }}
+      <article>
+        <div>
+          <button class="add-item" data-upsell-item-id={{ item_id }}>Add</button>
+          <span class="price">${{ total_price }}</span>
+        </div>
+        <div class="details">
+          {{#if small_image }}
+            <img src="{{ small_image }}" width="96" class="upsell-img" />
+          {{/ if }}
+          <h3>
+            Add {{ item_name }}
+          </h3>
+        </div>
+      </article>
+    {{/ each }}
+  </section>
+{{/ if }}

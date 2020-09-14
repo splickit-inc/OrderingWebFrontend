@@ -1,0 +1,178 @@
+@import '../flex';
+
+[data-route='sessions/new'],
+[data-route='sessions/create'],
+[data-route='guests/new'] {
+  #header {
+    @media (max-width: 48rem) {
+      min-height: 3.5rem;
+    }
+  }
+
+  main {
+    @include sign-in-sign-up;
+  }
+}
+
+[data-route='guests/new'] {
+  .message {
+    margin: 1.25rem 0;
+
+    p:not(:last-child) {
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  form {
+    input[type="submit"] {
+      margin: 0;
+    }
+  }
+}
+
+.sign-in {
+  a {
+    width: 100%;
+
+    &.button {
+      margin-top: 1rem;
+      &.last-btn {
+        margin-top: 0;
+      }
+    }
+
+    &.facebook-btn {
+      padding: 0;
+      background: #4167B2;
+      div {
+        @include flex-init;
+        @include flex-direction-row;
+        @include flex-justify-content-space-between;
+        @include flex-align-items-center;
+        .fb-icon {
+          margin: 8px;
+          height: 24px;
+          svg {
+            width: 24px;
+            height: 24px;
+          }
+        }
+        .fb-text {
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    }
+
+    &.facebook-btn:hover {
+      padding: 0;
+      background: #395A9C;
+    }
+  }
+
+  .or-center {
+    width: 100%;
+    @include flex-init;
+    @include flex-direction-row;
+    @include flex-justify-content-center;
+    @include flex-align-items-center;
+    hr {
+      width: 100%;
+    }
+    label {
+      width: auto;
+      margin-left: 5%;
+      margin-right: 5%;
+    }
+  }
+
+  .last-input {
+    margin-bottom: 0 !important;
+  }
+
+  .forgot-password-link-container {
+    text-align: right;
+    padding-right: 2px;
+  }
+
+  .forgot-password-link {
+    font-size: 12px;
+  }
+
+  .errors {
+    &.sign-in-errors {
+      margin-top: 1rem;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.links-container {
+  width: 100%;
+  @include flex-init;
+  @include flex-direction-row;
+  @include flex-justify-content-center;
+  a {
+    width: 76px;
+  }
+  .sign-in-link {
+    text-align: right;
+  }
+  .separator {
+    font-weight: bold;
+    margin-top: -2px;
+    margin-left: 8%;
+    margin-right: 8%;
+  }
+}
+
+.inactive-link {
+  pointer-events: none;
+  cursor: default;
+  text-decoration:  none;
+}
+
+.custom_textbox {
+  .checkbox-container {
+    @include pretty-checkbox(1rem);
+
+    & * {
+      vertical-align: bottom;
+    }
+
+    label.selector-override {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    span {
+      font-size: 15px;
+    }
+
+    label {
+      span {
+        font-size: 0.75rem;
+      }
+    }
+  }
+}
+
+.custom_align_left {
+  float: left;
+}
+
+.custom_align_right {
+  float: right;
+}
+
+.custom_textbox {
+  margin: 1rem 0 0 0;
+}
+
+div#custom_textbox .checkbox-container > span {
+  font-size: 15px;
+}
+
+div#custom_textbox .custom_align_left{
+  margin-top: 0;
+}

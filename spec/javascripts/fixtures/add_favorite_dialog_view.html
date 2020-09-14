@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>
+    Moes branded app
+  </title>
+<body data-twttr-rendered="true" data-route="users/orders_history" data-skin-name="moes">
+
+<header style="min-height: 184px;" class="">
+  <div id="nav-header-bg"></div>
+  <nav class="primary">
+    <a class="logo" href="/"><img alt="Logo"
+                                  src="//d38o1hjtj2mzwt.cloudfront.net/com.splickit.moes/web/brand-assets/logo.png"></a>
+
+    <div class="order" data-item-count="0">
+      <a class="my-order-link" href="/"><span>My order</span></a>
+    </div>
+    <a class="home" href="/">Home</a><a class="user" href="/user/account">Prod_tester</a>
+
+    <div class="user" data-first-name="Prod_tester">
+      <h3>Prod_tester Splickit</h3>
+
+      <p>prod_tester@splickit.com</p>
+      <a class="order" data-item-count="0" href="/">My order</a>
+      <a class="home" href="/">Home</a>
+
+      <a class="account" href="/user/account">Account</a>
+      <a href="user_payments/new">Payment method</a>
+      <a href="/user/delivery_address">Delivery address</a>
+      <a class="history" href="/user/orders_history">History</a>
+      <a href="/sign_out">Sign out</a>
+    </div>
+  </nav>
+
+</header>
+
+<main>
+
+  <ul data-tabs="">
+    <li class="">
+      <a href="/user/account">Account</a>
+    </li>
+    <li class="">
+      <a href="user_payments/new">Payment method</a>
+    </li>
+    <li class="">
+      <a href="/user/delivery_address">Delivery address</a>
+    </li>
+    <li class="active">
+      <a href="/user/orders_history">History</a>
+    </li>
+  </ul>
+
+
+  <section>
+
+    <aside>
+      <h2>History</h2>
+
+      <p>A history view showing all orders.</p>
+    </aside>
+
+    <div id="order-data">
+      <table>
+        <thead>
+        <tr id="header">
+          <th>id</th>
+          <th>merchant</th>
+          <th>date</th>
+          <th>status</th>
+          <th>total</th>
+          <th class="add-favorite-button"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>
+            <a href="#">
+              6923234
+            </a>
+          </td>
+          <td>
+            Springfield
+            <br>
+            2825 S. Glenstone, Battlefield Mall, H08F
+            <br>
+            Springfield, MO 65804
+          </td>
+          <td>2015-05-28</td>
+          <td>In Process</td>
+          <td>$16.79</td>
+
+          <td class="add-favorite-button">
+            <button class="add-favorite button" data-order-id="6923234">Add to favorites</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div id="pagination">
+    <ul class="pagination">
+      <li style="display: inline;" class="first page-away-3">
+        <a href="/user/orders_history">« First</a>
+      </li>
+
+      <li style="display: inline;" class="prev page-away-2">
+        <a href="/user/orders_history" rel="prev">‹ Prev</a>
+      </li>
+
+      <li style="display: inline;" class="page page-away-1">
+        <a href="/user/orders_history" rel="prev">1</a>
+      </li>
+
+      <li style="display: inline;" class="page active page-away-0">
+        <a href="javascript:void(0)">2</a>
+      </li>
+
+
+    </ul>
+
+  </div>
+
+
+</main>
+
+<footer>
+  <div class="footer-top">
+    <span class="logo logo-app" href="/"></span>
+    <span class="side-text">
+      <!--<p>Order from your mobile device.</p>-->
+      <!--<p>Download the app!</p>-->
+    </span>
+  </div>
+
+  <div id="legal">
+    <p class="links">
+      <a href="mailto:support@order140.com">Support</a> |
+      <a href="https://d38o1hjtj2mzwt.cloudfront.net/Policies/Order140_TermsAndConditions.html" target="_blank">Terms and conditions</a> |
+      <a href="https://d38o1hjtj2mzwt.cloudfront.net/Policies/Order140_ PrivacyPolicy.htm" target="_blank">Privacy policy</a></p>
+  </div>
+</footer>
+
+<div class="user" data-first-name="Prod_tester">
+  <h3>Prod_tester Splickit</h3>
+
+  <p>prod_tester@splickit.com</p>
+  <a class="order" data-item-count="0" href="/">My order</a>
+  <a class="home" href="/">Home</a>
+
+  <a class="account" href="/user/account">Account</a>
+  <a href="user_payments/new">Payment method</a>
+  <a href="/user/delivery_address">Delivery address</a>
+  <a class="history" href="/user/orders_history">History</a>
+  <a href="/sign_out">Sign out</a>
+</div>
+</body>
+</html>

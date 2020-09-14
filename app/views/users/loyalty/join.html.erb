@@ -1,0 +1,56 @@
+<main class="loyalty">
+  
+  <div id='loyalty-card' class="loyalty-card join">
+    <span class='logo logo-loyalty'></span>
+    <% if @skin.loyalty_supports_join? %>
+      <h3>Join Our Rewards Program</h3>
+    <% else %>
+      <h3>Link Your Loyalty Account</h3>
+    <% end %>
+    <p>Sign up below and get points for every purchase. Points are redeemable for menu items.</p>
+  </div>
+
+  <div class="loyalty-group">
+
+    <div class="loyalty-item link <%= 'centered' if !@skin.loyalty_supports_join? %>">
+      <h3>Link your existing loyalty account</h3>
+      <p>Enter your loyalty number below.</p>
+      <%= form_for :brand_loyalty, url: update_card_user_loyalty_path do |f| %>
+        <%= f.text_field :loyalty_number, placeholder: "Loyalty number" %>
+
+        <% if @skin.loyalty_supports_pin? %>
+          <%= f.text_field :pin, placeholder: "PIN" %>
+        <% end %>
+
+        <%= f.submit "Go" %>
+      <% end %>
+
+      <% if @skin.loyalty_support_phone_number.present? %>
+        <p class="loyalty-phone">Already have a loyalty account, but don't know the
+          number or pin? Call
+          <a href="tel:<%= @skin.loyalty_support_phone_number %>"><%= number_to_phone(@skin.loyalty_support_phone_number) %></a>
+        </p>
+      <% end %>
+    </div>
+
+    <% if @skin.loyalty_supports_join? %>
+      <div class="loyalty-item join">
+        <h3>Join Our Rewards Program</h3>
+        <% if @skin.loyalty_tnc_url && !@skin.loyalty_tnc_url.blank? %>
+          <p>By continuing I agree to the
+            <a href=<%=@skin.loyalty_tnc_url%> target="_blank">terms and conditions</a></p>
+        <% end %>
+        <%= form_for :brand_loyalty, url: update_card_user_loyalty_path do |f| %>
+          <%= f.hidden_field :create_loyalty_account, value: true %>
+
+          <% if @skin.loyalty_supports_phone_number? %>
+            <%= f.text_field :phone_number, placeholder: "Phone number", class: "loyalty-phone-number" %>
+          <% end %>
+
+          <%= f.submit "Create loyalty account" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  
+</main>

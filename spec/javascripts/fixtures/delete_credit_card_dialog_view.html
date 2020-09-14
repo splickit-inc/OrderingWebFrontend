@@ -1,0 +1,37 @@
+<main>
+  <section>
+    <aside>
+      <h2>Payment method</h2>
+      <p>Your credit card information is stored securely.</p>
+    </aside>
+    <div>
+      <h2>Payment information</h2>
+      <div id="card">
+        <i class="credit-icon"></i>
+        <span class="credit-label">•••• •••• •••• 1111</span>
+      </div>
+      <h2>New payment method</h2>
+      <form accept-charset="UTF-8" action="/user/payment" id="cc-form" method="post"><div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="Dv0DZoCoa7k8OhtKIUqfNNT/ygplYR+WKxVqqnzh0eM="></div>
+        <input id="replace" name="replace" type="hidden" value="true">
+        <input name="commit" type="submit" value="Replace card">
+      </form>
+      <input class="delete-credit_card" data-delete-credit-card-url="/user/delete_credit_card" name="commit" type="submit" value="Delete Card">
+    </div>
+  </section>
+  <div id="delete-credit-card-dialog" class="delete-credit-card" data-dialog-element="" tabindex="-1" style="z-index: 10;">
+    <div data-dialog-header="">
+      <h1>Delete Credit Card</h1>
+      <span data-dialog-close=""></span>
+    </div>
+    <form action="/user/payment" method="post">
+      <input name="_method" value="delete" type="hidden">
+      <div data-dialog-content="" style="height: 117px;">
+        Are you sure you want to delete the credit card?
+      </div>
+      <div class="buttons-dialog" data-dialog-footer="">
+        <button class="btn modal-btn-delete-credit-card-yes primary" data-delete="yes" type="submit">Yes</button>
+        <a class="button modal-btn-delete-credit-card-no secondary" data-delete="no">No</a>
+      </div>
+    </form>
+  </div>
+</main>

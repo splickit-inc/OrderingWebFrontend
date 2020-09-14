@@ -1,0 +1,32 @@
+<div id='{{ id }}' class='{{ class }}' data-dialog-element tabindex="-1">
+    {{# if title}}
+      <div data-dialog-header>
+        <h1>{{ title }}</h1>
+          {{#if subtitle }}
+            <p class="subtitle">{{{ subtitle }}}</p>
+          {{/ if}}
+        <span data-dialog-close></span>
+      </div>
+    {{/ if }}
+    {{# if customHeader}}
+      <div data-dialog-header>
+        <div class="custom-header">
+          {{{ customHeader }}}
+        </div>
+        <span data-dialog-close></span>
+      </div>
+    {{/ if }}
+    {{{ content }}}
+
+    {{# if buttons }}
+      <div data-dialog-footer class="buttons">
+          {{# each buttons }}
+            {{# if id}}
+                <button id = '{{ id }}' class='{{ class }}' {{ attr }} >{{ text }}</button>
+            {{else}}
+                <button class='{{ class }}' {{ attr }}>{{ text }}</button>
+            {{/ if }}
+          {{/ each }}
+      </div>
+    {{/ if }}
+</div>

@@ -1,0 +1,51 @@
+<script>
+  window.favoriteItems = {};
+</script>
+
+<div id="user-items-section">
+  <h2>FAVORITES</h2>
+
+  <% @merchant.user_favorites.each do |favorite| %>
+      <% if @merchant.favorite_img.present? && !@merchant.favorite_img.empty? %>
+          <div class="user-favorite with-image" title="Click to add
+    favorite to order." data-favorite-id="<%= favorite.favorite_id %>" data-target="favorite">
+            <%= image_tag @merchant.favorite_img, class: "img-large", "data-favorite-id".to_s =>
+            favorite.favorite_id %>
+            <%= image_tag @merchant.favorite_img_small, class: "img-small", "data-favorite-id".to_s =>
+                favorite.favorite_id %>
+            <div class="favorite-col">
+              <div class="favorite-row" data-target="favorite" >
+                <h3 data-favorite-id="<%= favorite.favorite_id %>"><%= favorite.favorite_name.capitalize %></h3>
+                <a title="Click to remove favorite" data-favorite-id="<%= favorite.favorite_id %>"
+                   class="remove-favorite"></a>
+              </div>
+              <h4 class="favorite-price" data-favorite-id="<%= favorite.favorite_id %>"></h4>
+            </div>
+          </div>
+      <% else %>
+          <div class="user-favorite" title="Click to add
+    favorite to order." data-favorite-id="<%= favorite.favorite_id %>" data-target="favorite">
+            <h3 data-favorite-id="<%= favorite.favorite_id %>"><%= favorite.favorite_name.capitalize %></h3>
+            <a title="Click to remove favorite" data-favorite-id="<%= favorite.favorite_id %>" class="remove-favorite"></a>
+            <h4 class="favorite-price" data-favorite-id="<%= favorite.favorite_id %>"></h4>
+          </div>
+      <% end %>
+
+
+  <% end %>
+
+  <%= render partial: 'favorites/last_orders' if @merchant.user_last_orders && @merchant.user_last_orders.first.present? %>
+</div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        (function($) {
+      <% @merchant.user_favorites.each do |favorite| %>
+        window.favoriteItems['<%= favorite.favorite_id %>'] = [];
+        <% favorite.items.each do |item| %>
+        window.favoriteItems['<%= favorite.favorite_id %>'].push((new MenuItem(<%= to_js(item) %>)));
+        <% end %>
+      <% end %>
+      })(jQuery);
+    });
+</script>

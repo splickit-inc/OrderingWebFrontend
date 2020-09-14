@@ -1,0 +1,68 @@
+footer {
+  background: #EEE;
+  border-top: 1px solid #fff;
+
+  padding: 1.25rem;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: $footer-height;
+  width: 100%;
+  overflow: hidden;
+
+  &.event-merchant {
+    height: $footer-height-event-merchant;
+  }
+  @media (max-width: 59rem) {
+    &.cusstom-message-footer {
+      height: 29.5rem;
+      bottom: -9rem;
+    }
+  }
+
+  .footer-top {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #FFF;
+
+    .side-text {
+      width: 33.5%;
+      display: inline-block;
+      vertical-align: top;
+      margin-top: .4rem;
+      margin-left: 1rem;
+      @media (max-width: 59rem) {
+        width: 63%;
+      }
+    }
+    .custom-message{
+      width: 45.5%;
+      float: right;
+      @media (max-width: 59rem) {
+        width: 100%;
+        float: none;
+        text-align: center;
+        padding-top: 1.2rem;
+      }
+    }
+
+  }
+
+  .links {
+    float: left;
+    margin-top: 1rem;
+
+    @media (max-width: 47.500rem) {
+      text-align: center;
+      float: none;
+    }
+  }
+
+  .patents {
+    float: right;
+
+    @media (max-width: 47.500rem) {
+      text-align: center;
+      float: none;
+    }
+  }
+}

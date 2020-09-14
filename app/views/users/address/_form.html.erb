@@ -1,0 +1,32 @@
+<%= form_tag user_address_index_path(path: @path), method: :post do %>
+
+  <%= hidden_field_tag request_forgery_protection_token.to_sym, form_authenticity_token %>
+  <%= hidden_field_tag :user_action, 'address' %>
+
+  <h2>Delivery information</h2>
+
+    <fieldset id='business-name'>
+      <%= text_field :address, :business_name, placeholder: "Business Name", value: params[:business_name] %>
+    </fieldset>
+
+  <fieldset id='address-and-suite'>
+    <%= text_field :address, :address1, placeholder: "Street address", value: params[:address1] %>
+    <%= text_field :address, :address2, placeholder: "Suite / Apt", value: params[:address2] %>
+  </fieldset>
+
+  <%= text_field :address, :city, placeholder: "City", value: params[:city] %>
+
+  <fieldset id='state-and-zip'>
+    <%= text_field :address, :state, placeholder: "State", maxlength: 2, value: params[:state] %>
+    <%= text_field :address, :zip, placeholder: "Zip", value: params[:zip] %>
+  </fieldset>
+
+  <%= text_field :address, :phone_no, placeholder: "Phone number", value: params[:phone_no] %>
+
+  <h2>Delivery instructions</h2>
+
+  <%= text_field :address, :instructions, placeholder: "The doorbell is broken; please knock.", value: params[:instructions] %>
+
+  <%= submit_tag "Add delivery address" %>
+
+<% end %>

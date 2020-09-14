@@ -1,0 +1,5 @@
+Date: <%= @feedback.time %>
+Email: <%= @feedback.email %>
+<% @feedback.as_json.each do |key, value| %>
+  <%= key.humanize %>: <%= value %>
+<% end %>

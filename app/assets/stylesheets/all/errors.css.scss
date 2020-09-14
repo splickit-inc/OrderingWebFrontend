@@ -1,0 +1,199 @@
+@import 'shared/logo';
+
+@font-face {
+  font-family: 'icomoon';
+  src:url('/fonts/icomoon.eot?o00pdw');
+  src:url('/fonts/icomoon.eot?#iefixo00pdw') format('embedded-opentype'),
+  url('/fonts/icomoon.woff?o00pdw') format('woff'),
+  url('/fonts/icomoon.ttf?o00pdw') format('truetype'),
+  url('/fonts/icomoon.svg?o00pdw#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  -webkit-text-size-adjust: none; /* Prevent font scaling in landscape while allowing user zoom */
+}
+
+body {
+  font-family: 'helvetica neue', 'arial', sans-serif;
+}
+
+div.error-body {
+  color: #D4D4D4;
+  text-align: center;
+  font-family: 'gotham htf', 'helvetica neue', sans-serif;
+  margin-top: 4.1rem;
+
+  @media (max-width: 40rem) {
+    margin: 0.75rem;
+  }
+}
+
+div.error-body > img {
+  margin: auto;
+}
+
+div.error-body > h1 {
+  margin-top: 6.5rem;
+  margin-bottom: 4.5rem;
+  font-size: 10.25rem;
+  line-height: 1.5rem;
+
+  @media (max-width: 40rem) {
+    font-size: 6rem;
+    line-height: 0;
+    margin-top: 3rem;
+  }
+}
+
+div.error-body > h2 {
+  font-size: 2.8125rem;
+  line-height: 3.5625rem;
+  max-width: 41rem;
+  margin: auto;
+  font-weight: 300;
+
+  @media (max-width: 40rem) {
+    font-size: 1.5rem;
+    line-height: 2.25rem;
+  }
+}
+
+div.error-body > p {
+  margin-top: 2.25rem;
+  font-weight: 400;
+
+  @media (max-width: 40rem) {
+    margin-top: 1rem;
+  }
+}
+
+.error-body a.button {
+  margin-top: 3.9rem;
+  padding: .88rem 1.44rem;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-block;
+  border-radius: 0.2rem;
+
+  @media (max-width: 40rem) {
+    margin-top: 2rem;
+  }
+}
+
+#ordering-down {
+  margin-top: 0;
+  margin-top: -4rem;
+
+  .window-sign {
+    -ms-transform: rotate(5deg); /* IE 9 */
+    -webkit-transform: rotate(5deg); /* Chrome, Safari, Opera */
+    transform: rotate(5deg);
+
+    @media (max-width: 25rem) {
+      margin-left: .6rem;
+    }
+
+    .circle {
+      border-radius: 50%;
+      margin: 0 auto;
+
+      &.outer-circle {
+        background: #C8383D;
+        width: 2.5rem;
+        height: 2.5rem;
+        top: 4.3rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      &.inner-circle {
+        background: #fff;
+        width: 1.5rem;
+        height: 1.5rem;
+        display: inline-block;
+        margin-top: .5rem;
+      }
+    }
+
+    .square {
+
+      &.outer-square {
+        width: 14rem;
+        height: 14rem;
+        background: #C8383D;
+        margin: 0 auto;
+        -ms-transform: rotate(45deg); /* IE 9 */
+        -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+        transform: rotate(45deg);
+        z-index: 0;
+        top: 5rem;
+        position: relative;
+
+      }
+
+      &.inner-square {
+        width: 13.2rem;
+        height: 13.2rem;
+        background: #fff;
+        display: inline-block;
+        margin-top: 0.4rem;
+      }
+    }
+
+    .sign {
+      max-width: 32rem;
+      margin: 0 auto;
+      border-radius: 1rem;
+      background: #C8383D;
+      z-index: 1;
+      position: relative;
+      bottom: 4rem;
+
+      h1 {
+        font-size: 5rem;
+        text-transform: uppercase;
+        padding: 2rem;
+        margin: 0;
+        color: #fff;
+        font-weight: 400;
+        line-height: 6rem;
+
+        @media (max-width: 30rem) {
+          font-size: 3rem;
+          line-height: 4rem;
+        }
+      }
+    }
+  }
+
+  h2 {
+    text-transform: uppercase;
+    font-size: 3rem;
+    margin: 3rem auto 2rem auto;
+    font-weight: 600;
+    color: #4E4E4E;
+    letter-spacing: 0.15rem;
+
+    @media (max-width: 25rem) {
+      line-height: 3.5rem;
+    }
+  }
+
+  h3 {
+    font-size: 2.5rem;
+    margin-bottom: 0rem;
+    font-weight: 400;
+    color: #4E4E4E;
+  }
+}

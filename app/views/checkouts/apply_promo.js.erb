@@ -1,0 +1,18 @@
+$("div#flash_notifications").html("<%= j render "shared/flash_notifications" %>");
+
+<% if flash[:error].present? %>
+  /*$("#discount-text").show();
+  $("#discount-form").hide();*/
+  $("input#promo_code").val(""); // Clear promo code input
+  ErrorModalController.initialize("<%= flash[:error] %>");
+<% elsif promo_applied? %>
+  $("div#payment").html("<%= j render "payment_information" %>");
+  $("div#receipt-items").html("<%= j render "receipt_items" %>");
+  $("div#buttons button#create_checkout_submit").text("<%= place_order_label %>");
+
+  /* the follow code refresh the select tips according the tips returned by checkout from controller*/
+  window.CheckoutsNew.prototype.refresh_select_tips(<%= @options_for_tip_select.to_json.html_safe %>);
+<% end %>
+
+loadingPage.hide();
+document.getElementById("flash_notifications").scrollIntoView();

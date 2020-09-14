@@ -1,0 +1,108 @@
+<div class="order-summary" data-dialog-content="">
+  <section id='summary'>
+    <address>
+      <h2>{{{ order.merchant.object.display_name }}}</h2>
+
+      <p>{{{ order.merchant.full_address }}}</p>
+
+      <p>{{{ order.merchant.object.phone_no }}}</p>
+    </address>
+
+    <hr>
+
+    <table id='items'>
+      {{# each order.order_summary.cart_items }}
+        <tr>
+          <td>
+            <h3>{{{ item_name }}}</h3>
+            {{# if item_description }}
+              <p>{{ splitjoin item_description }}</p>
+            {{/ if }}
+
+            {{# if (And (present? item_note) skin_message) }}
+              <span class="note"><span>Note: </span>{{{ item_note }}}</span>
+            {{/ if }}
+          </td>
+          <td class="price">{{{ item_price }}}</td>
+        </tr>
+      {{/ each }}
+    </table>
+
+    <hr>
+
+    <table id='amounts'>
+      <tr id='subtotal'>
+        <td>Subtotal</td>
+        <td>{{{ order.order_receipt.:subtotal.self }}}</td>
+      </tr>
+
+      <tr id='tax'>
+        <td>Tax</td>
+        <td>{{{ order.order_receipt.:tax.self }}}</td>
+      </tr>
+
+      {{# if (present? order.order_receipt.promo_discount) }}
+        <tr id='discount'>
+          <td>Discount</td>
+          <td>{{{ order.order_receipt.promo_discount }}}</td>
+        </tr>
+      {{/ if }}
+
+      <tr id='tip'>
+        <td>Tip</td>
+        <td>{{{ order.tip_amt.self }}}</td>
+      </tr>
+
+      {{# if order.order_receipt.donation }}
+        <tr id='donation'>
+          <td>Donation</td>
+          <td> {{{ order.order_receipt.donation }}} </td>
+        </tr>
+      {{/ if }}
+
+      {{# if order.order_receipt.delivery_fee }}
+        <tr id='delivery'>
+          <td>Delivery fee</td>
+          <td>{{{ order.order_receipt.delivery_fee }}}</td>
+        </tr>
+      {{/ if }}
+
+      {{# if merchant.transaction_fee }}
+        <tr id='transaction-fee'>
+          <td>Transaction fee</td>
+          <td>{{{ merchant.transaction_fee }}}</td>
+        </tr>
+      {{/ if }}
+
+      {{# if (greaterThanZero order.order_receipt.points_used) }}
+        <tr id='points'>
+          <td>Total points</td>
+          <td>{{{ order.order_receipt.points_used }}} pts</td>
+        </tr>
+      {{/ if }}
+    </table>
+
+    <hr>
+
+    <table id='total'>
+      <tr>
+        <td>Total</td>
+        <td class="price">{{{ order.grand_total.self }}}</td>
+      </tr>
+    </table>
+  </section>
+  <div class="inner-div">
+  </div>
+</div>
+
+<form action="/favorites" class="new_user_favorite" id="new_user_favorite" method="post">
+  <div class="buttons" data-dialog-footer="">
+    <input id="user_favorite_order_id" name="user_favorite[order_id]" value="{{{ order.order_id }}}" type="hidden">
+    <label for="user_favorite_favorite_name">Add order to favorites</label>
+    <input id="user_favorite_favorite_name" name="user_favorite[favorite_name]" placeholder="Name your favorite" type="text">
+
+    <div class="add-favorite-summary">
+      <button class="set-btn primary-btn" type="submit">Add to favorites</button>
+    </div>
+  </div>
+</form>

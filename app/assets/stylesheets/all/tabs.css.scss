@@ -1,0 +1,56 @@
+[data-tabs] {
+  list-style: none;
+  margin: 1.5rem 0 2rem 0;
+  padding: 0 0 .5rem 0;
+  border-bottom: solid 1px #ddd;
+
+  > * {
+    position: relative;
+    left: -1rem;
+  }
+
+  a {
+    display: block;
+    margin-left: 1px;
+    padding: .5rem 1rem;
+    line-height: 1rem;
+    text-decoration: none;
+    color: $body-text-color;
+  }
+
+  > .active a {
+    font-weight: bold;
+    color: $heading-text-color;
+    // uncomment for traditional tab borders
+    // box-shadow: 0 1px 0 0 #fff, 0 0 0 1px #ddd;
+  }
+
+  @media (min-width: 40rem) {
+    @include clear;
+    margin-top: 1rem;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    > * {
+      float: left;
+      left: auto;
+      &:first-child {
+        margin-left: -1rem;
+      }
+    }
+
+    a {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+  }
+
+}
+
+[data-tab-content] {
+  display: none;
+  &.active {
+    display: block;
+  }
+}

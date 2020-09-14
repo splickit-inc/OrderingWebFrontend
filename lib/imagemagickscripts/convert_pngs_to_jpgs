@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+for f in *.png; do
+  filename=${f%%.png}
+  # convert "$f" "$filename.jpg"
+ #Moes bg color
+   convert "$f" -background "#6F231C" -flatten "$filename.jpg"
+ # generic grey
+ #  convert "$f" -background "#EAEBEC" -flatten "$filename.jpg"
+done

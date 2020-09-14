@@ -1,0 +1,468 @@
+@import 'menu_item';
+@import '../flex';
+
+body[data-dialog-open] {
+  overflow: hidden;
+  height: 100%;
+}
+
+[data-dialog-element] {
+  -webkit-overflow-scrolling: touch;
+  z-index: 40;
+  background: $dialog-background-color;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  /*@include transition($modal-transition);
+  transform: translate(0, -25%);*/
+
+  [data-dialog-header],
+  [data-dialog-footer] {
+    background: white;
+  }
+
+  [data-dialog-header] {
+    border-bottom: solid 1px #ddd;
+
+    p.subtitle {
+      margin-top: -1rem;
+      text-align: center;
+    }
+
+    .custom-header {
+      padding-top: 16px;
+      padding-bottom: 16px;
+      height: 68px;
+      @include flex-init;
+      @include flex-align-items-center;
+      @include flex-justify-content-center;
+    }
+  }
+
+  [data-dialog-footer] {
+    @include split;
+    padding: 1.25rem;
+    border-top: solid 1px #ddd;
+
+    a {
+      width: calc(50% - .5rem);
+    }
+
+    button, .button {
+      width: calc(50% - .5rem);
+
+      &.submit-order,
+      &.add-to-group-order {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        float: none !important;
+        display: inherit !important;
+        height: 2.5rem;
+      }
+
+      @media (max-width: 30rem) {
+        min-height: 3.4rem;
+      }
+    }
+
+    @media (max-width: 30rem) {
+      .add-more {
+        padding-top: 18px;
+      }
+    }
+
+    @media (max-width: 25rem) {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+  }
+
+  [data-dialog-content] {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1.5rem;
+
+    @media (max-width: 43.5rem) {
+      padding: 1rem;
+    }
+
+    @media (max-width: 30rem) {
+      padding: 1rem;
+    }
+  }
+
+  span[data-dialog-close] {
+    @include close-x-icon;
+    cursor: pointer;
+    display: block;
+    width: 4.8rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 2px 1rem 0 1rem;
+    line-height: 4.2rem;
+    text-align: center;
+    text-decoration: none;
+    font-size: .8em;
+    color: inherit;
+  }
+
+  h1 {
+    padding: 1rem 0;
+    margin: 0;
+    line-height: 2.3rem;
+    text-align: center;
+    font-size: 1.3rem;
+  }
+
+  .buttons {
+    @include split;
+    width: 100%;
+    padding: 1.5rem;
+
+    button, a {
+      @include button;
+      display: block;
+      width: calc(50% - 1rem);
+      float: left;
+
+      &.secondary-btn {
+        background-color: #6E706F;
+        border: solid 1px #6E706F;
+
+        &:active, &:hover {
+          background-color: darken(#6E706F, 15%);
+        }
+      }
+    }
+
+    button {
+      height: 2.5rem;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+[data-dialog-overlay] {
+  z-index: 30;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+[data-dialog-element]#default {
+  @include dialog(47.5rem);
+}
+
+[data-dialog-element]#sign-in,
+[data-dialog-element]#sign-up {
+  @include dialog(25rem, 47.5rem);
+}
+
+[data-dialog-element]#create-group-order,
+[data-dialog-element]#cancel-group-order {
+  @include dialog(30rem);
+
+  padding: 1rem 3rem;
+  text-align: center;
+
+  p {
+    margin-top: 0;
+  }
+
+  .button {
+    float: none;
+    margin: 0 0.25rem;
+    max-width: 9rem;
+  }
+
+  [data-dialog-header] {
+    border: none;
+    padding: 0 1.5rem;
+  }
+
+  [data-dialog-close] {
+    display: none;
+  }
+
+  [data-dialog-footer] {
+    border: none;
+    padding: 1rem 0;
+
+    button {
+      width: 11rem;
+    }
+  }
+}
+
+#change-store {
+  @include dialog(40rem, 25rem);
+
+  [data-dialog-content] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  [data-dialog-content] {
+    margin: 2rem;
+    padding: 0;
+    height: auto !important;
+
+    p {
+      margin: 0;
+      text-align: center;
+    }
+
+    .buttons {
+      padding: 0;
+      margin: 2rem 0 0 0;
+    }
+  }
+}
+
+[data-dialog-element]#my-order {
+  @include dialog(40rem, 47.5rem);
+  z-index: 100;
+
+  max-height: calc(100% - 2rem);
+
+  [data-dialog-footer] {
+    @include split;
+
+    button {
+      width: calc(50% - .5rem);
+      margin-top: 0;
+
+      &.add-more {
+        width: 100%;
+      }
+    }
+  }
+
+  .my-order {
+    margin: 1rem;
+    @media (max-width: 43.5rem) {
+      margin: 0;
+    }
+    section {
+      margin-top: 0;
+    }
+
+    div:not(:first-child) {
+      section {
+        padding-top: 2rem;
+      }
+    }
+
+    div:not(:last-child) {
+      section {
+        padding-bottom: 2rem;
+      }
+
+      button.add-item {
+        float: right;
+        margin-left: 0.5rem;
+      }
+
+      span.price {
+        float: left;
+      }
+
+      span, h5 {
+        padding-top: calc(.6rem + 1px);
+      }
+    }
+  }
+
+  h1 {
+    width: 100%;
+    @include cart-icon;
+
+    &:before {
+      padding-right: .75rem;
+    }
+  }
+
+  article {
+    @include split;
+    width: 100%;
+    padding: 0 2rem;
+
+    @media (max-width: 43.5rem) {
+      padding: 0;
+    }
+
+    &:not(:first-child) {
+      margin-top: 2rem;
+    }
+  }
+
+  .details {
+    width: calc(100% - 9rem);
+
+    .description {
+      display: inline;
+    }
+
+    h5 {
+      padding-bottom: .4rem;
+    }
+
+    .price {
+      width: 10rem;
+      float: right;
+    }
+
+    .descriptor:not(:last-child)::after {
+      content: ","
+    }
+
+    .item-note span {
+      font-weight: bold;
+    }
+  }
+
+  h5 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  p {
+    color: #000;
+
+    a {
+      color: $dusty-gray;
+    }
+  }
+  .price {
+    font-size: 15px;
+    font-weight: normal;
+    margin-right: 20px;
+  }
+  #upsell-items-section {
+    .details {
+      margin-top: 10px;
+
+      .upsell-img {
+        float: left;
+        margin-top: -35px;
+        margin-right: 10px;
+      }
+      @media (max-width: 43.5rem) {
+        h3 {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+[data-dialog-element]#group-order-error,
+[data-dialog-element]#error-message {
+  @include dialog(32rem, 43.5rem);
+}
+[data-dialog-element]#gift-replace {
+  @include dialog(32rem, 20rem);
+  input{
+    margin: 0.7rem 0rem;
+  }
+}
+
+[data-dialog-element]#error-message {
+  div.description, ul {
+    font-size: 1rem;
+  }
+
+  ul {
+    padding: 1.5rem 1.5rem 0rem 1.5rem;
+    font-weight: bold;
+  }
+
+  [data-dialog-footer] {
+    button {
+      width: 50%;
+      float: none;
+      margin: auto;
+    }
+  }
+
+  [data-dialog-footer] {
+    padding: 1rem;
+  }
+}
+
+#nutrition-info[data-dialog-element] {
+  width: 270px;
+  height: 385px;
+  top: 25%;
+  left: 50%;
+  margin-left: -8rem;
+  @media (max-width: 43.5rem) {
+    width: 98%;
+    left: 1%;
+    right: 1%;
+    margin-left: 0;
+  }
+  .body {
+    margin: 0 -1.5rem;
+  }
+  h1 {
+    padding: 0.8rem 1.5rem 0.8rem 0.5rem;
+    line-height: 1.2rem;
+    font-size: 1.1rem;
+    font-weight: 400;
+  }
+  h4 {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+  span[data-dialog-close] {
+    width: 0.8rem;
+    line-height: 1.2rem;
+    padding: 0.8rem 1.3rem 0 0;
+  }
+  .nutrition-info[data-dialog-content] {
+    h4 {
+      font-weight: 400;
+      margin: -1rem 0.8rem 0;
+    }
+    .nutrition-empty {
+      text-align: center;
+      margin-top: 6rem;
+    }
+    p {
+      font-size: 0.8rem;
+      margin: 0 0.8rem 0.2rem;
+      &.title {
+        font-weight: 400;
+        margin: 1rem 0.8rem 0.2rem;
+      }
+      span.right {
+        float: right;
+        font-weight: normal;
+      }
+      &.info {
+        margin: 0 0.8rem 0.3rem 1.8rem;
+      }
+    }
+    hr {
+      margin: 0.2rem 0.5rem -0.8rem;
+      clear: both;
+      &.level-1 {
+        border-top-width: 2px;
+      }
+      &.level-2 {
+        border-top-width: 1px;
+      }
+    }
+  }
+
+}

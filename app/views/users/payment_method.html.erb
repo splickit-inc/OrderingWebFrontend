@@ -1,0 +1,58 @@
+<% content_for :head do %>
+  <script src='<%= Rails.application.config.value_io_url %>' type="text/javascript" defer></script>
+  <%= stylesheet_link_tag 'https://api.value.io/assets/value.css' %>
+  <script>
+    window.valueio_account = '<%= @account %>';
+    window.valueio_write_only_token = '<%= @token %>';
+    window.valueio_form_selector = '#cc-form';
+    window.valueio_resource = 'credit_cards';
+    window.valueio_secure_form_collect_credit_card='true';
+    window.valueio_vault='true';
+    window.valueio_secure_form_collect_name='true';
+    window.valueio_secure_form_collect_zip='true';
+    window.valueio_secure_form_require_zip = 'true';
+  </script>
+<% end %>
+
+<main>
+
+  <%= render "users/navigation" %>
+
+  <section>
+
+    <aside>
+      <h2>Payment method</h2>
+      <p>Your credit card information is stored securely.</p>
+    </aside>
+
+    <div>
+
+      <% if @user.last_four && @user.has_cc? %>
+        <h2>Payment information</h2>
+        <div id='card'>
+          <i class="credit-icon"></i>
+          <span class="credit-label">•••• •••• •••• <%= @user.last_four %></span>
+        </div>
+      <% end %>
+
+      <h2>New payment method</h2>
+
+      <%= form_tag user_payment_index_path, id: "cc-form" do %>
+
+        <%= hidden_field_tag 'replace', @user.has_cc? %>
+
+        <% if @user.last_four && @user.has_cc? %>
+          <%= submit_tag "Replace card" %>
+        <% else %>
+          <%= submit_tag "Add card" %>
+        <% end %>
+      <% end %>
+
+      <% if @user.last_four && @user.has_cc? %>
+        <%= submit_tag "Delete Card", data: { delete_credit_card_url: user_payment_index_path }, class: "delete-credit_card" %>
+      <% end %>
+    </div>
+
+  </section>
+
+</main>

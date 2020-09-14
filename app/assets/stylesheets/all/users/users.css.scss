@@ -1,0 +1,386 @@
+@import 'loyalties';
+@import 'orders_history';
+
+[data-route='users/new'],
+[data-route='users/create'] {
+  main {
+    @include sign-in-sign-up;
+  }
+}
+
+[data-route='users/account'],
+[data-route='user_payments/new'],
+[data-route='user_addresses/new'],
+[data-route='user_addresses/index'],
+[data-route='users/orders_history'] {
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  section div {
+    h2 {
+      margin: 2.3rem 0 1.0rem 0;
+    }
+  }
+
+  input[type=submit] {
+    @media (max-width: 60rem) {
+      width: 100%;
+    }
+  }
+
+  aside {
+    padding: 2rem;
+    background-color: $light-box-background-color;
+    border: solid 1px $light-box-border-color;
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (min-width: 60rem) {
+
+    [data-tabs] {
+      max-width: calc(100% - 20rem);
+      margin-bottom: 0;
+    }
+
+    section.no-orders {
+      margin-top: 2rem;
+    }
+
+    section:not(.no-orders) {
+      @include split;
+
+      > div {
+        width: calc(100% - 20rem);
+      }
+
+      > aside {
+        width: 18rem;
+        margin-top: -1px;
+      }
+    }
+  }
+
+  @media (min-width: 70rem) {
+
+    [data-tabs] {
+      max-width: calc(100% - 30rem);
+    }
+
+    section:not(.no-orders) {
+      > div {
+        width: calc(100% - 30rem);
+      }
+
+      > aside {
+        width: 28rem;
+      }
+
+    }
+
+  }
+
+  @media (min-width: 70rem) {
+    section:not(.no-orders) {
+      > div {
+        width: calc(100% - 30rem);
+      }
+      > aside {
+        width: 28rem;
+      }
+    }
+  }
+
+  .delete-credit_card {
+    display: inline;
+    margin-left: 2rem;
+    margin-top: -1.3rem;
+
+    @media (max-width: 60rem) {
+      margin-left: 0;
+      margin-top: 1rem;
+    }
+  }
+
+  #delete-credit-card-dialog {
+    @include dialog(30rem, 43.5rem);
+
+    [data-dialog-content] {
+      font-weight: 600;
+      text-align: center;
+    }
+
+    @media (max-width: 30rem) {
+      a.modal-btn-delete-credit-card-no {
+        line-height: 2rem
+      }
+    }
+    & form {
+      margin-bottom: 0;
+    }
+  }
+}
+
+[data-route='users/account'] {
+
+  section div {
+    form {
+      margin-top: 2.1rem;
+    }
+
+    h2 {
+      margin: 1.4rem 0 1.0rem 0;
+    }
+  }
+
+  @media (max-width: 40rem) {
+
+    input[type='text'],
+    input[type='password'] {
+      width: 100%;
+      float: none;
+      margin-top: .2rem;
+    }
+
+    label {
+      position: static;
+    }
+
+  }
+
+}
+
+[data-route='user_payments/new'] {
+  main {
+    padding-bottom: 2rem;
+  }
+
+  #card {
+    margin: 0;
+    padding: 0.4rem 1.2rem 0rem 1.2rem;
+    line-height: 32px;
+    font-weight: bold;
+    border: solid 1px $light-box-border-color;
+
+    .credit-icon {
+      @include credit-icon;
+      font-size: 4rem;
+      display: inline-block;
+    }
+
+    .credit-label {
+      display: inline-block;
+      bottom: 1.4rem;
+      position: relative;
+      margin-left: 1rem;
+    }
+  }
+
+  #expiration-csc-and-zip input {
+    width: calc(25% - .38rem);
+  }
+
+  form {
+    background-color: #fcfcfc;
+    border: solid 1px #efefef;
+    margin-bottom: 2rem;
+
+    .input-fields {
+      padding: 1rem 1rem 0.35rem 1rem;
+
+      i.credit-icon {
+        @include credit-icon;
+        position: absolute;
+        top: 4.25rem;
+        font-size: 2rem;
+        left: 1.6rem;
+      }
+
+      input#card_number {
+        padding-left: 3rem;
+      }
+
+      input#card_expiration_month {
+        margin-right: 0;
+        border-right: none;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      input#card_expiration_year {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+      }
+    }
+
+    input[type=submit] {
+      float: left;
+      margin-top: 2rem;
+      position: relative;
+
+      @media (min-width: 40rem){
+        margin-top: 1.4rem;
+      }
+    }
+  }
+}
+
+[data-route='user_addresses/new'] {
+  main {
+    margin-top: 2rem;
+  }
+
+  section div {
+    h2 {
+      border-top: 1px $light-box-border-color solid;
+      padding-top: 1.5rem;
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+  }
+}
+[data-route='users/orders_history'] {
+  section.no-orders aside h2 {
+    margin: 0px;
+  }
+
+  div#order-data {
+    margin: 2rem 0px;
+
+    table {
+      width: 100%;
+      margin: 0 0 0 0;
+      border-collapse: collapse;
+
+      tbody {
+        font-size: 0.9em;
+      }
+
+      th, td {
+        padding: 0.75rem;
+      }
+
+      th {
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      tr:not(#header):hover, tr:not(#header).select, tr:nth-child(2n):hover, tr:nth-child(2n).select {
+        background: white;
+        cursor: pointer;
+      }
+
+      tr:last-of-type td {
+        border-bottom: 1px solid #000;
+      }
+
+      td {
+        text-align: center;
+        border-top: 1px solid #000;
+      }
+
+      @include responsive-table(760px);
+
+      @media(max-width: 760px) {
+        td.add-favorite-button {
+          padding-left: 0.5rem;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+[data-route='user_addresses/new'],
+[data-route='user_addresses/index'] {
+  #delivery-address{
+    @include dialog(30rem, 43.5rem);
+
+    [data-dialog-content] {
+      font-weight: 600;
+    }
+  }
+
+  #addresses {
+    margin: 2rem 0;
+    background-color: $light-box-background-color;
+    border: solid 1px $light-box-border-color;
+  }
+
+  article {
+    padding: 1rem;
+    height: 5rem;
+    position: relative;
+
+    &:not(:first-child) {
+      border-top: solid 1px $light-box-border-color;
+    }
+    padding-top:0.5rem;
+
+    .delete-address{
+       float: right;
+     }
+  }
+
+  label {
+    position: absolute;
+  }
+
+  label:first-of-type {
+    display: inline-block;
+    height: 0rem;
+    width: 2.9rem;
+    padding:0;
+    padding-top:3px;
+  }
+
+  label:last-of-type {
+    left: 4rem;
+    text-transform: none;
+    font-size: 1rem;
+  }
+
+  input[type='radio'] {
+    float: left;
+    margin-top: .8rem;
+    margin-left: 0.8rem;
+  }
+
+  input#address_address1 {
+    width: calc(100% - 8.75rem);
+  }
+
+  input#address_address2 {
+    width: 8rem;
+  }
+
+  input#address_city {
+    @media (min-width: 40rem) {
+      float: left;
+      width: calc(100% - 17.5rem);
+      margin-right: .7rem;
+    }
+  }
+
+  #state-and-zip input {
+    @media (min-width: 40rem) {
+      width: 8rem;
+    }
+  }
+
+  input#address_phone_no {
+    @media (min-width: 40rem) {
+      width: calc(100% - 17.5rem);
+    }
+  }
+}

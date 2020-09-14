@@ -1,0 +1,16 @@
+<div data-dialog-content>
+
+  <p>You have an existing order at <strong>{{ oldMerchantName }}</strong></p>
+  <p>
+    {{# if self.differentMerchants }}
+      Would you like to create a new order at <strong>{{ newMerchantName }}</strong>?
+    {{ else }}
+      Are you sure you want to exit your catering order?
+    {{/ if }}
+  </p>
+
+  <figure class='buttons'>
+    <a class='button cancel' data-dialog-close href='/#/'>Cancel</a>
+    <a class='button continue' href='/'>Go</a>
+  </figure>
+</div>

@@ -1,0 +1,370 @@
+[data-route="caterings/new"],
+[data-route="caterings/begin"]{
+  main {
+    padding-top: 2rem;
+
+    p {
+      text-align: justify;
+    }
+
+    form#new_catering {
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      input[type="password"],
+      input[type="date"],
+      textarea,
+      select {
+        padding: .4rem;
+        margin-bottom: 1.5rem;
+        height: 34.78125px;
+      }
+
+      textarea {
+        height: 7rem;
+        resize: none;
+      }
+
+      button.ui-datepicker-trigger {
+        background-color: transparent;
+        font-size: 1.6rem;
+        padding: 0;
+        color: black;
+        vertical-align: middle;
+        width: 2rem !important;
+      }
+
+      .spinner-section {
+        margin-bottom: 1.5rem;
+      }
+
+      span {
+        &.ui-spinner {
+          border: 0;
+          width: 30%;
+
+          @media (max-width: 50rem) and (min-width: 769px), (max-width: 28.6rem) {
+            width: 100%;
+          }
+
+          input {
+            margin: 0;
+          }
+        }
+      }
+
+      label {
+        vertical-align: top;
+        text-transform: none;
+        font-weight: normal;
+        font-size: 0.9rem;
+      }
+
+      .date-group {
+        & > * {
+          display: inline-block;
+        }
+
+        & > input[type=text] {
+          width: calc(100% - 2rem);
+        }
+      }
+
+      .form-group {
+        & > * {
+          width: 12.8rem;
+
+          @media (max-width: 50rem) and (min-width: 769px) {
+            display: block !important;
+            width: 100%;
+          }
+        }
+
+        @media (max-width: 48rem) and (min-width: 28.6rem) {
+          & > *:last-child {
+            float: right;
+          }
+
+          & > select {
+            float: right;
+          }
+
+          .spinner-section {
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+
+  .calendar-icon {
+    @include calendar-icon;
+  }
+
+  .ui-datepicker-trigger:focus{
+    outline: 0 none!important;
+  }
+
+  .ui-datepicker-trigger:active{
+    outline: 0 none!important;
+    background-color: #F5F5F5!important;
+  }
+
+  section {
+    &.delivery-data {
+      $order-types: 2;
+
+      span {
+        display: block;
+      }
+
+      .button-group {
+        position: relative;
+        float: left;
+        display: block;
+        width: 100%;
+        padding-bottom: 2rem;
+
+        & > * {
+          float: left;
+        }
+
+        button {
+          border-radius: 0;
+          -moz-border-radius: 0;
+          -webkit-border-radius: 0;
+        }
+
+        @media (max-width: 48rem) {
+          button {
+            width: 100% / $order-types;
+          }
+        }
+      }
+
+      .location {
+        address {
+          padding: 2rem 0;
+
+          @media (max-width: 48rem) {
+            padding: 1.5rem 0;
+          }
+
+          h3 {
+            padding-bottom: 1rem;
+            font-weight: normal;
+          }
+
+          @media (max-width: 48rem) and (min-width: 21rem) {
+            padding-right: 1rem;
+          }
+        }
+
+        table.map {
+          td {
+            padding-bottom: 2rem;
+
+            @media (max-width: 48rem) {
+              padding-bottom: 1.5rem;
+            }
+          }
+
+          img {
+            width: 100%;
+            border-top:solid 1px #cacaca;
+            border-left:solid 1px #cacaca;
+            border-right:solid 1px #cacaca;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+
+            @media (min-width: 50rem) {
+              width: 21.5rem;
+            }
+          }
+        }
+
+        @media (max-width: 48rem) {
+          margin-top: 1.5rem;
+          border-top: 0.1rem solid #ddd;
+          border-bottom: 0.1rem solid #ddd;
+
+          tbody, tr, td {
+            display: block;
+            width: 100%;
+          }
+        }
+
+        @media (max-width: 48rem) and (min-width: 36rem) {
+          display: block;
+
+          & > * {
+            display: inline-block;
+          }
+
+          address {
+            width: 35%;
+            float: left;
+          }
+
+          table.map {
+            width: 64%;
+            padding-top: 2rem;
+
+            td, img, a {
+              float: right;
+            }
+          }
+        }
+
+        @media (max-width: 35rem) {
+          & > * {
+            display: block;
+            width: 100%;
+          }
+
+          table.map {
+            display: block;
+            width: 100%;
+          }
+
+          td, img, a {
+            float: left;
+          }
+        }
+      }
+    }
+
+    &.submit {
+      text-align: right;
+
+      #new_catering_submit {
+        margin: 0;
+
+        @media (max-width: 48rem) {
+          width: 100%;
+        }
+      }
+    }
+
+    & > *:first-child {
+      margin-top: 0;
+    }
+  }
+
+  #delivery-address{
+    @include dialog(30rem, 43.5rem);
+
+    [data-dialog-content] {
+      font-weight: 600;
+    }
+  }
+
+  [data-dialog-element]#select-address {
+    @include dialog(30rem, 25rem);
+    .addresses {
+      background-color: #fcfcfc;
+      padding: 1.25rem;
+    }
+
+    input[type='radio'] {
+      margin-left: 2rem;
+    }
+
+    .address, .delete {
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 1rem;
+      padding-left: .5625rem;
+    }
+
+    .delete {
+      width: 30%;
+      float: right;
+
+      button {
+        float: right;
+      }
+    }
+
+    .address {
+      width: 55%;
+    }
+
+    .bordered {
+      padding-top: 1rem;
+      border-bottom: 1px solid #efefef;
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+
+    .address-check {
+      width: 15%;
+      display: inline;
+      float: left;
+      clear: both;
+
+      label.selector-override {
+        padding: 0 1rem 0 0;
+      }
+    }
+
+    .enter-address {
+      color: $link-color;
+      padding-left: 1.3rem;
+      margin-top: 1.4375rem;
+      display: inline-block;
+      margin-top: 0;
+      padding-bottom: 0;
+    }
+
+    .buttons {
+      .primary-btn {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+  .custom-label{
+    padding-top:1.3rem;
+    @media (max-width: 48rem) {
+      padding-top:0;
+    }
+  }
+
+  .change-delivery{
+    @media (max-width: 20rem) {
+      padding-top: 1rem;
+    }
+  }
+
+  .custom-address{
+    padding: 1.3rem 0;
+    @media (max-width: 48rem) {
+      padding: 0;
+    }
+    @media (max-width: 20rem) {
+      padding-top: 1rem;
+    }
+  }
+
+  .line_responsive {
+    display: none;
+    @media (max-width: 48rem) {
+      display: block;
+    }
+  }
+
+  .no_time_label {
+    color: gray;
+    font-style: italic;
+    margin-top: 0.2rem;
+    margin-bottom: 1.5rem;
+    height: 34.78125px;
+  }
+
+  .hidden {
+    display: none!important;
+    visibility: collapse!important;
+  }
+}

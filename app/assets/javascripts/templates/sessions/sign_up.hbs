@@ -1,0 +1,73 @@
+<div class='sign-up' data-dialog-content>
+  {{#if with_login}}
+  <form action='/user?continue={{continueUrl}}' method='post'>
+  {{else}}
+  <form action='{{ signUpURL }}' method='post'>
+  {{/if}}
+    <label for='user_first_name'>First name</label>
+    <input type='text' name='user[first_name]' id='user_first_name'
+           placeholder="John">
+    <label for='user_last_name'>Last name</label>
+    <input type='text' name='user[last_name]' id='user_last_name'
+           placeholder="Smith">
+    <label for='user_email'>Email address</label>
+    <input type='email' name='user[email]' id='user_email'
+           placeholder="johnsmith@example.com">
+    <label for='user_contact_no'>Phone number</label>
+    <input type='tel' name='user[contact_no]' id='user_contact_no'
+           placeholder="555-555-5555">
+    {{# with skin }}
+      {{# if isMoes }}
+        <label for='user_birthday' id='user_birthday_label'>Birthday (optional)</label>
+        <input type='text' name='user[birthday]' id='user_birthday_user'
+               placeholder="12/21">
+      {{ else }}
+        <label for='user_birthday' id='user_birthday_label'>Birthday (optional)</label>
+        <input type='text' name='user[birthday]' id='user_birthday_user'
+               placeholder="12/21/2001">
+      {{/ if }}
+    {{/ with }}
+    <label for='user_password'>Password</label>
+    <input type='password' name='user[password]' id='user_password'
+           placeholder="••••••••••">
+
+    {{# with skin }}
+      {{# if (present? emailMarketingField) }}
+        <div id="su-brand-enroll" class="table">
+
+          {{# if isMoes }}
+            <label for="user_marketing_email_opt_in">Enroll in Moe's E-world and get a free gift on your birthday.</label>
+          {{/ if }}
+
+          <div class="su-brand-opt-in-field">
+            <div class="cell">
+              <label class="selector-override">
+                <input name="user[marketing_email_opt_in]" type="hidden" value="0"/>
+                <input id="user_marketing_email_opt_in" name="user[marketing_email_opt_in]" type="checkbox" value="1"/>
+                <span></span>
+              </label>
+            </div>
+
+            <div class="cell">
+              <span>
+                {{{ emailMarketingField.field_label }}}
+              </span>
+            </div>
+          </div>
+        </div>
+      {{/ if }}
+
+      <div id="su-brand-fields">
+        {{# each brandCustomFields }}
+          <label for="user_{{{ field_name }}}" >{{{ field_label }}}</label>
+          <input id="user_{{{ field_name }}}" name="user[{{{ field_name }}}]" placeholder="{{{ field_placeholder }}}" type="text">
+        {{/ each }}
+      </div>
+
+      <p>By continuing, you agree to <a target='_blank' href='https://d38o1hjtj2mzwt.cloudfront.net/Policies/Order140_TermsAndConditions.html'>our
+        terms</a>.</p>
+      <input type='submit' class="sign-up-submit" value="Sign Up">
+    {{/ with }}
+  </form>
+</div>
+

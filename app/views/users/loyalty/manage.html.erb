@@ -1,0 +1,21 @@
+<%= content_for :header do %>
+  <%= render 'users/loyalty/navigation' %>
+<% end %>
+
+<main class="loyalty">
+  
+  <%= render "users/loyalty/card" %>
+
+  <div class="loyalty-content">
+    <span class="loyalty-item manage">
+      <h3>Manage your card</h3>
+      <p>Manage your card on
+        <a target="_blank" href="<%= @skin.loyalty_card_management_link %>"> <%= @skin.loyalty_card_management_link %></a>
+      </p>
+
+      <a class="button" target="_blank" href="<%= @skin.loyalty_card_management_link %>">Manage card</a>
+
+    </span>
+  </div>
+  
+</main>

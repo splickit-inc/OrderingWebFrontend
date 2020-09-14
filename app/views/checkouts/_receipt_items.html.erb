@@ -1,0 +1,22 @@
+<table id='amounts'>
+  <% @order_receipt.each do |item| %>
+    <% if is_wtjmmj? && title(item["title"]) == "Tax" %>
+      <tr id="<%= css_class(item["title"]) %>" style="display: none;">
+    <% else %>
+      <tr id="<%= css_class(item["title"]) %>" <%= data_points(item) %>>
+        <td><%= title(item["title"]) %></td>
+        <td><%= item["amount"] %></td>
+      </tr>
+    <% end %>
+  <% end %>
+
+</table>
+
+<hr>
+
+<table id='total' data-total-before-tip='<%= @checkout["grand_total"] %>'>
+  <tr>
+    <td><%= title(@total["title"]) %></td>
+    <td class="price"><%= @total["amount"] %></td>
+  </tr>
+</table>

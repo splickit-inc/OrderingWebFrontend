@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+create_directories() {
+  mkdir -p large/2x
+  mkdir large/1x
+  mkdir -p small/2x
+  mkdir small/1x
+}
+
+create_directories
+for f in *.jpg; do
+  convert "$f" -resize "640x420^" -gravity Center -crop 640x420+0+0 +repage -strip -quality 76 "large/2x/$f"
+  convert "large/2x/$f" -resize "320x210^" -gravity Center -crop 320x210+0+0 +repage -strip -quality 76 "large/1x/$f"
+  convert "$f" -resize "158x158^" -gravity Center -crop 158x158+0+0 +repage -strip -quality 76 "small/2x/$f"
+  convert "small/2x/$f" -resize "79x79^" -crop 79x79+0+0 +repage -strip -quality 76 "small/1x/$f"
+done

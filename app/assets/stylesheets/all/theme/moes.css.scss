@@ -1,0 +1,141 @@
+$nav-header-background-color: #a53422;
+$nav-header-border-color: white;
+
+body[data-route] {
+  padding-top: 8rem;
+}
+
+body[data-route='merchants/show'] {
+  padding-top: 22rem;
+}
+
+body header {
+
+  min-height: 184px;
+
+  .logo {
+    height: 6.25rem;
+    margin: .6rem 0 0 0;
+    background-position: .6rem center;
+  }
+
+  .logo img{
+    height: 6.25rem;
+  }
+
+  div.order {
+    &::before {
+      line-height: 2.7rem;
+    }
+    &::after {
+      top: -.8rem;
+    }
+  }
+
+  div.user {
+    &::before {
+      line-height: 2.7rem;
+    }
+  }
+
+  nav.primary {
+    min-height: 7.5rem;
+  }
+
+  &.open {
+
+    nav.primary {
+      margin-top: 51px;
+
+      .logo {
+        margin-top: -41px;
+      }
+
+      div.order::before,
+      div.order::after,
+      div.user::before {
+        margin-top: -51px;
+      }
+
+    }
+
+    div.user {
+      margin-top: .6rem;
+    }
+
+  }
+
+}
+
+#nav-header-bg {
+  width: 100%;
+  height: 51px;
+  top: 0;
+  background: $nav-header-background-color;
+  border-bottom: 9px solid $nav-header-border-color;
+}
+
+[data-route='merchants/show'] {
+  #nav-header-bg {
+    position: fixed;
+  }
+}
+
+@media (min-width: 43.5rem) {
+  body[data-route] {
+    padding-top: 12rem;
+  }
+
+  body[data-route='merchants/index'] {
+    padding-top: 23rem;
+  }
+
+  body[data-route='merchants/show'] {
+    padding-top: 26rem;
+  }
+
+  body[data-route] header .logo {
+    height: 6.25rem;
+    margin-left: 0rem;
+  }
+
+  body header {
+
+    nav.primary {
+      height: 40px;
+      min-height: 8.5rem;
+      font-size: 14px;
+
+      > a:not(.logo) {
+        position: relative;
+        top: -.7rem;
+      }
+
+    }
+
+    div.order {
+      top: -.7rem;
+
+      &::before {
+        top: -1rem;
+      }
+      &::after {
+        top: -1.8rem;
+      }
+    }
+
+  }
+
+  #nav-header-bg {
+    height: 40px;
+    border-bottom: none;
+  }
+
+}
+
+@media (min-width: 58rem) {
+  body[data-route] header .logo {
+    height: 10.35rem;
+    margin-left: 3.15rem;
+  }
+}

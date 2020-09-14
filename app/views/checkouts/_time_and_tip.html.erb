@@ -1,0 +1,32 @@
+<div id='time-and-tip'>
+  <% if @options_for_time_select.present? && @options_for_time_select.count > 1 %>
+    <div id='time'>
+      <%= label_tag :time, select_time_label %>
+      <% if @checkout['lead_times_by_day_array'].present? %>
+        <%= select_tag :day, options_for_select(@options_for_day_select,@day_stored), class: "select" %>
+        <%= select_tag :time, options_for_select(@options_for_time_select, @time), class: "select" %>
+      <%else %>
+        <%= select_tag :time, options_for_select(@options_for_time_select, @time), class: "select" %>
+      <% end %>
+    </div>
+  <% elsif @options_for_time_select.present? && @options_for_time_select.count == 1 && is_a_group_order? %>
+    <div id='time'>
+      <%= hidden_field_tag :time, @options_for_time_select.first.last %>
+      <h2>Your Order will be ready with the Group Order</h2>
+    </div>
+  <% elsif @options_for_time_select.present? && @options_for_time_select.count == 1 %>
+    <div id='time'>
+      <%= label_tag :time, "Time" %>
+      <%= label_tag :time, @options_for_time_select.first.first %>
+      <%= hidden_field_tag :time, @options_for_time_select.first.last %>
+    </div>
+  <% end %>
+
+  <% if @options_for_tip_select.present? %>
+    <div id='tip'>
+      <%= label_tag :tip, "Add Gratuity" %>
+      <%= select_tag :tip, options_for_select(@options_for_tip_select, @tip), class: "select", prompt: "Select Amount" %>
+    </div>
+  <% end %>
+</div>
+

@@ -1,0 +1,215 @@
+
+
+<div class="item-dialog-component" data-dialog-header>
+  <div class="dialog-left">
+    <h1>Add to {{#isWtjmmj}}reservation{{/isWtjmmj}}{{^isWtjmmj}}order{{/isWtjmmj}}</h1>
+    <span data-dialog-close></span>
+  </div>
+
+  <div class="dialog-right">
+    <i class="back-arrow-icon nm-save"></i>
+
+    <h1>Add to {{#isWtjmmj}}reservation{{/isWtjmmj}}{{^isWtjmmj}}order{{/isWtjmmj}}</h1>
+  </div>
+</div>
+
+<div class="item-dialog-component" id="menu-item-dialog" data-dialog-content>
+  <div class="dialog-left">
+    <section id='details'>
+      {{# if item.small_image }}
+        <img src='{{ item.small_image }}' alt="A photo of {{ item.item_name }}"
+             class="img-small">
+      {{/ if }}
+
+      {{# if item.large_image }}
+        <img src='{{ item.large_image }}' alt="A photo of {{ item.item_name }}"
+             class="img-large">
+      {{/ if }}
+
+      <h4>{{{ item.item_name }}}</h4>
+
+      <p>{{{ item.description }}}</p>
+
+      {{# if item.calories }}
+        <h4 class="calories">{{{ item.calories }}}</h4>
+
+        {{# if displayNutritionLink }}
+          <a id="nutrition-info" name="nutrition-info" class="calories nutrition-info"
+            {{# if (present? nutritionLink) }} href= "{{ nutritionLink }}" target="_blank" {{/ if }}
+             data-dialog-nutrition-info data-dialog='nutrition-info'  data-dialog-trigger>
+            <h4 class="link">Nutrition Information</h4>
+          </a>
+        {{/ if }}
+        <p></p>
+      {{/ if }}
+    </section>
+
+{{# unless itemOneSize }}
+  <div id="dropdown">
+    <h4>Size <p>Choose 1</p></h4>
+      <!--<p>Choose 1</p>-->
+    <section id='size'{{# if itemOneSize }} class='single'{{/ if }}>
+{{ else }}
+  <section id='size'{{# if itemOneSize }} class='single'{{/ if }}>
+    <h4>Size <p>Choose 1</p></h4>
+{{/ unless }}
+      <dl>
+        {{# each item.size_prices }}
+          <dt>{{{ size_name }}}</dt>
+          <dd>
+            <p class="modifier-calories" style="display: none">
+              <span id="size-add-sub-{{ size_id }}" class="modifier-add-sub">
+                {{# if enabled }}Subtract{{ else }}Add{{/ if }}
+              </span>
+              <span id="size-add-sub-{{ size_id }}-mobile" class="modifier-add-sub-mobile">
+                {{# if enabled }}-{{ else }}+{{/ if }}
+              </span>123 Cal</p>
+            <label for="{{{ size_name }}}" class="selector-override">
+              <input type='radio' name='sizes' id='{{{ size_name }}}'
+                     value='{{ size_id }}'{{# if enabled }} checked{{/ if }}>
+              <span></span>
+            </label>
+          </dd>
+          <hr />
+        {{/ each }}
+      </dl>
+    </section>
+
+    {{# if itemOneSize }}
+        <div id="dropdown">
+    {{/ if }}
+      {{# each item.modifier_groups }}
+        <h4 class="ui-accordion-header ui-state-default ui-corner-all ui-accordion-icons">{{{ modifier_group_display_name }}} <p data-modifier-group-id="{{ id }}">{{{ quantityText }}}</p></h4>
+          <!--<p data-modifier-group-id="{{ id }}">{{{ quantityText }}}</p>-->
+        <section id='modifiers'>
+        <dl data-modifier-group-id="{{ id }}">
+          {{# each modifier_items }}
+            <dt data-id='{{ modifier_item_id }}'>
+              {{{ modifier_item_name }}}
+              <span></span>
+            </dt>
+
+            <dd data-id='{{ modifier_item_id }}'>
+              {{# if nestedItems }}
+                <button data-id='{{ modifier_item_id }}' class="primary nm-select">Select</button>
+              {{ else }}
+                {{# if modifier_item_calories }}
+                  <p class="modifier-calories">
+                    <span id="modifier-add-sub-{{ modifier_item_id }}" class="modifier-add-sub">Add</span>
+                    <span id="modifier-add-sub-{{ modifier_item_id }}-mobile" class="modifier-add-sub-mobile">+</span>
+                    {{ modifier_item_calories }} Cal
+                  </p>
+                {{/ if }}
+
+                {{# if oneMax }}
+                  {{# if exclusive }}
+                    <label for="modifier_item_{{ modifier_item_id }}" class="selector-override">
+                      <input type='radio'
+                             id="modifier_item_{{ modifier_item_id }}"
+                             name='{{ ../modifier_group_display_name }}'
+                             value='{{ modifier_item_id }}'
+                        {{# equal quantity 0 }}
+                             data-quantity='{{ quantity }}'
+                        {{ else }}
+                             data-quantity='{{ quantity }}' checked="checked"
+                        {{/ equal }}>
+                      <span></span>
+                    </label>
+                  {{ else }}
+                    <label for="modifier_item_{{ modifier_item_id }}" class="selector-override">
+                      <input type='checkbox'
+                             id="modifier_item_{{ modifier_item_id }}"
+                             name='{{ modifier_item_name }}'
+                        {{# equal quantity 0 }}
+                             data-quantity='{{ quantity }}'
+                        {{ else }}
+                             data-quantity='{{ quantity }}' checked="checked"
+                        {{/ equal }}>
+                      <span></span>
+                    </label>
+                  {{/ if }}
+                {{ else }}
+                  {{# if nineMax }}
+                    <span class="modifier-quantity"
+                          data-quantity='{{ quantity }}'>{{ quantity }}</span>
+                    {{# equal quantity 0}}
+                      <a class='subtract' href></a>
+                      <a class='add' href></a>
+                    {{ else }}
+                      <a class='subtract active' href></a>
+                      <a class='add active' href></a>
+                    {{/ equal }}
+                  {{ else }}
+                    <input id="modifier_item_{{ modifier_item_id }}" class="spinner-modifier-item"
+                           name="modifier_item_{{ modifier_item_id }}" data-quantity="{{ quantity }}"
+                           value="{{ quantity }}" type="text">
+                  {{/if}}
+                {{/ if }}
+              {{/if}}
+            </dd>
+            <hr />
+          {{/ each }}
+        </dl>
+
+    </section>
+      {{/ each }}
+
+    {{# if showNotes }}
+        <h4>Special requests<span id="char-limit" style="display: none">{{ item.notesLength }}</span>
+        </h4>
+      <section id='requests'>
+
+        <input maxlength='100'
+               type='text'
+               placeholder="Extra ingredients may result in additional charges"
+               value="{{ item.notes }}">
+      </section>
+    {{/if}}
+
+  </div>
+  </div>
+
+  <div class="dialog-right" id="current-nm-container">
+  </div>
+</div>
+
+
+<div class="item-dialog-component" data-dialog-footer>
+  <div class="dialog-left">
+    {{# if groupOrder }}
+      <button
+        class='add cash primary add-to-group-order {{# if edit }}edit{{/ if }}'
+        data-id='{{ item.item_id }}'>
+        Add item
+      </button>
+    {{ else }}
+      {{# if (And loyalUser redeemableItem) }}
+        <button class='add points primary {{# if edit }}edit{{/ if }}'
+                data-id='{{ item.item_id }}'>
+          Add item ({{ item.point_range.[1] }} points)
+        </button>
+
+        <button class='add cash primary {{# if edit }}edit{{/ if }}'
+                data-id='{{ item.item_id }}'>
+          Add item
+        </button>
+      {{ else }}
+        <button class='checkout secondary {{# if edit }}edit{{/ if }}'
+                data-id='{{ item.item_id }}'>
+          Add item & {{#isWtjmmj}}reserve{{/isWtjmmj}}{{^isWtjmmj}}checkout{{/isWtjmmj}}
+        </button>
+
+        {{# if (Or (Not isCheckoutPage) (Not edit)) }}
+          <button class='add cash primary {{# if edit }}edit{{/ if }}'
+                  data-id='{{ item.item_id }}'>
+            Add item
+          </button>
+        {{/ if }}
+      {{/ if }}
+    {{/ if }}
+  </div>
+
+  <div class="dialog-right">
+    <button class="nm-save" class="primary">Done</button>
+  </div>
+</div>

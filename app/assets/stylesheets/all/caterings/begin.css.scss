@@ -1,0 +1,31 @@
+//Check also the new.css.scss that share all the styles with the begin.css.scss file
+
+[data-route="caterings/begin"] {
+  body{
+    margin: 0 0 10rem !important;
+  }
+  .order-type-buttons {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    .button {
+      width: 160px;
+    }
+  }
+
+  .catering-text {
+
+  }
+  section {
+    margin-bottom: 20px;
+    &.right-container {
+      @media (max-width: 48rem) {
+        float: none;
+      }
+    }
+  }
+
+  .left-container.submit{
+    float: right;
+  }
+}

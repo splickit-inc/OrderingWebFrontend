@@ -1,0 +1,726 @@
+[data-route='merchants/index'] {
+  padding-top: 23rem;
+  body {
+    @media (max-width: 43.5rem) {
+      padding-top: 4rem;
+    }
+  }
+
+  @media (max-width: 43.5rem) {
+    padding-top: 8rem;
+  }
+
+  .group-order {
+
+    margin-right: 0.35rem;
+    vertical-align: middle;
+    width: 1rem;
+    height: 1rem;
+
+    &:before {
+      margin: 0;
+      width: 1.1rem;
+      height: 1.1rem;
+      font-size: 0.5rem;
+      line-height: 1.1rem;
+      position: relative;
+      bottom: 0.1rem;
+      right: 0.1rem;
+    }
+  }
+
+  #delivery-address {
+    @include dialog(30rem, 43.5rem);
+
+    [data-dialog-content] {
+      font-weight: 600;
+    }
+  }
+
+  [data-dialog-element]#select-address {
+    @include dialog(30rem, 25rem);
+    .addresses {
+      background-color: #fcfcfc;
+      padding: 1.25rem;
+    }
+
+    input[type='radio'] {
+      margin-left: 2rem;
+    }
+
+    .address, .delete {
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 1rem;
+      padding-left: .5625rem;
+    }
+
+    .delete {
+      width: 30%;
+      float: right;
+
+      button {
+        float: right;
+      }
+    }
+
+    .address {
+      width: 55%;
+    }
+
+    .bordered {
+      padding-top: 1rem;
+      border-bottom: 1px solid #efefef;
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+
+    .address-check {
+      width: 15%;
+      display: inline;
+      float: left;
+      clear: both;
+
+      label.selector-override {
+        padding: 0 1rem 0 0;
+      }
+    }
+
+    .enter-address {
+      color: $link-color;
+      padding-left: 1.3rem;
+      margin-top: 1.4375rem;
+      display: inline-block;
+      margin-top: 0;
+      padding-bottom: 0;
+    }
+
+    .buttons {
+      .primary-btn {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+
+  .menu-items {
+    @include columns(4, 2rem);
+  }
+
+  #search {
+    @include clear;
+    margin-bottom: 2rem;
+    padding: 0;
+
+    input {
+      float: left;
+      margin: .5rem 0 0 0;
+    }
+
+    input[type=text] {
+      width: calc(100% - 6rem);
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-right: none;
+      height: 2.4025rem;
+      border-width: 2px;
+    }
+
+    input[type=submit] {
+      width: 6rem;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    @media (min-width: 43.5rem) {
+      z-index: 10;
+      width: 30rem;
+      top: 6rem;
+      left: calc(50% - 15rem);
+    }
+    .no-padding{
+      padding: 0;
+      margin-bottom: 0px;
+    }
+
+  }
+
+  main {
+    @include clear;
+    padding-bottom: 2rem;
+    @media (min-width: 43.5rem) {
+      margin-top: 2rem;
+    }
+    @media (max-width: 43.5rem) {
+      margin-top: 1.2rem;
+    }
+  }
+
+  #results,
+  #map {
+    width: 100%;
+
+    @media (min-width: 60rem) {
+      width: calc(50% - 1rem);
+      float: left;
+    }
+  }
+
+  #map {
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  #results {
+    margin-right: 2rem;
+
+    h1 {
+      @media (max-width: 40rem) {
+        font-size: 1.3rem;
+      }
+    }
+
+    > div {
+      @include clear;
+      margin: 1rem 0;
+      padding-top: 1rem;
+      border-top: solid .1rem #ddd;
+
+      @media (max-width: 40rem) {
+        margin-bottom: 1rem;
+      }
+    }
+
+    article {
+      float: left;
+      width: calc(100% - 20rem);
+
+      @media (max-width: 40rem) {
+        width: 100%;
+      }
+
+      h3 {
+        margin-bottom: .5rem;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+
+    aside {
+      width: 19rem;
+      float: right;
+
+      @media (max-width: 40rem) {
+        width: 100%;
+        clear: both;
+        margin-top: 1rem;
+      }
+
+      figure {
+        display: flex;
+        flex-direction: row-reverse;
+      }
+
+      .catering-buttons {
+        padding: 5px;
+      }
+
+      .pickup-delivery-buttons {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        .buttons {
+          display: flex;
+          flex-direction: row-reverse;
+          min-width: 196px;
+        }
+      }
+
+      a {
+        cursor: pointer; /* important for iOS click event */
+        width: 93px;
+        &:only-child {
+          float: right;
+        }
+
+        &.group-ordering {
+          display: inline-block;
+          width: 5.66rem;
+          margin-top: 1rem;
+          float: right;
+          font-size: 0.8125rem;
+        }
+      }
+    }
+  }
+
+  .m-l-10 {
+    margin-left: 10px;
+  }
+
+  ul h3 {
+    margin-left: 1rem;
+    text-transform: uppercase;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 120%;
+  }
+
+  .menu-items li {
+    height: 15rem;
+
+    h6 {
+      color: green;
+    }
+
+    &:hover {
+      background: #ddd;
+    }
+  }
+}
+
+[data-route='merchants/show'] {
+  padding-top: 10rem;
+
+  @media (max-width: 43.5rem) {
+    padding-top: 16.6rem;
+    address {
+      left: 0;
+      padding: 1rem 1rem 2rem 1rem;
+    }
+  }
+
+  .disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  header {
+    .header_img{
+      display: none;
+    }
+
+    address {
+      padding: 0.5rem 0.3rem;
+      right: 14rem;
+      top: 1.5rem;
+      margin-top: 0;
+      @media (max-width: 43.5rem) {
+        margin-top: 6.25rem;
+        padding: 1rem 0rem 2rem 0.5rem;
+        th {
+          text-align: left;
+        }
+      }
+      @media (max-width: 20.5rem) {
+        font-size: 13px;
+      }
+      * {
+        font-weight: bold;
+        color: inherit;
+      }
+
+      h1 {
+        font-size: 1.4rem;
+        margin-bottom: .5rem;
+      }
+
+    }
+
+    &.open address {
+      opacity: 0;
+    }
+
+    nav.scrolling {
+      height: 100%;
+    }
+  }
+  main > h2, main .menu-type > h2, main .items{
+    margin: 2.5rem 2rem;
+  }
+
+  main {
+    div.menu-type-image{
+      width: 100%;
+      min-height: 23.44rem;
+      height: 23.44rem;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      display:table;
+      text-align: center;
+      margin-bottom: 2.5rem;
+
+      @media (max-width: 43.5rem) {
+        height: 6.5rem;
+        min-height: 6.5rem;
+
+      }
+    }
+    .menu-type-image .title{
+      font-size: 6em;
+      display: table-cell;
+      vertical-align: middle;
+      color: #FFFFFF;
+
+      @media (max-width: 43.5rem) {
+        font-size: 2em;
+      }
+    }
+
+    @media (max-width: 43.5rem) {
+      padding: 0;
+    }
+  }
+
+  .takeout-menu,
+  .delivery-menu {
+    @media (max-width: 43.5rem) {
+      display: none;
+    }
+
+    margin-top: 1.5rem;
+
+    &:before {
+      z-index: -1;
+      font-size: 1.875rem;
+      margin-right: 1rem;
+      position: relative;
+    }
+  }
+
+  .takeout-menu {
+    @include take-out-icon;
+
+    &:before {
+      top: 0.1rem;
+    }
+  }
+
+  .delivery-menu {
+    @include delivery-icon;
+
+    &:before {
+      top: 0.3rem;
+    }
+  }
+
+  section {
+    margin-top: 3.125rem;
+    &:not(:first-child) {
+      border-top: solid .1rem #ddd;
+    }
+
+    @media (max-width: 43.5rem) {
+      margin-top: 0;
+      padding: 0;
+    }
+  }
+
+  .items {
+    @include columns(1, 2rem);
+    @media (min-width: 43.5rem) {
+      @include columns(2, 2rem);
+    }
+    @media (min-width: 65rem) {
+      @include columns(3, 2rem);
+    }
+    @media (min-width: 89rem) {
+      @include columns(4, 2rem);
+    }
+
+    & > *:nth-child(n) {
+      @media (max-width: 43.5rem) {
+        margin: 0;
+      }
+    }
+
+    h4 {
+      font-size: 14px;
+      display: inline;
+
+      span {
+        color: $dusty-gray;
+      }
+    }
+  }
+  .calories {
+    float: right;
+    clear: both;
+    font-size: 14px;
+    clear: both;
+  }
+
+  .item {
+
+    @media (max-width: 43.5rem) {
+      border-top: solid 0.1rem #DDD;
+      height: 6.3rem !important; /*because we're using JS to style menu*/
+    }
+
+    font-size: 14px;
+    line-height: 20px;
+    cursor: pointer;
+
+    &:hover {
+      @media (min-width: 43.5rem) {
+        background: #eee;
+        box-shadow: 0 0 0 1rem #eee;
+      }
+    }
+
+    > img {
+      display: block;
+      width: 100%;
+      margin-bottom: 1rem;
+
+      &.img-large {
+        @media (max-width: 43.5rem) {
+          display: none;
+        }
+      }
+
+      &.img-small {
+        display: none;
+
+        @media (max-width: 43.5rem) {
+          width: 100px;
+          height: 100px;
+          display: inline-block;
+          margin: 0;
+        }
+      }
+    }
+
+    .item-description {
+
+      @media (max-width: 43.5rem) {
+        position: absolute;
+        vertical-align: top;
+        display: inline-block;
+        padding: 0.75rem;
+        line-height: 0.8rem;
+      }
+
+      h3, h4 {
+        @media (max-width: 43.5rem) {
+          font-size: 0.8rem;
+        }
+      }
+
+      h4 {
+        @media (max-width: 43.5rem) {
+          margin: 0.3rem 0 0 0;
+        }
+      }
+
+      p {
+        @media (max-width: 43.5rem) {
+          margin-top: .25rem;
+          font-size: 0.75rem;
+        }
+      }
+    }
+  }
+
+  h2 {
+    margin: 2.5rem 0;
+    text-transform: uppercase;
+    font-family: 'gotham htf', sans-serif;
+
+    @media (max-width: 43.5rem) {
+      margin: 1rem;
+    }
+  }
+
+  h3,
+  h4 {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  h3 {
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+  }
+
+  h4 {
+    color: $link-color;
+  }
+
+  p {
+    margin-top: 0;
+  }
+
+  button:disabled,
+  button:disabled:hover {
+    background: $dusty-gray;
+    border: $dusty-gray;
+    cursor: default;
+  }
+
+  #remove-favorite-dialog {
+    @include dialog(30rem, 43.5rem);
+
+    [data-dialog-content] {
+      font-weight: 600;
+    }
+    @media (max-width: 30rem) {
+      a.modal-btn-remove-favorite-no {
+        line-height: 2rem
+      }
+    }
+  }
+  #upsells-info {
+    width: 35rem;
+    height: calc(100% - 20rem);
+    top: 6rem;
+    left: 50%;
+    margin-left: -17.5rem;
+    @media (max-height: 50rem) {
+      top: 2rem;
+      height: calc(100% - 5rem);
+    }
+    @media (max-width: 43.5rem) {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      margin-left: 0;
+    }
+
+    [data-dialog-element] .buttons > *:first-child {
+      float: none;
+      margin-left: 27.5%;
+    }
+
+    article {
+      clear: both;
+    }
+
+    #upsell-items-section {
+      margin-top: 0;
+      .details {
+        width: 23rem;
+        margin-bottom: 0.5rem;
+        float: left;
+        @media (max-width: 43.5rem) {
+          width: 13rem;
+        }
+        @media (max-width: 20.1rem) {
+          width: 11rem;
+        }
+        h3 {
+          margin-top: 2.2rem;
+        }
+        @media (max-width: 43.5rem) {
+          h3 {
+            font-size: 0.8rem;
+          }
+        }
+        img {
+          width: 6rem;
+          float: left;
+        }
+      }
+      .price {
+        margin-top: 2.2rem;
+        float: left;
+        width: 3.2rem;
+      }
+      @media (max-width: 43.5rem) {
+        .price {
+          font-size: 0.8rem;
+          float: right;
+          width: 2.8rem;
+        }
+      }
+      button {
+        float: right;
+        margin-top: 1.5rem;
+      }
+
+    }
+    .buttons {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      justify-content: center;
+      -webkit-justify-content: center;
+      align-items: center;
+      -webkit-align-items: center;
+      .no-thanks {
+        width: 15rem;
+      }
+    }
+  }
+}
+
+[data-route='merchants/index'],
+[data-route='merchants/show'] {
+  .info-window {
+    padding: 0.5rem;
+
+    a {
+      width: 6rem;
+    }
+
+    a.delivery {
+      display: none;
+      margin-right: 0.5rem;
+    }
+
+    &.delivery a.delivery {
+      display: inline;
+    }
+  }
+
+  #map {
+    height: 500px;
+    border: solid 1px rgba(0, 0, 0, .15);
+
+    .mapboxgl-marker {
+      background-size: cover;
+      width: 34px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .mapboxgl-popup-close-button {
+      color: #000;
+    }
+  }
+
+  .info-window {
+    padding: 0.5rem;
+    h3,
+    p {
+      margin: 0;
+    }
+
+    figure {
+      margin-top: 1rem;
+    }
+
+    a {
+      width: 6rem;
+    }
+
+    &.delivery a.delivery {
+      display: inline;
+    }
+  }
+}

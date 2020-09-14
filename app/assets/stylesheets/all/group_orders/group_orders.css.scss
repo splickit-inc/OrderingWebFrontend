@@ -1,0 +1,39 @@
+[data-route='group_orders/new'],
+[data-route='group_orders/show'] {
+  main {
+    width: 100%;
+
+    @media (max-width: 48rem) {
+      display: inline-block;
+    }
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    margin: 2rem 0;
+  }
+
+  section {
+    &#modifiers {
+     display: inline-block;
+    }
+
+    &.right-container {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background-color: #eee;
+      border: 1px solid #ddd;
+    }
+
+    &.left-container {
+      padding-top: 1.5rem;
+      border-top: 0.1rem solid #ddd;
+    }
+  }
+}
+
+@import 'new';
+@import 'show';
+@import 'confirmation';
+@import 'inactive';
+@import 'success';

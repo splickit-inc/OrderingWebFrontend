@@ -1,0 +1,29 @@
+<main>
+  <h1>Guest Information</h1>
+
+  <div class='sign-up'>
+    <%= form_for :user, url: user_path do |form| %>
+      <%= form.hidden_field :is_guest, value: true %>
+
+      <% if @error %>
+        <div class='errors'>
+          <p><%= @error.message %></p>
+        </div>
+      <% end %>
+
+      <%= form.label :first_name, "First name" %>
+      <%= form.text_field :first_name, placeholder: "John" %>
+      <%= form.label :email, "Email address"%>
+      <%= form.email_field :email, placeholder: "johnsmith@example.com" %>
+      <%= form.label :contact_no, "Phone number" %>
+      <%= form.telephone_field :contact_no, placeholder: "555-555-5555" %>
+
+      <div class="message">
+        <p>Your information is only used in processing, or contacting you about your order.</p>
+        <p>By continuing, you agree to <%= link_to "our terms" %>.</p>
+      </div>
+
+      <%= form.submit "Continue as Guest" %>
+    <% end %>
+  </div>
+</main>

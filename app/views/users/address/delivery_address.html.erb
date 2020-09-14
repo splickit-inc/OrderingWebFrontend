@@ -1,0 +1,46 @@
+<main>
+
+  <%= render "users/navigation" %>
+
+  <section>
+
+    <%= render "users/address/profile" %>
+
+    <div>
+      <% if @addresses.present? %>
+        <div id='addresses'>
+          <% @addresses.each do |address| %>
+            <article>
+              <label class="selector-override">
+                <%= radio_button_tag :addresses, address.user_addr_id %>
+                <span></span>
+              </label>
+              <%= label_tag "addresses_#{ address.user_addr_id }" do %>
+                  <% if address.business_name.present? %>
+                      <%= address.business_name %>
+                      <br>
+                  <% end%>
+                <%= [address.address1, address.address2].reject(&:blank?).join ", " %>
+                <br>
+                <%= address.city %>, <%= address.state %> <%= address.zip %>
+              <% end %>
+              <button class="button delete-address" data-user-addr-id="<%= address.user_addr_id.to_s %>" >Delete</button>
+            </article>
+          <% end %>
+        </div>
+      <% end %>
+
+      <%= render "users/address/form" %>
+
+    </div>
+
+  </section>
+</main>
+
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        (function($) {
+      new UsersAddressController();
+    })(jQuery);
+    });
+</script>

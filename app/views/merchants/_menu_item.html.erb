@@ -1,0 +1,23 @@
+<article class="item" data-menu-item-id=<%= menu_item.item_id %> data-dialog='add-item-<%= menu_item.item_id %>'
+                      data-dialog-trigger>
+
+  <%= image_tag menu_item.large_image, class: "img-large" if menu_item.large_image %>
+
+  <%= image_tag menu_item.small_image, class: "img-small" if menu_item.small_image %>
+
+  <div class="item-description">
+    <h3><%= menu_item.item_name %></h3>
+    <% if menu_item.price_range.first == "0.00" %>
+      <br/>
+    <% else %>
+      <h4 class="price">
+        <%= item_price_string(menu_item.price_range.first, menu_item.point_range.first) %>
+      </h4>
+    <% end %>
+
+    <% if menu_item.calories.present? %>
+      <h3 class="calories"><%= menu_item.calories %></h3>
+    <% end %>
+    <p><%= menu_item.description.truncate 100 %></p>
+  </div>
+</article>

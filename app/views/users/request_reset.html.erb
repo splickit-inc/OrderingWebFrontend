@@ -1,0 +1,16 @@
+<main>
+  <div class="content">
+    <h1>Forgot password?</h1>
+    <div>
+      To reset your password, enter the e-mail you registered with below and we'll send you reset instructions.
+    </div>
+
+    <%= form_tag(password_reset_request_path, method: "get") do %>
+      <%= email_field_tag(:email, nil, placeholder: "johnsmith@example.com") %>
+      <%= submit_tag "Send instructions" %>
+    <% end %>
+  </div>
+  <div class="reset_footer">
+    <a href="<%= sign_in_path %>" class="return_link">Return to sign in</a>
+  </div>
+</main>

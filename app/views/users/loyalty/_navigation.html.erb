@@ -1,0 +1,11 @@
+<nav class='secondary'>
+  
+  <% if @skin.loyalty_features['supports_history'] %>
+    <%= link_to "History", history_user_loyalty_path, class: ('current' if route == 'loyalties/history') %>
+  <% end %>
+  <%= link_to "Rules", rules_user_loyalty_path, class: ('current' if route == 'loyalties/rules') %>
+  <% if @skin.loyalty_features['supports_link_card'] %>
+    <%= link_to "My Card", manage_user_loyalty_path, class: ('current' if route == 'loyalties/manage') %>
+  <% end %>
+  
+</nav>

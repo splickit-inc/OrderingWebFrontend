@@ -1,0 +1,73 @@
+<div id="card-mount">
+  <div id="card">
+    <div class='front loyalty-card-bg'>
+      <div class='loyalty-card info'>
+        <span class='logo logo-loyalty' style="background-image: url(<%= get_loyalty_logo_url %>)"></span>
+
+        <div class="value-group">
+          <% @skin.loyalty_type_labels.each do |value| %>
+            <% if loyalty_balance(value["type"]) && value["label"] %>
+              <span>
+                <h5><%= value["label"] %></h5>
+                <h2>
+                  <%= "#{"$" if value["type"].downcase == "usd" }#{ loyalty_balance(value["type"]) }" %>
+                </h2>
+              </span>
+            <% end %>
+          <% end %>
+
+          <% if @skin.third_party_loyalty? %>
+            <a id="flip-to-back" href='#'>What's my loyalty card number?</a>
+          <% end %>
+
+          <p>Card balance as of <%= loyalty_time %></p>
+
+          <% if @skin.loyalty_support_phone_number.present? %>
+            <p class="loyalty-phone">Not the right number? Please contact
+              <a href="tel:<%= @skin.loyalty_support_phone_number %>">(303)
+                555-555<%= number_to_phone(@skin.loyalty_support_phone_number) %></a> to resolve this issue.</p>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+
+    <% if @skin.third_party_loyalty? %>
+      <div class='back loyalty-card-bg'>
+        <div class='loyalty-card info'>
+          <span class="stripe"></span>
+
+          <% if @user.brand_loyalty['loyalty_number'].present? %>
+            <h1 class="card-number"><%= @user.brand_loyalty['loyalty_number'] %></h1>
+          <% else %>
+            <h1 class="card-number">No loyalty number found.</h1>
+          <% end %>
+
+          <% if @user.brand_loyalty['pin'].present? %>
+            <h2 class="pin">PIN: <%= @user.brand_loyalty['pin'] %></h2>
+          <% end %>
+
+          <a id="flip-to-front" href='#'>What's my loyalty card balance?</a>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+      (function($) {
+    $("#card").flip({
+        trigger: 'manual'
+    });
+
+    $('#flip-to-back').click(function () {
+        $('#card').flip(true)
+    });
+
+    $('#flip-to-front').click(function () {
+        $('#card').flip(false)
+    });
+  })(jQuery);
+});
+</script>

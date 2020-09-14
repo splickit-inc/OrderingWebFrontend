@@ -1,0 +1,38 @@
+<script>
+  window.lastOrderItems = {};
+</script>
+
+<% @merchant.user_last_orders.each do |last_order| %>
+    <% if @merchant.last_order_img.present? && !@merchant.last_order_img.empty? %>
+        <div class="user-lastorder with-image" title="Click to add order to cart." data-lastorder-id="<%=
+          last_order.last_order_id %>" data-target="lastorder">
+          <%= image_tag @merchant.last_order_img, class: "img-large", "data-lastorder-id".to_s =>
+              last_order.last_order_id %>
+          <%= image_tag @merchant.last_order_img_small, class: "img-small", "data-lastorder-id".to_s =>
+              last_order.last_order_id %>
+          <div class="lastorder-col" data-target="lastorder" >
+            <h3 data-lastorder-id="<%= last_order.last_order_id %>"><%= last_order.label.capitalize %></h3>
+            <h4 class="lastorder-price" data-lastorder-id="<%= last_order.last_order_id %>"></h4>
+          </div>
+        </div>
+    <% else %>
+        <div class="user-lastorder" title="Click to add order to cart." data-lastorder-id="<%= last_order.last_order_id %>"
+             data-target="lastorder">
+          <h3 data-lastorder-id="<%= last_order.last_order_id %>"><%= last_order.label.capitalize %></h3>
+          <h4 class="lastorder-price" data-lastorder-id="<%= last_order.last_order_id %>"></h4>
+        </div>
+    <% end %>
+<% end %>
+
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        (function($) {
+            <% @merchant.user_last_orders.each do |last_order| %>
+              window.lastOrderItems['<%= last_order.last_order_id %>'] = [];
+              <% last_order.items.each do |item| %>
+              window.lastOrderItems['<%= last_order.last_order_id %>'].push((new MenuItem(<%= to_js(item) %>)));
+              <% end %>
+            <% end %>
+        })(jQuery);
+    });
+</script>

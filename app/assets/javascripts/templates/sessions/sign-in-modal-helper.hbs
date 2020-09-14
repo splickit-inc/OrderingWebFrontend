@@ -1,0 +1,56 @@
+<div id="guest_to_logged_user_modal" class='sign-in' data-dialog-content>
+  <div class="text" style="margin-bottom: 20px"><h3>{{bodyContent}}</h3></div>
+  <div class="buttons-to-logged">
+    <button id="sign-in-button" class="sign-in button" data-continueLink={{continueLink}} data-merchantID={{currentMerchantID}} data-orderType={{orderType}}>Sign In</button>
+    <button id="sign-up-button" class="sign-up button" data-continueLink={{continueLink}} data-merchantID={{currentMerchantID}} data-orderType={{orderType}}>Join Now</button>
+  </div>
+
+  <div class="or-center">
+    <hr>
+    <label>OR</label>
+    <hr>
+  </div>
+  <a class="button secondary last-btn" data-dialog-close>Continue as Guest</a>
+</div>
+
+<script>
+ window.addEventListener('DOMContentLoaded', function() {
+              (function($) {
+    $(function(){
+    //debugger
+        $('#sign-in-button').on('click', function(e){
+            //debugger
+            e.preventDefault();
+            var continue_link = this.getAttribute('data-continueLink');
+            var orderType = this.getAttribute('data-orderType');
+            $.ajax({
+                url: '/sign_out',
+                type: 'get',
+                success: function(response){
+                    if(orderType === "delivery")
+                        window.location = "/?with_login=true&continue_url="+ encodeURIComponent("/?delivery_path="+continue_link);
+                    else
+                        window.location = "/?with_login=true&continue_url=" + continue_link;
+                }
+            });
+        });
+        $('#sign-up-button').on('click', function(e){
+            e.preventDefault();
+            var continue_link = this.getAttribute('data-continueLink');
+            var orderType = this.getAttribute('data-orderType');
+            $.ajax({
+                url: '/sign_out',
+                type: 'get',
+                success: function(response){
+                    if(orderType === "delivery")
+                        window.location = "/?with_signup=true&continue_url="+ encodeURIComponent("/?delivery_path="+continue_link);
+                    else
+                        window.location = "/?with_signup=true&continue_url=" + continue_link;
+                }
+            });
+        });
+    });
+
+    })(jQuery);
+  });
+</script>

@@ -1,0 +1,17 @@
+<%= content_for :header do %>
+  <%= render 'users/loyalty/navigation' %>
+<% end %>
+
+<main class="loyalty">
+
+  <%= render "users/loyalty/card" %>
+
+  <div class="loyalty-content">
+    <div class="rules-content">
+    <span class="loyalty-item reward">
+      <%= @rules.html_safe %>
+    </span>
+    </div>
+  </div>
+
+</main>

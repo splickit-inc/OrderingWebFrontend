@@ -1,0 +1,20 @@
+<div id="save-favorite">
+  <%= form_for(@user_favorite, url: favorites_path, remote: true) do |f| %>
+    <%= hidden_field_tag request_forgery_protection_token.to_sym, form_authenticity_token %>
+    <%= f.hidden_field :order_id, value: @user_favorite.order_id %>
+
+    <h4>Save this <% if is_wtjmmj? %>reservation <% else %>order <% end %> as a favorite. <span id="char-limit-favorite" style="display: none">30</span></h4>
+    <%= f.text_field :favorite_name, placeholder: "Name your favorite",  :maxlength => 30 %>
+    <%= f.submit "Save",class:"save",  id:"addFavorites" %>
+  <% end %>
+</div>
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+      (function($) {
+    $( "#user_favorite_favorite_name" ).keyup(function() {
+      var charVal = 30 - $('#user_favorite_favorite_name').val().length;
+      $('#char-limit-favorite').text(charVal);
+    });
+  })(jQuery);
+  });
+</script>

@@ -1,0 +1,22 @@
+<div id="basic_modal_ok_cancel" class='basic_modal_ok_cancel' data-dialog-content>
+    <div class="text" style="text-align: center;"><h2 style="text-transform: capitalize; margin: 10px">{{bodyContent}}</h2></div>
+    <div class="buttons">
+        <button id="ok-button" class="button" data-continueLink={{continueLink}} data-merchantID={{currentMerchantID}} data-orderType={{orderType}}>Ok</button>
+        <button id="cancel-button" class="button secondary" data-dialog-close>Cancel</button>
+    </div>
+</div>
+
+<script>
+ window.addEventListener('DOMContentLoaded', function() {
+  (function($) {
+    $(function(){
+        $('#ok-button').on('click', function(e){
+            //debugger
+            e.preventDefault();
+            var continue_link = this.getAttribute('data-continueLink');
+            window.location = decodeURIComponent(continue_link)
+        });
+    });
+    })(jQuery);
+  });
+</script>

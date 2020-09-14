@@ -1,0 +1,261 @@
+[data-route='group_orders/show'] {
+  section#modifiers {
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+
+    #increment-button {
+      float: right;
+    }
+  }
+
+  section.left-container {
+    .info {
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      display: inline-block \9;
+      width: 100% \9;
+      height: 10rem \9;
+    }
+
+    hr {
+      margin: 1.6rem 0;
+    }
+
+    .merchant-info,
+    .delivery-info {
+      -webkit-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      padding: 1rem;
+      background-color: #eee;
+      border: 1px solid #ddd;
+      display: inline-block \9;
+      height: 100% \9;
+
+      h2 {
+        font-size: 1.125rem;
+        margin: 0;
+      }
+
+      p:first-of-type {
+        padding-bottom: 0.5rem;
+        margin: 0;
+      }
+
+      p {
+        margin: 0.2rem 0 0 0;
+      }
+    }
+
+    .merchant-info {
+      width: 100% \9;
+      float: left \9;
+    }
+
+    .delivery-info {
+      margin-left: 25px;
+      float: right \9;
+    }
+
+    .info.delivery {
+        .merchant-info,
+        .delivery-info {
+          width: calc(50% - 12.5px);
+        }
+    }
+
+    #order-summary {
+      .user-item {
+        .icon-close {
+          @include circle-close-x-icon;
+          top: 0.2rem;
+          margin-left: 0.25rem;
+          cursor: pointer;
+          font-size: 1.3rem;
+          position: relative;
+          color: #999;
+          &:hover {
+            color: #bbb;
+          }
+        }
+
+        .item {
+          margin-top: 1rem;
+
+          h3 {
+            margin-bottom: 0.3rem;
+
+            span {
+              float: right;
+            }
+          }
+
+          p {
+            margin: 0;
+          }
+        }
+      }
+
+      .user-order {
+        font-size: 1.17em;
+        font-weight: 500;
+
+        &:not(:last-child) {
+          td {
+            padding-bottom: 1em;
+          }
+        }
+
+        .status {
+          padding-left: 3em;
+          font-weight: normal;
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    .buttons {
+      width: 100%;
+      float: right;
+
+      .group-actions {
+        float: right;
+      }
+
+      .button {
+        display: inline-block;
+      }
+
+      form {
+        input[type=submit] {
+          margin-top: 0;
+        }
+
+        &#cancel {
+          display: inline-block;
+          margin-left: 0.4rem;
+        }
+      }
+    }
+  }
+
+  section.right-container {
+    strong {
+      word-wrap: break-word;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    section#submit-time {
+      font-size: 0.8rem;
+    }
+
+    section#modifiers {
+      button {
+        width: 100%;
+      }
+
+      span {
+        &#status {
+          float: right;
+        }
+
+        &#submitted-orders {
+          float: left;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 40rem) {
+    section.left-container {
+      .buttons {
+        .button {
+          width: 100%;
+          margin-bottom: 0.5rem;
+        }
+
+        .group-actions {
+          width: 100%;
+
+          #cancel {
+            width: 100%;
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+  .bubble-container {
+    padding: 0.8rem 0;
+  }
+  .right-container{
+    background-color: #eee!important;
+  }
+
+  .link-container{
+    p{
+      color: #757575;
+      font-size: 0.95rem;
+    }
+    background-color: #ffffff;
+    margin-top: 1rem;
+    padding:0.5rem;
+    margin-left:3.5rem;
+    @media (max-width: 48rem) {
+
+    }
+  }
+
+  section.right-container {
+    display: inline-block;
+    @media (max-width: 48rem) {
+      display: none;
+    }
+  }
+
+  .right-container-responsive{
+    margin-bottom: 1.5rem;
+    padding: 1rem 0.5rem;
+    margin-left: -10px;
+    width: 102%;
+    background-color: #eee;
+    border: 1px solid #ddd;
+    display: none;
+    @media (max-width: 48rem) {
+      display: block;
+    }
+  }
+
+  .left-container{
+    padding-top: 0!important;
+  }
+
+  .bubble-margin-left{
+    margin-left: 1.1rem
+  }
+
+  .right-block{
+    display: block;
+    @media (max-width: 48rem) {
+      display: none;
+    }
+  }
+
+  .right-block-responsive{
+    width: 42.5%;
+    display:none;
+    @media (max-width: 48rem) {
+      display: block!important;
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .custom-button{
+    width:100%;
+    margin-top:1rem;
+  }
+}

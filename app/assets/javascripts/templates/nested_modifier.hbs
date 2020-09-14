@@ -1,0 +1,72 @@
+<div id="current-nm">
+  <section id='modifiers'>
+
+    <h1>{{ modifier.modifier_item_name }}</h1>
+
+    <p>Please select an item from the options below.</p>
+
+    <div class="modifier-option-quantity">
+      <p>Options</p>
+      <p class="nested-modifier-quantity">{{{ quantityText }}}</p>
+    </div>
+
+    <dl>
+      {{# each modifier.nestedItems }}
+        <dt data-id='{{ modifier_item_id }}'>
+          {{{ modifier_item_name }}}
+          <span></span>
+        </dt>
+
+        <dd data-id='{{ modifier_item_id }}'>
+          {{# if modifier_item_calories }}
+            <p class="modifier-calories">
+             <span id="modifier-add-sub-{{ modifier_item_id }}" class="modifier-add-sub">Add</span>
+             <span id="modifier-add-sub-{{ modifier_item_id }}-mobile" class="modifier-add-sub-mobile">+</span>
+              {{ modifier_item_calories }} Cal
+            </p>
+          {{/ if }}
+
+          {{# if oneMax }}
+            {{# if exclusive }}
+              <label for="modifier_item_{{ modifier_item_id }}" class="selector-override">
+                <input type='radio'
+                       id="modifier_item_{{ modifier_item_id }}"
+                       name='{{ ../modifierGroup.modifier_group_display_name }}'
+                       value='{{ modifier_item_name }}'
+                  {{# equal quantity 0 }}
+                       data-quantity='{{ quantity }}'
+                  {{ else }}
+                       data-quantity='{{ quantity }}' checked="checked"
+                  {{/ equal }}>
+                <span></span>
+              </label>
+            {{ else }}
+              <label for="modifier_item_{{ modifier_item_id }}" class="selector-override">
+                <input type='checkbox'
+                       id="modifier_item_{{ modifier_item_id }}"
+                       name='{{ modifier_item_name }}'
+                  {{# equal quantity 0 }}
+                       data-quantity='{{ quantity }}'
+                  {{ else }}
+                       data-quantity='{{ quantity }}' checked="checked"
+                  {{/ equal }}>
+                <span></span>
+              </label>
+            {{/ if }}
+          {{ else  }}
+            <span class="modifier-quantity"
+                  data-quantity='{{ quantity }}'>{{ quantity }}</span>
+            {{# equal quantity 0}}
+              <a class='subtract' href></a>
+              <a class='add' href></a>
+            {{ else }}
+              <a class='subtract active' href></a>
+              <a class='add active' href></a>
+            {{/ equal }}
+          {{/ if }}
+        </dd>
+        <hr />
+      {{/each}}
+    </dl>
+  </section>
+</div>

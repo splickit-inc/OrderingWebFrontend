@@ -1,0 +1,27 @@
+<h4>Group order Activity</h4>
+
+<div class="data user-items">
+  <% if @group_order["order_summary"] && @group_order["order_summary"]["cart_items"] %>
+    <% @group_order["order_summary"]["cart_items"].each do |item| %>
+      <div class="data-row user-item">
+        <div class="item" data-item="<%= item["order_detail_id"] %>">
+          <h3>
+            <%= item["item_name"] %>
+            <% unless submitted? %>
+              <i class="icon-close" data-item-id="<%= item["order_detail_id"] %>"></i>
+            <% end %>
+            <span><%= item["item_price"] %></span>
+          </h3>
+
+          <p><%= item["item_description"] %></p>
+
+          <% if item["item_note"] %>
+            <p>Notes: <%= item["item_note"] %></p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No items have been added to the group order yet.</p>
+  <% end %>
+</div>

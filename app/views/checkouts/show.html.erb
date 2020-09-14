@@ -1,0 +1,235 @@
+<%= render "shared/moes/order" if @skin.is_moes? %>
+
+<main>
+  <div class="container">
+    <div class="checkout-info">
+      <div class="summary-border">
+        <section id='summary'>
+          <address>
+            <h2><%= @merchant.display_name %></h2>
+            <p><%= @merchant.address1 %>, <%= @merchant.city_state_zip %></p>
+            <p><%= number_to_phone @merchant.phone_no %></p>
+          </address>
+
+          <hr>
+
+          <% if @confirmation["order_summary"].present? %>
+            <table id='items'>
+              <% @confirmation["order_summary"]["cart_items"].each do |item| %>
+                <tr>
+                  <td class="item">
+                    <h3><%= item["item_name"] %></h3>
+
+                    <% if item["item_description"] %>
+                      <p><%= item["item_description"].split(',').join(' ') %></p>
+                    <% end %>
+
+                    <% if item["item_note"].present? && @skin.show_notes_fields %>
+                      <span class="note"><span>Note: </span><%= item["item_note"] %></span>
+                    <% end %>
+                  </td>
+                  <td class="price"><%= item["item_price"] %></td>
+                </tr>
+              <% end %>
+            </table>
+
+            <hr>
+
+            <table id='amounts'>
+              <% @order_receipt.each do |item| %>
+                <% if is_wtjmmj? && title(item["title"]) == "Tax" %>
+                  <tr id="<%= css_class(item["title"]) %>" style="display: none;">
+                <% else %>
+                  <tr id="<%= css_class(item["title"]) %>">
+                    <td><%= title(item["title"]) %></td>
+                    <td><%= item["amount"] %></td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </table>
+
+            <hr>
+
+            <table id='total'>
+              <tr>
+                <td><%= title(@total["title"]) %></td>
+                <td class="price" id="total_price"><%= @total["amount"] %></td>
+              </tr>
+
+              <% @payment_items.each do |payment_item| %>
+                <tr>
+                  <% if is_wtjmmj? && payment_item["title"] == "Order" %>
+                    <td class="title">Reservation</td>
+                  <% else %>
+                    <td class="title <%= rewards_class(payment_item["title"]) %>"><%= payment_item["title"] %></td>
+                  <% end %>
+                  <td class="price <%= rewards_class(payment_item["title"]) %>"><%= payment_item["amount"] || "$0.00" %></td>
+                </tr>
+              <% end %>
+            </table>
+          <% end %>
+        </section>
+      </div>
+
+      <section id='details'>
+        <section class="title">
+          <div class="float_left">
+            <h1><%= last_order_title %></h1>
+            <% if invite_pay? %>
+              <h2><%= "Your Group Order will be submitted at #{ @confirmation["requested_time_string"] }" %></h2>
+            <% end %>
+            <% if @confirmation["additional_message"].present? %>
+              <h4 class="additional-message" ><%= @confirmation["additional_message"] %></h4>
+            <% end %>
+          </div>
+          <div class="status float_right">
+            <% if @user.group_order_organizer?(group_order_token) %>
+              <%= link_to "GROUP ORDER STATUS", group_order_path(@group_order_token), class: "button float_right" %>
+            <% end %>
+          </div>
+        </section>
+
+        <table>
+          <tr>
+            <td class="label">
+              <h4><% if is_wtjmmj? %>Reservation <% else %>Order <% end %>Number:</h4>
+            </td>
+            <td><%= @confirmation["order_id"] || @confirmation["group_order_id"] %></td>
+          </tr>
+
+          <% unless delivery?(@order_type) %>
+            <tr>
+              <td class="label">
+                <h4>Pickup Time:</h4>
+              </td>
+              <td><%= @confirmation["pickup_time_string"] %></td>
+            </tr>
+          <% end %>
+
+          <% if @delivery_address && (!is_a_group_order? || (is_a_group_order? && @user.group_order_organizer?(group_order_token))) %>
+            <tr>
+              <td class="label">
+                <h4>Delivery Time:</h4>
+              </td>
+              <td><%= @confirmation["requested_delivery_time"] %></td>
+            </tr>
+            <tr>
+              <td class="label">
+                <h4>Delivery Address:</h4>
+              </td>
+              <td class="td-address"><% if @delivery_address["business_name"].present? %> <%= "#{@delivery_address["business_name"]}" %> <br /><% end %>
+                  <%= "#{ @delivery_address["address1"] }, #{ @delivery_address["city"] }, #{ @delivery_address["state"] } #{ @delivery_address["zip"] }" %></td>
+            </tr>
+          <% end %>
+
+          <tr>
+            <td class="label">
+              <h4>Email:</h4>
+            </td>
+            <!-- We don't use current_user_email at this section because it doesn't apply for guests -->
+            <td><%= @user.email %></td>
+          </tr>
+
+          <% if @skin.show_notes_fields && @confirmation["note"].present? %>
+            <tr>
+              <td class="label">
+                <h4>Order Notes:</h4>
+              </td>
+              <td>
+                <%= @confirmation["note"] %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+
+        <% if delivery?(@order_type) %>
+          <h3>Note: Delivery time is approximate. Actual time may vary.</h3>
+        <% else %>
+          <h3>Note: On pickup, just bypass the line and ask for your <% if is_wtjmmj? %>reservation.<% else %>order.<% end %></h3>
+          <!-- Hidden because we need to think in the functionality for this button, but using Mapbox -->
+          <!-- %= link_to "Get Directions", merchant_map_url, class: "primary-btn directions", target: "_blank" unless @skin.event_merchant %> -->
+        <% end %>
+
+        <% if loyalty_message_present? && !current_user.is_guest? %>
+          <div id='loyalty'>
+            <% if loyalty_earned_present? %>
+              <div class="loyalty-label">
+                Earned
+              </div>
+              <div class="loyalty-right">
+                <%= @confirmation["loyalty_earned_message"] %>
+              </div>
+            <% end %>
+
+            <% if loyalty_balance_present? %>
+              <div class="loyalty-label">
+                Rewards Balance
+              </div>
+              <div class="loyalty-right">
+                <%= @confirmation["loyalty_balance_message"] %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+
+        <%= render partial: "favorites/new" if @user_favorite.present? && !current_user.is_guest? %>
+
+        <div class="social-group">
+          <h4>Share your <% if is_wtjmmj? %>reservation <% else %>order <% end %> with friends:</h4>
+          <%= render partial: "shared/social/facebook", locals: { url: merchant_url(@merchant.merchant_id) } %>
+          <%= render partial: "shared/social/twitter",
+                     locals: { msg: @confirmation["twitter"]["twitter_caption"] } if @confirmation["twitter"] %>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        (function($) {
+      /**
+       * The following information is for push variables into Data Layer to
+       * send to Google Tag Manager
+       */
+      var order_id = <%= @confirmation["order_id"] %>;
+      var total_price = $('#total #total_price').text();
+      var total_price_parsed = parseFloat(((total_price).split('$'))[1]);
+      var page_title = '<%= @skin.skin_description %>';
+      var product_names = [];
+
+      $('#items tr').each(function () {
+        var item_name = $(this).find("td h3").text();
+        var item_price = parseFloat((($(this).find("td:nth-child(2)").text()).split('$'))[1]);
+
+        product_names.push({
+          'sku': String(item_name),
+          'name': String(item_name),
+          'price': item_price,
+          'quantity': 1
+        });
+      });
+
+      window.dataLayer.push({
+        'transactionId': String(order_id),
+        'transactionAffiliation': String(page_title),
+        'transactionTotal': total_price_parsed,
+        'transactionProducts': product_names,
+        'event': 'transactionComplete'
+      });
+
+      return $("#new_user_favorite").on("ajax:success", function (e, data, status, xhr) {
+          $('#save-favorite form').fadeOut('slow', function () {
+              $(this).replaceWith('<p id="favorite-success">' + data['user_message'] + '</p>');
+              $('#favorite-success').fadeIn('slow');
+          });
+      }).on("ajax:error", function(e, xhr, status, error) {
+          new WarningModalController({
+              warning_title: "Favorite",
+              warning_message: "Please name your favorite"
+          })
+      });
+
+    })(jQuery);
+    });
+</script>

@@ -1,0 +1,46 @@
+<%= content_tag :header, class: yield(:header_class) do %>
+  <div id="nav-header-bg"></div>
+  <nav class='primary'>
+    <% if @skin.is_hollywoodbowl? == false %>
+      <%= link_to image_tag(navbar_logo_url), root_path, class: 'logo' %>
+    <% end %>
+    <%if signed_in?%>
+    <%= link_to "Group order status", group_order_path(id: @user.group_order_token),
+                class:"group-order-status first" if has_group_order? %>
+    <% end %>
+
+    <%= content_tag :div, class: 'order', data: { item_count: (item_count) } do
+      link_to content_tag(:span, my_order_text), root_path, class: 'my-order-link'
+    end %>
+      <%if signed_in? == false%>
+      <%= link_to "", "#", class: 'dropdown-toggle' %>
+      <% end -%>
+      <%if signed_in?%>
+        <%= link_to "", "#", class: 'dropdown-user' %>
+      <% end %>
+
+    <%= content_tag :div, class: 'user', data: { first_name: (trimmed_first_name || '') } do %>
+      <% if (signed_in? && current_user.is_guest?) || (!signed_in? && confirmation_page?) %>
+        <%= link_to "Home", root_path, class: "home guest" %>
+        <%#= link_to "Sign out", sign_out_path, class: "home guest", :onclick=> "logoutFB();" %>
+      <% elsif signed_in? %>
+        <%= link_to my_order_text, root_path, class: 'order', data: { item_count: (item_count || 0) } %>
+        <%= link_to "Account Settings", account_user_path, class: 'account' unless is_punchh? %>
+        <%= link_to loyalty_link_text, user_loyalty_path, class: 'loyalty' if show_card? %>
+        <%= link_to "Group order status", group_order_path(id: @user.group_order_token),
+                    class:"group-order-status" if has_group_order? %>
+        <%= link_to "Log out", sign_out_path, :onclick=> "logoutFB();" unless is_punchh? %>
+        <%= link_to "Close", "#", class: "close-menu" if is_punchh? %>
+      <% else %>
+
+        <%= link_to "Sign up", sign_up_path, class: 'sign-up', data: { dialog_trigger: true, dialog: 'sign-up' } %>
+
+        <%= link_to "Sign in", sign_in_path, class: 'sign-in', data: { dialog_trigger: true, dialog: 'sign-in' } %>
+
+      <% end %>
+    <% end %>
+  </nav>
+  <div class="header_img">
+  </div>
+  <%= yield :header %>
+<% end %>

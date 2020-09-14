@@ -1,0 +1,30 @@
+<div id="nutrition-info" class="nutrition-info" data-dialog-content>
+  <div class="body">
+    {{# if nutrition.message }}
+      <h4 class="nutrition-empty">{{ nutrition.message }}</h4>
+    {{ else }}
+      <h4>Nutrition Facts</h4>
+        <p>Serving size {{# nutrition }}{{# isServing }}{{ value }}{{/ isServing }}{{/ nutrition }}</p>
+        <hr class="level-1"/>
+        <p class="title">Amount Per Serving</p>
+        <hr />
+        <p class="title">Calories<span class="right">{{# nutrition }}{{# isCalories }}{{ value }}{{/ isCalories }}{{/ nutrition }}</span></p>
+        <p class="info">Calories from Fat<span class="right">{{# nutrition }}{{# isCaloriesFF}}{{ value }}{{/ isCaloriesFF }}{{/ nutrition }}</span></p>
+        <hr class="level-2"/>
+        <p class="title">Total Fat<span class="right">{{# nutrition }}{{# isFat}}{{ value }}{{/ isFat }}{{/ nutrition }}</span></p>
+        <p class="info">Saturated Fat<span class="right">{{# nutrition }}{{# isSaturatedFat}}{{ value }}{{/ isSaturatedFat }}{{/ nutrition }}</span></p>
+        <p class="info">Trans Fat<span class="right">{{# nutrition }}{{# isTransFat}}{{ value }}{{/ isTransFat }}{{/ nutrition }}</span></p>
+        <hr class="level-2"/>
+        <p class="title">Cholesterol<span class="right">{{# nutrition }}{{# isCholesterol}}{{ value }}{{/ isCholesterol }}{{/ nutrition }}</span></p>
+        <hr class="level-2"/>
+        <p class="title">Sodium<span class="right">{{# nutrition }}{{# isSodium}}{{ value }}{{/ isSodium }}{{/ nutrition }}</span></p>
+        <hr class="level-2"/>
+        <p class="title">Total Carbohydrates<span class="right">{{# nutrition }}{{# isCarbohydrates}}{{ value }}{{/ isCarbohydrates }}{{/ nutrition }}</span></p>
+        <p class="info">Dietary Fiber<span class="right">{{# nutrition }}{{# isDietaryFiber}}{{ value }}{{/ isDietaryFiber }}{{/ nutrition }}</span></p>
+        <p class="info">Sugars<span class="right">{{# nutrition }}{{# isSugars }}{{ value }}{{/ isSugars }}{{/ nutrition }}</span></p>
+        <hr class="level-2"/>
+        <p class="title">Protein<span class="right">{{# nutrition }}{{# isProtein }}{{ value }}{{/ isProtein }}{{/ nutrition }}</span></p>
+      <hr class="level-1"/>
+    {{/ if }}
+  </div>
+</div>

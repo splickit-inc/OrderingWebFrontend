@@ -1,0 +1,16 @@
+<div class="data-row user-item">
+  <div class="item" data-item="{{ order_detail_id }}">
+    <h3>
+      {{ item_name }}
+      {{#if can_delete }}
+        <i class="icon-close" data-item-id="{{ order_detail_id }}"></i>
+      {{/if}}
+      <span>{{ item_price }}</span>
+    </h3>
+
+    <p>{{ item_description }}</p>
+    {{#if item_note }}
+      <p>Notes: {{ item_note }}</p>
+    {{/if }}
+  </div>
+</div>

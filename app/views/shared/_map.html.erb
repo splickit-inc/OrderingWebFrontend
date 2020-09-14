@@ -1,0 +1,17 @@
+<script type='text/javascript'>
+  window.mapBoxAvailable = false;
+</script>
+
+<!--[if !IE]><!-->
+  <%= javascript_include_tag "https://api.tiles.mapbox.com/mapbox-gl-js/v0.37.0/mapbox-gl.js", defer: true%>
+  <%= stylesheet_link_tag "https://api.tiles.mapbox.com/mapbox-gl-js/v0.37.0/mapbox-gl.css" %>
+
+  <script type='text/javascript'>
+      window.addEventListener('DOMContentLoaded', function() {
+          (function($) {
+        mapboxgl.accessToken = "pk.eyJ1Ijoic3BsaWNraXQiLCJhIjoiY2oydDZqajhvMDAwcjJxbzVpZm1yY2ZuNSJ9.e9xExnKbN_0hCjB9FzFKpg";
+        window.mapBoxAvailable = true;
+          })(jQuery);
+      });
+  </script>
+<!--[endif]-->
